@@ -31,18 +31,18 @@ export default function RecycleBinApp() {
   const restore = () => {
     if (!selected) return
     if (selected.restoreError) {
-      setMessage({ title: 'Error Restoring File', text: selected.restoreError })
+      setMessage({ title: 'Error al restaurar el archivo', text: selected.restoreError })
       return
     }
     remove(selected.id)
-    setMessage({ title: 'Restore', text: `"${selected.name}" se restauró en ${selected.origin}.` })
+    setMessage({ title: 'Restaurar', text: `"${selected.name}" se restauró en ${selected.origin}.` })
   }
 
   const askDelete = () => {
     if (!selected) return
     const { id, name } = selected
     setMessage({
-      title: 'Confirm File Delete',
+      title: 'Confirmar eliminación de archivo',
       text: `¿Seguro que quieres eliminar "${name}" para siempre?`,
       onConfirm: () => {
         remove(id)
@@ -53,7 +53,7 @@ export default function RecycleBinApp() {
 
   const askEmpty = () =>
     setMessage({
-      title: 'Confirm Multiple File Delete',
+      title: 'Confirmar eliminación múltiple',
       text: `¿Seguro que quieres eliminar estos ${items.length} elemento(s)? No hay vuelta atrás. Bueno, sí: reinicia el escritorio.`,
       onConfirm: () => {
         empty()
@@ -70,32 +70,32 @@ export default function RecycleBinApp() {
 
   return (
     <div className={shared.app}>
-      <div className={styles.toolbar} role="toolbar" aria-label="Recycle Bin actions">
+      <div className={styles.toolbar} role="toolbar" aria-label="Acciones de la papelera">
         <button type="button" className={styles.tool} disabled={!selected} onClick={open}>
-          Open
+          Abrir
         </button>
         <button type="button" className={styles.tool} disabled={!selected} onClick={restore}>
-          Restore
+          Restaurar
         </button>
         <button type="button" className={styles.tool} disabled={!selected} onClick={askDelete}>
-          Delete
+          Eliminar
         </button>
         <button type="button" className={styles.tool} disabled={items.length === 0} onClick={askEmpty}>
-          Empty Recycle Bin
+          Vaciar la papelera
         </button>
       </div>
 
-      <div className={styles.list} role="listbox" aria-label="Deleted items">
+      <div className={styles.list} role="listbox" aria-label="Elementos eliminados">
         <div className={`${styles.row} ${styles.head}`} aria-hidden>
-          <span>Name</span>
-          <span className={styles.hideSmall}>Original Location</span>
-          <span className={styles.hideSmall}>Date Deleted</span>
-          <span>Size</span>
+          <span>Nombre</span>
+          <span className={styles.hideSmall}>Ubicación original</span>
+          <span className={styles.hideSmall}>Fecha de eliminación</span>
+          <span>Tamaño</span>
         </div>
 
         {items.length === 0 ? (
           <p className={styles.empty}>
-            Recycle Bin is empty.
+            La papelera está vacía.
             <br />
             Tus recuerdos ya no están. Reinicia el escritorio para recuperarlos.
           </p>
@@ -129,8 +129,8 @@ export default function RecycleBinApp() {
       </div>
 
       <Statusbar>
-        <span>{items.length} object(s)</span>
-        <span>{selected ? selected.type : 'Recycle Bin'}</span>
+        <span>{items.length} elemento(s)</span>
+        <span>{selected ? selected.type : 'Papelera de reciclaje'}</span>
       </Statusbar>
 
       {message && (
@@ -149,7 +149,7 @@ export default function RecycleBinApp() {
                       setMessage(null)
                     }}
                   >
-                    Yes
+                    Sí
                   </button>
                   <button type="button" className={parts.btn} onClick={() => setMessage(null)}>
                     No
@@ -157,7 +157,7 @@ export default function RecycleBinApp() {
                 </>
               ) : (
                 <button type="button" className={parts.btn} data-autofocus onClick={() => setMessage(null)}>
-                  OK
+                  Aceptar
                 </button>
               )}
             </div>

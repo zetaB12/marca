@@ -49,9 +49,9 @@ const HELP = [
 ] as const;
 
 const TABS: { id: AboutTab; label: string }[] = [
-  { id: "behind", label: "Behind N." },
-  { id: "agency", label: "Agency" },
-  { id: "process", label: "Process" },
+  { id: "behind", label: "Detrás de Neal" },
+  { id: "agency", label: "Agencia" },
+  { id: "process", label: "Proceso" },
 ];
 
 /** Información de la agencia. El contenido editorial definitivo llega en la Fase 3. */
@@ -62,7 +62,11 @@ export default function AboutApp() {
 
   return (
     <div className={shared.app}>
-      <div role="tablist" aria-label="About sections" className={styles.tabs}>
+      <div
+        role="tablist"
+        aria-label="Secciones de Nosotros"
+        className={styles.tabs}
+      >
         {TABS.map((t) => (
           <button
             key={t.id}
@@ -102,7 +106,7 @@ export default function AboutApp() {
             </div>
             <div className={styles.bio}>
               <h2 className={shared.heading}>
-                {ABOUT_PROFILE.name || "Behind N."}
+                {ABOUT_PROFILE.name || "Detrás de Neal"}
               </h2>
               {ABOUT_PROFILE.role && (
                 <p className={styles.role}>{ABOUT_PROFILE.role}</p>
@@ -165,7 +169,7 @@ export default function AboutApp() {
           </div>
         ) : (
           <>
-            <h2 className={shared.heading}>How we work</h2>
+            <h2 className={shared.heading}>Cómo trabajamos</h2>
             <ol className={styles.steps}>
               {PROCESS.map(([name, text]) => (
                 <li key={name}>
@@ -178,7 +182,7 @@ export default function AboutApp() {
         )}
       </div>
       <Statusbar>
-        <span>About Us.exe</span>
+        <span>Nosotros.exe</span>
         <span>Trujillo, Perú</span>
       </Statusbar>
     </div>

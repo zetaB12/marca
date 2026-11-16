@@ -33,7 +33,7 @@ export default function DesktopIcon({ id }: { id: WindowAppId }) {
             }
           : undefined
       }
-      aria-label={`Open ${file}`}
+      aria-label={`Abrir ${file}`}
     >
       <span className={styles.glyph}>
         <Icon size={iconSize} aria-hidden />

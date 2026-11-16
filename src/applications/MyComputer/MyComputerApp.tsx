@@ -85,18 +85,18 @@ export default function MyComputerApp() {
   }
 
   const viewEntries = (): MenuEntry[] => [
-    { kind: 'heading', label: 'View' },
+    { kind: 'heading', label: 'Ver' },
     ...(['icons', 'list'] as ExplorerView[]).map<MenuEntry>((v) => ({
       kind: 'item',
-      label: v === 'icons' ? 'Large Icons' : 'List',
+      label: v === 'icons' ? 'Iconos grandes' : 'Lista',
       checked: view === v,
       onSelect: () => setView(v),
     })),
     { kind: 'sep' },
-    { kind: 'heading', label: 'Sort by' },
+    { kind: 'heading', label: 'Ordenar por' },
     ...(['name', 'type'] as ExplorerSort[]).map<MenuEntry>((k) => ({
       kind: 'item',
-      label: k === 'name' ? 'Name' : 'Type',
+      label: k === 'name' ? 'Nombre' : 'Tipo',
       checked: sort === k,
       onSelect: () => setSort(k),
     })),
@@ -106,28 +106,28 @@ export default function MyComputerApp() {
     const node = menu?.node
     if (node) {
       return [
-        { kind: 'item', label: 'Open', onSelect: () => openNode(node) },
+        { kind: 'item', label: 'Abrir', onSelect: () => openNode(node) },
         { kind: 'sep' },
-        { kind: 'item', label: 'Properties', onSelect: () => setPropsOf(node) },
+        { kind: 'item', label: 'Propiedades', onSelect: () => setPropsOf(node) },
       ]
     }
-    return [{ kind: 'item', label: 'Refresh', icon: <RefreshIcon size={16} />, onSelect: refresh }, { kind: 'sep' }, ...viewEntries()]
+    return [{ kind: 'item', label: 'Actualizar', icon: <RefreshIcon size={16} />, onSelect: refresh }, { kind: 'sep' }, ...viewEntries()]
   }
 
   return (
     <div className={shared.app} onKeyDown={onKeyDown}>
-      <div className={styles.toolbar} role="toolbar" aria-label="Navigation">
-        <button type="button" className={styles.tool} disabled={!canBack} onClick={back} title="Back (Alt+Left)">
+      <div className={styles.toolbar} role="toolbar" aria-label="Navegación">
+        <button type="button" className={styles.tool} disabled={!canBack} onClick={back} title="Atrás (Alt+←)">
           <ArrowIcon size={16} className={styles.flip} />
-          <span className={styles.toolText}>Back</span>
+          <span className={styles.toolText}>Atrás</span>
         </button>
-        <button type="button" className={styles.tool} disabled={!canForward} onClick={forward} title="Forward (Alt+Right)">
-          <span className={styles.toolText}>Forward</span>
+        <button type="button" className={styles.tool} disabled={!canForward} onClick={forward} title="Adelante (Alt+→)">
+          <span className={styles.toolText}>Adelante</span>
           <ArrowIcon size={16} />
         </button>
-        <button type="button" className={styles.tool} disabled={path.length < 2} onClick={up} title="Up (Backspace)">
+        <button type="button" className={styles.tool} disabled={path.length < 2} onClick={up} title="Subir un nivel (Retroceso)">
           <ArrowIcon size={16} className={styles.rotUp} />
-          <span className={styles.toolText}>Up</span>
+          <span className={styles.toolText}>Subir</span>
         </button>
         <span className={styles.gap} aria-hidden />
         <button
@@ -135,23 +135,23 @@ export default function MyComputerApp() {
           className={styles.tool}
           aria-pressed={view === 'icons'}
           onClick={() => setView('icons')}
-          title="Large Icons"
+          title="Iconos grandes"
         >
-          Icons
+          Iconos
         </button>
-        <button type="button" className={styles.tool} aria-pressed={view === 'list'} onClick={() => setView('list')} title="List">
-          List
+        <button type="button" className={styles.tool} aria-pressed={view === 'list'} onClick={() => setView('list')} title="Lista">
+          Lista
         </button>
         <span className={styles.gap} aria-hidden />
-        <button type="button" className={styles.tool} onClick={() => openWindow('sysprops')} title="System Properties">
+        <button type="button" className={styles.tool} onClick={() => openWindow('sysprops')} title="Propiedades del sistema">
           <ComputerIcon size={16} />
-          <span className={styles.toolText}>Properties</span>
+          <span className={styles.toolText}>Propiedades</span>
         </button>
       </div>
 
       <div className={styles.address}>
-        <span className={styles.addressLabel}>Address</span>
-        <nav className={styles.crumbs} aria-label="Current path">
+        <span className={styles.addressLabel}>Dirección</span>
+        <nav className={styles.crumbs} aria-label="Ruta actual">
           {trail.map((n, i) => (
             <span key={n.id} className={styles.crumbWrap}>
               {i > 0 && <span aria-hidden>{'\\'}</span>}
@@ -172,7 +172,7 @@ export default function MyComputerApp() {
         ref={listRef}
         className={`${styles.content} ${view === 'icons' ? styles.icons : styles.list}`}
         role="listbox"
-        aria-label={`Contents of ${label}`}
+        aria-label={`Contenido de ${label}`}
         onPointerDown={(e) => {
           if (e.target !== e.currentTarget) return
           select(null)
@@ -203,7 +203,7 @@ export default function MyComputerApp() {
           setMenu({ x: e.clientX, y: e.clientY, node })
         }}
       >
-        {items.length === 0 && <p className={styles.empty}>This folder is empty.</p>}
+        {items.length === 0 && <p className={styles.empty}>Esta carpeta está vacía.</p>}
         {items.map((node) => {
           const Icon = node.icon
           const active = node.id === selectedId
@@ -230,14 +230,14 @@ export default function MyComputerApp() {
       </div>
 
       <Statusbar>
-        <span className={styles.stat}>{items.length} object(s)</span>
+        <span className={styles.stat}>{items.length} elemento(s)</span>
         <span className={`${styles.stat} ${styles.statGrow}`}>
           {selected ? `${selected.name} — ${TYPE_LABEL[selected.type]}` : current?.name}
         </span>
         <span className={`${styles.stat} ${styles.statPath}`}>{label}</span>
       </Statusbar>
 
-      {menu && <ExplorerMenu x={menu.x} y={menu.y} label="Explorer" entries={menuEntries()} onClose={() => setMenu(null)} />}
+      {menu && <ExplorerMenu x={menu.x} y={menu.y} label="Explorador" entries={menuEntries()} onClose={() => setMenu(null)} />}
 
       {propsOf && <PropertiesDialog node={propsOf} location={label} onClose={() => setPropsOf(null)} />}
     </div>
@@ -247,29 +247,29 @@ export default function MyComputerApp() {
 function PropertiesDialog({ node, location, onClose }: { node: FsNode; location: string; onClose: () => void }) {
   const Icon = node.icon
   return (
-    <SystemDialog title={`${node.name} Properties`} icon={<Icon size={16} />} onClose={onClose}>
+    <SystemDialog title={`Propiedades de ${node.name}`} icon={<Icon size={16} />} onClose={onClose}>
       <div className={parts.body}>
         <div className={styles.propHead}>
           <Icon size={32} />
           <strong>{node.name}</strong>
         </div>
         <dl className={styles.propList}>
-          <dt>Type</dt>
+          <dt>Tipo</dt>
           <dd>{TYPE_LABEL[node.type]}</dd>
-          <dt>Location</dt>
+          <dt>Ubicación</dt>
           <dd>{location}</dd>
           {node.children && (
             <>
-              <dt>Contains</dt>
-              <dd>{node.children.length} object(s)</dd>
+              <dt>Contiene</dt>
+              <dd>{node.children.length} elemento(s)</dd>
             </>
           )}
-          <dt>Description</dt>
+          <dt>Descripción</dt>
           <dd>{node.description}</dd>
         </dl>
         <div className={parts.buttons}>
           <button type="button" className={parts.btn} data-autofocus onClick={onClose}>
-            OK
+            Aceptar
           </button>
         </div>
       </div>

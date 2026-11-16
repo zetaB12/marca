@@ -20,7 +20,7 @@ export interface Service {
 export const SERVICES: Service[] = [
   {
     id: 'web',
-    name: 'WEB DEVELOPMENT',
+    name: 'DESARROLLO WEB',
     description: 'Diseño y desarrollo de páginas web profesionales para negocios.',
     icon: WebIcon,
   },
@@ -32,32 +32,32 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'software',
-    name: 'SOFTWARE & SYSTEMS',
+    name: 'SOFTWARE Y SISTEMAS',
     description: 'Desarrollo aplicaciones y sistemas adaptados a las necesidades de cada negocio.',
     icon: ServicesIcon,
   },
   {
     id: 'automation',
-    name: 'AUTOMATION',
+    name: 'AUTOMATIZACIÓN',
     description: 'Automatizo procesos, integro herramientas y optimizo tareas empresariales.',
     icon: AutomationIcon,
   },
   {
     id: 'ai',
-    name: 'ARTIFICIAL INTELLIGENCE',
+    name: 'INTELIGENCIA ARTIFICIAL',
     description: 'Integro inteligencia artificial para crear soluciones más inteligentes.',
     icon: AIIcon,
   },
   {
     id: 'marketing',
-    name: 'DIGITAL MARKETING',
+    name: 'MARKETING DIGITAL',
     description:
       'Estrategias de marketing, publicidad digital, generación de leads y optimización de conversiones.',
     icon: MegaphoneIcon,
   },
   {
     id: 'seo',
-    name: 'SEO & GEO',
+    name: 'SEO Y GEO',
     description:
       'Posicionamiento orgánico, SEO técnico y optimización para motores de búsqueda y experiencias de búsqueda con IA.',
     icon: SearchIcon,

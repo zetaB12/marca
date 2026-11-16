@@ -54,7 +54,7 @@ function VerticalSlider({
       className={styles.slider}
       role="slider"
       tabIndex={0}
-      aria-label="Volume"
+      aria-label="Volumen"
       aria-orientation="vertical"
       aria-valuemin={0}
       aria-valuemax={100}
@@ -110,7 +110,7 @@ export default function VolumeControl() {
       <button
         type="button"
         className={`${styles.trayBtn} ${open ? styles.pressed : ''}`}
-        aria-label={silent ? 'Volume (muted)' : `Volume ${volume}%`}
+        aria-label={silent ? 'Volumen (silenciado)' : `Volumen ${volume}%`}
         aria-haspopup="dialog"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
@@ -119,8 +119,8 @@ export default function VolumeControl() {
       </button>
 
       {open && (
-        <div className={styles.popup} role="dialog" aria-label="Volume control">
-          <span className={styles.title}>Volume</span>
+        <div className={styles.popup} role="dialog" aria-label="Control de volumen">
+          <span className={styles.title}>Volumen</span>
           <VerticalSlider
             value={volume}
             onChange={(v) => {
@@ -138,7 +138,7 @@ export default function VolumeControl() {
                 if (!e.target.checked) queueMicrotask(() => playSound('ding'))
               }}
             />
-            <span>Mute</span>
+            <span>Silenciar</span>
           </label>
         </div>
       )}

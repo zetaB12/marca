@@ -8,18 +8,18 @@ export default function ContactApp() {
   return (
     <div className={shared.app}>
       <div className={`${shared.main} ${styles.body}`}>
-        <h2 className={shared.heading}>Ready to start your next project?</h2>
+        <h2 className={shared.heading}>¿Listo para empezar tu proyecto?</h2>
         <p className={shared.text}>Escríbenos y cuéntanos qué necesita tu negocio.</p>
         <div className={styles.actions}>
           <WhatsAppButton label="Escribir por WhatsApp" />
         </div>
         <p className={styles.note}>
-          <span className={shared.demo}>Preliminary</span> El formulario de contacto se incorpora
+          <span className={shared.demo}>Preliminar</span> El formulario de contacto se incorpora
           en una próxima fase.
         </p>
       </div>
       <Statusbar>
-        <span>Contact.exe</span>
+        <span>Contacto.exe</span>
         <span>Trujillo, Perú</span>
       </Statusbar>
     </div>

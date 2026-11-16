@@ -1,34 +1,37 @@
-import { useLayoutEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import NLogo from '../../components/NLogo/NLogo'
-import { ArrowUpRightIcon, UserIcon } from '../../components/PixelIcon/pixelIcons'
-import { WHATSAPP_ENABLED, whatsappUrl } from '../../data/site'
-import { SERVICES } from '../../data/services'
-import { useDesktopStore } from '../../store/desktopStore'
-import { useNavStore } from '../../store/navStore'
-import styles from './WelcomeApp.module.css'
+import { useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
+import NLogo from "../../components/NLogo/NLogo";
+import {
+  ArrowUpRightIcon,
+  UserIcon,
+} from "../../components/PixelIcon/pixelIcons";
+import { WHATSAPP_ENABLED, whatsappUrl } from "../../data/site";
+import { SERVICES } from "../../data/services";
+import { useDesktopStore } from "../../store/desktopStore";
+import { useNavStore } from "../../store/navStore";
+import styles from "./WelcomeApp.module.css";
 
 /** Servicios que se presentan en Welcome. Nombre visible + id del catálogo (descripción e icono salen de ahí). */
 const FEATURED = [
-  { id: 'web', name: 'Web Development' },
-  { id: 'ecommerce', name: 'E-commerce' },
-  { id: 'software', name: 'Software & Systems' },
-  { id: 'automation', name: 'Automation' },
-  { id: 'ai', name: 'AI Solutions' },
-] as const
+  { id: "web", name: "Desarrollo web" },
+  { id: "ecommerce", name: "E-commerce" },
+  { id: "software", name: "Software y sistemas" },
+  { id: "automation", name: "Automatización" },
+  { id: "ai", name: "Soluciones con IA" },
+] as const;
 
 export default function WelcomeApp() {
-  const ref = useRef<HTMLDivElement>(null)
-  const launch = useDesktopStore((s) => s.launch)
-  const selectService = useNavStore((s) => s.selectService)
-  const setAboutTab = useNavStore((s) => s.setAboutTab)
+  const ref = useRef<HTMLDivElement>(null);
+  const launch = useDesktopStore((s) => s.launch);
+  const selectService = useNavStore((s) => s.selectService);
+  const setAboutTab = useNavStore((s) => s.setAboutTab);
 
   useLayoutEffect(() => {
-    const el = ref.current
+    const el = ref.current;
     const motionOff =
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-      document.documentElement.dataset.motion === 'off'
-    if (!el || motionOff) return
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      document.documentElement.dataset.motion === "off";
+    if (!el || motionOff) return;
     const ctx = gsap.context(() => {
       gsap.from(`.${styles.reveal}`, {
         opacity: 0,
@@ -36,21 +39,21 @@ export default function WelcomeApp() {
         duration: 0.4,
         stagger: 0.07,
         delay: 0.1,
-        ease: 'power2.out',
-      })
-    }, el)
-    return () => ctx.revert()
-  }, [])
+        ease: "power2.out",
+      });
+    }, el);
+    return () => ctx.revert();
+  }, []);
 
   const openService = (id: string) => {
-    selectService(id)
-    launch('services')
-  }
+    selectService(id);
+    launch("services");
+  };
 
   const openBehind = () => {
-    setAboutTab('behind')
-    launch('about')
-  }
+    setAboutTab("behind");
+    launch("about");
+  };
 
   return (
     <div ref={ref} className={styles.app}>
@@ -61,13 +64,15 @@ export default function WelcomeApp() {
           </p>
 
           <h1 className={`${styles.headline} ${styles.reveal}`}>
-            <span className={styles.strong}>Creo webs, sistemas y soluciones digitales</span> para
-            hacer crecer tu negocio.
+            <span className={styles.strong}>
+              Creo webs, sistemas y soluciones digitales
+            </span>{" "}
+            para hacer crecer tu negocio.
           </h1>
 
           <p className={`${styles.description} ${styles.reveal}`}>
-            Ayudo a negocios a tener una mejor presencia digital, vender más por Internet y optimizar
-            sus procesos.
+            Ayudo a negocios a tener una mejor presencia digital, vender más por
+            Internet y optimizar sus procesos.
           </p>
 
           <div className={`${styles.actions} ${styles.reveal}`}>
@@ -75,57 +80,82 @@ export default function WelcomeApp() {
             {WHATSAPP_ENABLED ? (
               <a
                 className={`${styles.cta} ${styles.primary}`}
-                href={whatsappUrl('Hola, me gustaría hablar sobre mi proyecto.')}
+                href={whatsappUrl(
+                  "Hola, me gustaría hablar sobre mi proyecto.",
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Hablemos de tu proyecto <ArrowUpRightIcon size={16} />
               </a>
             ) : (
-              <button type="button" className={`${styles.cta} ${styles.primary}`} onClick={() => launch('contact')}>
+              <button
+                type="button"
+                className={`${styles.cta} ${styles.primary}`}
+                onClick={() => launch("contact")}
+              >
                 Hablemos de tu proyecto <ArrowUpRightIcon size={16} />
               </button>
             )}
-            <button type="button" className={styles.cta} onClick={() => launch('projects')}>
+            <button
+              type="button"
+              className={styles.cta}
+              onClick={() => launch("projects")}
+            >
               Conoce mi trabajo <ArrowUpRightIcon size={16} />
             </button>
           </div>
 
           <p className={`${styles.promise} ${styles.reveal}`}>
-            Soluciones a medida. Sin depender de plantillas. Tecnología pensada para tu negocio.
+            Soluciones a medida. Sin depender de plantillas. Tecnología pensada
+            para tu negocio.
           </p>
         </section>
 
         <aside className={styles.aside} aria-label="Servicios">
           <NLogo size={22} className={styles.reveal} />
 
-          <div className={`${styles.group} ${styles.reveal}`} role="group" aria-labelledby="welcome-services">
+          <div
+            className={`${styles.group} ${styles.reveal}`}
+            role="group"
+            aria-labelledby="welcome-services"
+          >
             <span id="welcome-services" className={styles.legend}>
               Servicios
             </span>
             <ul className={styles.services}>
               {FEATURED.map(({ id, name }) => {
-                const service = SERVICES.find((s) => s.id === id)
-                if (!service) return null
-                const Icon = service.icon
+                const service = SERVICES.find((s) => s.id === id);
+                if (!service) return null;
+                const Icon = service.icon;
                 return (
                   <li key={id}>
-                    <button type="button" className={styles.service} onClick={() => openService(id)}>
+                    <button
+                      type="button"
+                      className={styles.service}
+                      onClick={() => openService(id)}
+                    >
                       <Icon size={32} />
                       <span className={styles.serviceText}>
                         <span className={styles.serviceName}>{name}</span>
-                        <span className={styles.serviceDesc}>{service.description}</span>
+                        <span className={styles.serviceDesc}>
+                          {service.description}
+                        </span>
                       </span>
                     </button>
                   </li>
-                )
+                );
               })}
             </ul>
           </div>
 
-          <button type="button" className={`${styles.behind} ${styles.reveal}`} onClick={openBehind}>
+          <button
+            type="button"
+            className={`${styles.behind} ${styles.reveal}`}
+            onClick={openBehind}
+          >
             <UserIcon size={16} />
-            Behind N.
+            Detrás de Neal
             <ArrowUpRightIcon size={16} />
           </button>
         </aside>
@@ -133,8 +163,8 @@ export default function WelcomeApp() {
 
       <footer className={styles.status}>
         <span>N. Digital Studio</span>
-        <span>Version 1.0.0</span>
+        <span>Versión 1.0.0</span>
       </footer>
     </div>
-  )
+  );
 }

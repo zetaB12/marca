@@ -16,7 +16,7 @@ export default function Taskbar() {
   const clock = useClock()
 
   return (
-    <nav className={styles.taskbar} aria-label="Taskbar">
+    <nav className={styles.taskbar} aria-label="Barra de tareas">
       {startOpen && <StartMenu />}
 
       <button
@@ -29,12 +29,12 @@ export default function Taskbar() {
         onClick={toggleStart}
       >
         <PowerIcon size={16} />
-        <span>Start</span>
+        <span>Inicio</span>
       </button>
 
       <span className={`${styles.grip} ${styles.gripQuick}`} aria-hidden />
 
-      <ul className={styles.quick} aria-label="Quick launch">
+      <ul className={styles.quick} aria-label="Inicio rápido">
         {QUICK_LAUNCH.map((id) => {
           const { title, icon: Icon } = APPS[id]
           return (
@@ -61,7 +61,7 @@ export default function Taskbar() {
                 type="button"
                 className={`${styles.btn} ${styles.task} ${active ? styles.pressed : ''}`}
                 aria-pressed={active}
-                aria-label={w.isMinimized ? `${title} (minimized)` : title}
+                aria-label={w.isMinimized ? `${title} (minimizada)` : title}
                 onClick={() => toggleWindow(w.appId)}
               >
                 <Icon size={16} aria-hidden />

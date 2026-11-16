@@ -33,10 +33,10 @@ export interface FsNode {
 }
 
 export const TYPE_LABEL: Record<FsNodeType, string> = {
-  drive: 'Local Disk',
-  folder: 'File Folder',
-  file: 'Text Document',
-  shortcut: 'Shortcut',
+  drive: 'Disco local',
+  folder: 'Carpeta de archivos',
+  file: 'Documento de texto',
+  shortcut: 'Acceso directo',
 }
 
 const README = `N. DIGITAL STUDIO
@@ -47,32 +47,32 @@ Bienvenido a Neal OS 1.0.0.
 N. Digital Studio crea soluciones digitales para negocios: desarrollo web, e-commerce, software y sistemas, automatización e inteligencia artificial.
 
 
-COMO EXPLORAR
+CÓMO EXPLORAR
 -------------
-* Doble clic en una carpeta para abrirla
-  (en pantallas tactiles, un toque).
-* Back, Forward y Up para moverte; la ruta
-  tambien es clicable.
-* Clic derecho (o mantener pulsado en un
-  espacio vacio) abre el menu contextual.
-* Los accesos directos abren la aplicacion
+* Haz doble clic en una carpeta para abrirla
+  (en pantallas táctiles, basta un toque).
+* Usa Atrás, Adelante y Subir para moverte.
+  La ruta de arriba también se puede pulsar.
+* Clic derecho (o mantén pulsado en un espacio
+  vacío) para abrir el menú contextual.
+* Los accesos directos abren la aplicación
   correspondiente.
-* Properties muestra las propiedades del
-  sistema.
+* El botón Propiedades muestra las propiedades
+  del sistema.
 
 
 CARPETAS
 --------
-Services     Servicios que ofrece el estudio.
-Projects     Proyectos (hoy: demos).
-About        Sobre N. Digital Studio.
-Contact      Como solicitar un proyecto.
-Experiments  Demos e innovaciones.
+Servicios     Lo que ofrece el estudio.
+Proyectos     Proyectos (por ahora, demos).
+Nosotros      Sobre N. Digital Studio.
+Contacto      Cómo solicitar un proyecto.
+Experimentos  Demos e innovaciones.
 
 
 NOTA
 ----
-Los elementos marcados DEMO o Placeholder son marcadores hasta contar con informacion real.
+Lo marcado como DEMO o Pendiente es un marcador hasta tener información real.
 `
 
 const SERVICE_NAMES: [id: string, name: string][] = [
@@ -115,28 +115,28 @@ export const ROOT: FsNode = {
   name: 'C:',
   type: 'drive',
   icon: ComputerIcon,
-  description: 'Local disk of Neal OS.',
+  description: 'Disco local de Neal OS.',
   children: [
     {
       id: STUDIO_ID,
       name: 'N-DIGITAL-STUDIO',
       type: 'folder',
       icon: FolderIcon,
-      description: 'Main folder of N. Digital Studio.',
+      description: 'Carpeta principal de N. Digital Studio.',
       children: [
         {
           id: 'services',
-          name: 'Services',
+          name: 'Servicios',
           type: 'folder',
           icon: ServicesIcon,
-          description: 'Services offered by N. Digital Studio.',
+          description: 'Servicios de N. Digital Studio.',
           children: [
             {
               id: 'services-app',
-              name: 'Services.exe',
+              name: 'Servicios.exe',
               type: 'shortcut',
               icon: ServicesIcon,
-              description: 'Opens the Services application.',
+              description: 'Abre la aplicación Servicios.',
               opens: 'services',
             },
             ...serviceNodes,
@@ -144,17 +144,17 @@ export const ROOT: FsNode = {
         },
         {
           id: 'projects',
-          name: 'Projects',
+          name: 'Proyectos',
           type: 'folder',
           icon: FolderIcon,
-          description: 'Projects, images, descriptions and links. Placeholder content (DEMO) until real cases are added.',
+          description: 'Proyectos, imágenes, descripciones y enlaces. Contenido de marcador (DEMO) hasta añadir casos reales.',
           children: [
             {
               id: 'projects-app',
-              name: 'My Projects',
+              name: 'Mis proyectos',
               type: 'shortcut',
               icon: FolderIcon,
-              description: 'Opens the My Projects application.',
+              description: 'Abre la aplicación Mis proyectos.',
               opens: 'projects',
             },
             ...projectNodes,
@@ -162,53 +162,53 @@ export const ROOT: FsNode = {
         },
         {
           id: 'about',
-          name: 'About',
+          name: 'Nosotros',
           type: 'folder',
           icon: AboutIcon,
-          description: 'About N. Digital Studio: philosophy and technology approach.',
+          description: 'Sobre N. Digital Studio: su filosofía y su enfoque tecnológico.',
           children: [
             {
               id: 'about-app',
-              name: 'About Us.exe',
+              name: 'Nosotros.exe',
               type: 'shortcut',
               icon: AboutIcon,
-              description: 'Opens the About Us application.',
+              description: 'Abre la aplicación Nosotros.',
               opens: 'about',
             },
           ],
         },
         {
           id: 'contact',
-          name: 'Contact',
+          name: 'Contacto',
           type: 'folder',
           icon: MailIcon,
-          description: 'Contact information and how to request a project.',
+          description: 'Información de contacto y cómo solicitar un proyecto.',
           children: [
             {
               id: 'contact-app',
-              name: 'Contact.exe',
+              name: 'Contacto.exe',
               type: 'shortcut',
               icon: MailIcon,
-              description: 'Opens the Contact application.',
+              description: 'Abre la aplicación Contacto.',
               opens: 'contact',
             },
           ],
         },
         {
           id: 'experiments',
-          name: 'Experiments',
+          name: 'Experimentos',
           type: 'folder',
           icon: FlaskIcon,
-          description: 'Demos, experiments and technology innovations.',
+          description: 'Demos, experimentos e innovaciones tecnológicas.',
           children: [
             {
               id: 'experiments-note',
-              name: 'Placeholder.txt',
+              name: 'Pendiente.txt',
               type: 'file',
               icon: DocumentIcon,
-              description: 'Placeholder: no experiments published yet.',
+              description: 'Marcador: todavía no hay experimentos publicados.',
               content:
-                'PLACEHOLDER\n===========\n\nEsta carpeta esta reservada para demos, experimentos e innovaciones tecnologicas.\n\nTodavia no hay experimentos publicados.\n',
+                'PENDIENTE\n=========\n\nEsta carpeta está reservada para demos, experimentos e innovaciones tecnológicas.\n\nTodavía no hay experimentos publicados.\n',
             },
           ],
         },
@@ -217,7 +217,7 @@ export const ROOT: FsNode = {
           name: 'Readme.txt',
           type: 'file',
           icon: DocumentIcon,
-          description: 'Introduction to N. Digital Studio and how to explore the system.',
+          description: 'Presentación de N. Digital Studio y cómo explorar el sistema.',
           content: README,
         },
       ],

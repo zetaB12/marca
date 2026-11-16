@@ -12,8 +12,8 @@ export default function SystemPropertiesApp() {
         <div className={styles.head}>
           <ComputerIcon size={48} />
           <div>
-            <h2 className={shared.heading}>System</h2>
-            <p className={shared.text}>Neal OS 1.0.0 — technologies and tools in use.</p>
+            <h2 className={shared.heading}>Sistema</h2>
+            <p className={shared.text}>Neal OS 1.0.0 — tecnologías y herramientas en uso.</p>
           </div>
         </div>
         <dl className={styles.list}>
@@ -26,8 +26,8 @@ export default function SystemPropertiesApp() {
         </dl>
       </div>
       <Statusbar>
-        <span>{STACK.length} technologies</span>
-        <span>Version 1.0.0</span>
+        <span>{STACK.length} tecnologías</span>
+        <span>Versión 1.0.0</span>
       </Statusbar>
     </div>
   )

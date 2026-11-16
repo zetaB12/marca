@@ -14,7 +14,7 @@ export default function ProjectsApp() {
   return (
     <div className={shared.app}>
       <div className={styles.explorer}>
-        <nav className={styles.tree} aria-label="Project folders">
+        <nav className={styles.tree} aria-label="Carpetas de proyectos">
           <ul>
             {PROJECT_CATEGORIES.map((c) => {
               const active = c.id === category.id
@@ -39,7 +39,7 @@ export default function ProjectsApp() {
         <section className={styles.content} aria-label={category.name}>
           <h2 className={shared.heading}>{category.name}</h2>
           {items.length === 0 ? (
-            <p className={shared.text}>This folder is empty.</p>
+            <p className={shared.text}>Esta carpeta está vacía.</p>
           ) : (
             <ul className={styles.files}>
               {items.map((p) => (
@@ -64,8 +64,8 @@ export default function ProjectsApp() {
         </section>
       </div>
       <Statusbar>
-        <span>{items.length} object(s)</span>
-        <span>Demo data</span>
+        <span>{items.length} elemento(s)</span>
+        <span>Datos de demostración</span>
       </Statusbar>
     </div>
   )

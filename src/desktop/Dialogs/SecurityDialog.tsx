@@ -18,15 +18,15 @@ export default function SecurityDialog() {
   const current = open.find((w) => w.id === selected) ?? null
 
   return (
-    <SystemDialog title="Close Program" icon={<ShieldIcon size={16} />} onClose={closeDialog}>
+    <SystemDialog title="Cerrar programa" icon={<ShieldIcon size={16} />} onClose={closeDialog}>
       <div className={parts.body}>
-        <p className={parts.question}>Programs running on this desktop:</p>
+        <p className={parts.question}>Programas en ejecución en este escritorio:</p>
         {open.length === 0 ? (
           <div className={parts.list}>
-            <p className={parts.empty}>No programs are running.</p>
+            <p className={parts.empty}>No hay programas en ejecución.</p>
           </div>
         ) : (
-          <ul className={parts.list} role="listbox" aria-label="Running programs">
+          <ul className={parts.list} role="listbox" aria-label="Programas en ejecución">
             {open.map((w) => {
               const Icon = w.icon
               return (
@@ -56,13 +56,13 @@ export default function SecurityDialog() {
               setSelected(null)
             }}
           >
-            End Task
+            Finalizar tarea
           </button>
           <button type="button" className={parts.btn} onClick={() => openDialog('shutdown')}>
-            Shut Down...
+            Apagar...
           </button>
           <button type="button" className={parts.btn} data-autofocus onClick={closeDialog}>
-            Cancel
+            Cancelar
           </button>
         </div>
       </div>

@@ -58,7 +58,7 @@ export default function ContextMenu() {
         className={styles.menu}
         style={{ left: x, top: y, width: WIDTH }}
         role="menu"
-        aria-label="My Computer"
+        aria-label="Mi PC"
         tabIndex={-1}
         onKeyDown={onKeyDown}
         onMouseOver={(e) => (e.target as HTMLElement).closest('button')?.focus()}
@@ -66,7 +66,7 @@ export default function ContextMenu() {
         onContextMenu={(e) => e.preventDefault()}
       >
         <button type="button" role="menuitem" className={styles.item} onClick={run(() => launch('mycomputer'))}>
-          <OpenFolderIcon size={16} /> Open
+          <OpenFolderIcon size={16} /> Abrir
         </button>
         <button
           type="button"
@@ -77,11 +77,11 @@ export default function ContextMenu() {
             launch('mycomputer')
           })}
         >
-          <FolderIcon size={16} /> Explore
+          <FolderIcon size={16} /> Explorar
         </button>
         <hr className={styles.sep} />
         <button type="button" role="menuitem" className={styles.item} onClick={run(() => launch('sysprops'))}>
-          <ComputerIcon size={16} /> Properties
+          <ComputerIcon size={16} /> Propiedades
         </button>
       </div>
     )
@@ -93,7 +93,7 @@ export default function ContextMenu() {
       className={styles.menu}
       style={{ left: x, top: y, width: WIDTH }}
       role="menu"
-      aria-label="Desktop"
+      aria-label="Escritorio"
       tabIndex={-1}
       onKeyDown={onKeyDown}
       // El resaltado sigue al mouse: la opción bajo el puntero toma el foco (una sola resaltada).
@@ -102,17 +102,17 @@ export default function ContextMenu() {
       onContextMenu={(e) => e.preventDefault()}
     >
       <button type="button" role="menuitem" className={`${styles.item} ${styles.mono}`} onClick={run(refresh)}>
-        <RefreshIcon size={16} /> Refresh
+        <RefreshIcon size={16} /> Actualizar
       </button>
       <button type="button" role="menuitem" className={`${styles.item} ${styles.mono}`} onClick={run(() => setStart(true))}>
-        <PowerIcon size={16} /> Open Start Menu
+        <PowerIcon size={16} /> Abrir el menú Inicio
       </button>
       <hr className={styles.sep} />
       <button type="button" role="menuitem" className={styles.item} onClick={run(() => openSettings('preferences'))}>
-        <SettingsIcon size={16} /> Settings
+        <SettingsIcon size={16} /> Configuración
       </button>
       <button type="button" role="menuitem" className={styles.item} onClick={run(() => openSettings('display'))}>
-        <ComputerIcon size={16} /> Display Options
+        <ComputerIcon size={16} /> Opciones de pantalla
       </button>
     </div>
   )

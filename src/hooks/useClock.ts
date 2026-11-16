@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const fmt = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
+const fmt = new Intl.DateTimeFormat('es-PE', { hour: 'numeric', minute: '2-digit', hour12: true })
 
 export function useClock() {
   const [now, setNow] = useState(() => new Date())

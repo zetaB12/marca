@@ -3,16 +3,16 @@ import styles from './SystemStatus.module.css'
 
 export default function SystemStatus() {
   return (
-    <WindowFrame title="System" className={styles.status} active={false}>
+    <WindowFrame title="Sistema" className={styles.status} active={false}>
       <dl className={styles.list}>
         <div>
-          <dt>SYSTEM STATUS:</dt>
+          <dt>ESTADO:</dt>
           <dd>
-            <span className={styles.dot} aria-hidden /> ONLINE
+            <span className={styles.dot} aria-hidden /> EN LÍNEA
           </dd>
         </div>
         <div>
-          <dt>VERSION:</dt>
+          <dt>VERSIÓN:</dt>
           <dd>1.0.0</dd>
         </div>
       </dl>

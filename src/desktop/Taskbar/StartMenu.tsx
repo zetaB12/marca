@@ -38,7 +38,7 @@ export default function StartMenu() {
 
   return (
     <div ref={ref} id="start-menu" className={styles.menu} role="menu"
-      aria-label="Start menu"
+      aria-label="Menú Inicio"
       onMouseOver={(e) => (e.target as HTMLElement).closest('button')?.focus()}
     >
       <div className={styles.banner} aria-hidden>

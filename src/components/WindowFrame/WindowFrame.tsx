@@ -47,8 +47,8 @@ export default function WindowFrame({
             type="button"
             className={styles.ctrl}
             onClick={onMinimize}
-            title="Minimize"
-            aria-label={`Minimize ${title}`}
+            title="Minimizar"
+            aria-label={`Minimizar ${title}`}
           >
             <MinimizeGlyph className={styles.minGlyph} />
           </button>
@@ -58,8 +58,8 @@ export default function WindowFrame({
             type="button"
             className={`${styles.ctrl} ${styles.maximize}`}
             onClick={onToggleMaximize}
-            title={maximized ? 'Restore' : 'Maximize'}
-            aria-label={`${maximized ? 'Restore' : 'Maximize'} ${title}`}
+            title={maximized ? 'Restaurar' : 'Maximizar'}
+            aria-label={`${maximized ? 'Restaurar' : 'Maximizar'} ${title}`}
           >
             {maximized ? <RestoreGlyph /> : <MaximizeGlyph />}
           </button>
@@ -69,8 +69,8 @@ export default function WindowFrame({
             type="button"
             className={`${styles.ctrl} ${styles.close}`}
             onClick={onClose}
-            title="Close"
-            aria-label={`Close ${title}`}
+            title="Cerrar"
+            aria-label={`Cerrar ${title}`}
           >
             <CloseGlyph />
           </button>

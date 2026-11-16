@@ -23,11 +23,11 @@ export default function ShutdownDialog() {
   }
 
   return (
-    <SystemDialog title="Shut Down" icon={<PowerIcon size={16} />} onClose={closeDialog}>
+    <SystemDialog title="Apagar el sistema" icon={<PowerIcon size={16} />} onClose={closeDialog}>
       <div className={parts.body}>
-        <p className={parts.question}>What do you want the computer to do?</p>
+        <p className={parts.question}>¿Qué quieres que haga el equipo?</p>
         <fieldset className={parts.options}>
-          <legend className="sr-only">Shut down options</legend>
+          <legend className="sr-only">Opciones de apagado</legend>
           <label className={parts.option}>
             <input
               type="radio"
@@ -36,19 +36,19 @@ export default function ShutdownDialog() {
               checked={choice === 'restart'}
               onChange={() => setChoice('restart')}
             />
-            Restart the desktop
+            Reiniciar el escritorio
           </label>
           <label className={parts.option}>
             <input type="radio" name="shutdown" checked={choice === 'close'} onChange={() => setChoice('close')} />
-            Close all programs
+            Cerrar todos los programas
           </label>
         </fieldset>
         <div className={parts.buttons}>
           <button type="button" className={parts.btn} onClick={confirm}>
-            OK
+            Aceptar
           </button>
           <button type="button" className={parts.btn} onClick={closeDialog}>
-            Cancel
+            Cancelar
           </button>
         </div>
       </div>

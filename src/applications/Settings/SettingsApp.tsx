@@ -4,8 +4,8 @@ import shared from '../shared/shared.module.css'
 import styles from './SettingsApp.module.css'
 
 const TABS: { id: SettingsTab; label: string }[] = [
-  { id: 'display', label: 'Display' },
-  { id: 'preferences', label: 'Preferences' },
+  { id: 'display', label: 'Pantalla' },
+  { id: 'preferences', label: 'Preferencias' },
 ]
 
 /** Configuración real: las preferencias se aplican de inmediato y se recuerdan en el navegador. */
@@ -15,7 +15,7 @@ export default function SettingsApp() {
 
   return (
     <div className={shared.app}>
-      <div role="tablist" aria-label="Settings sections" className={styles.tabs}>
+      <div role="tablist" aria-label="Secciones de configuración" className={styles.tabs}>
         {TABS.map((t) => (
           <button
             key={t.id}
@@ -42,17 +42,17 @@ export default function SettingsApp() {
           <>
             <label className={styles.option}>
               <input type="checkbox" checked={pattern} onChange={(e) => setPattern(e.target.checked)} />
-              <span>Show desktop pattern</span>
+              <span>Mostrar el patrón del escritorio</span>
             </label>
             <dl className={styles.info}>
               <div>
-                <dt>Screen</dt>
+                <dt>Pantalla</dt>
                 <dd>
                   {window.screen.width} × {window.screen.height}
                 </dd>
               </div>
               <div>
-                <dt>Pixel ratio</dt>
+                <dt>Densidad de píxeles</dt>
                 <dd>{dpr}×</dd>
               </div>
             </dl>
@@ -65,16 +65,16 @@ export default function SettingsApp() {
                 checked={animations}
                 onChange={(e) => setAnimations(e.target.checked)}
               />
-              <span>Enable animations</span>
+              <span>Activar animaciones</span>
             </label>
             <button type="button" className={styles.reset} onClick={reset}>
-              Restore defaults
+              Restaurar valores predeterminados
             </button>
           </>
         )}
       </div>
       <Statusbar>
-        <span>Settings are saved in this browser</span>
+        <span>La configuración se guarda en este navegador</span>
       </Statusbar>
     </div>
   )

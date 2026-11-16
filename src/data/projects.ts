@@ -17,19 +17,19 @@ export interface Project {
 }
 
 export const PROJECT_CATEGORIES: ProjectCategory[] = [
-  { id: 'corporate', name: 'Corporate Websites' },
-  { id: 'clinics', name: 'Medical & Aesthetic Clinics' },
+  { id: 'corporate', name: 'Sitios corporativos' },
+  { id: 'clinics', name: 'Clínicas médicas y estéticas' },
   { id: 'ecommerce', name: 'E-commerce' },
-  { id: 'realestate', name: 'Real Estate' },
-  { id: 'landing', name: 'Landing Pages' },
-  { id: 'webapps', name: 'Web Applications' },
+  { id: 'realestate', name: 'Inmobiliarias' },
+  { id: 'landing', name: 'Landing pages' },
+  { id: 'webapps', name: 'Aplicaciones web' },
 ]
 
 export const PROJECTS: Project[] = [
   {
     id: 'demo-corporate',
     categoryId: 'corporate',
-    name: 'Corporate Site (DEMO)',
+    name: 'Sitio corporativo (DEMO)',
     description: 'Proyecto de demostración. Será reemplazado por un caso real.',
     tech: ['React', 'TypeScript'],
     demo: true,
@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'demo-clinic',
     categoryId: 'clinics',
-    name: 'Clinic Website (DEMO)',
+    name: 'Sitio de clínica (DEMO)',
     description: 'Proyecto de demostración. Será reemplazado por un caso real.',
     tech: ['React', 'SEO'],
     demo: true,
@@ -45,31 +45,31 @@ export const PROJECTS: Project[] = [
   {
     id: 'demo-store',
     categoryId: 'ecommerce',
-    name: 'Online Store (DEMO)',
+    name: 'Tienda online (DEMO)',
     description: 'Proyecto de demostración. Será reemplazado por un caso real.',
-    tech: ['React', 'Payments'],
+    tech: ['React', 'Pagos'],
     demo: true,
   },
   {
     id: 'demo-realestate',
     categoryId: 'realestate',
-    name: 'Property Portal (DEMO)',
+    name: 'Portal inmobiliario (DEMO)',
     description: 'Proyecto de demostración. Será reemplazado por un caso real.',
-    tech: ['React', 'Maps'],
+    tech: ['React', 'Mapas'],
     demo: true,
   },
   {
     id: 'demo-landing',
     categoryId: 'landing',
-    name: 'Campaign Landing (DEMO)',
+    name: 'Landing de campaña (DEMO)',
     description: 'Proyecto de demostración. Será reemplazado por un caso real.',
-    tech: ['React', 'Analytics'],
+    tech: ['React', 'Analítica'],
     demo: true,
   },
   {
     id: 'demo-webapp',
     categoryId: 'webapps',
-    name: 'Business Dashboard (DEMO)',
+    name: 'Panel de negocio (DEMO)',
     description: 'Proyecto de demostración. Será reemplazado por un caso real.',
     tech: ['React', 'TypeScript'],
     demo: true,

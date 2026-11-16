@@ -16,11 +16,11 @@ export default function NotepadApp() {
         className={styles.text}
         readOnly
         spellCheck={false}
-        aria-label={file ? `${file.name} (read-only)` : 'Notepad'}
+        aria-label={file ? `${file.name} (solo lectura)` : 'Bloc de notas'}
         value={file?.content ?? ''}
       />
       <Statusbar>
-        <span>{file ? file.name : 'Untitled'}</span>
+        <span>{file ? file.name : 'Sin título'}</span>
         <span className={styles.path}>{path ? pathLabel(path) : ''}</span>
       </Statusbar>
     </div>

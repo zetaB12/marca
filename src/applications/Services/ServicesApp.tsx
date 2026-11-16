@@ -13,7 +13,7 @@ export default function ServicesApp() {
   return (
     <div className={shared.app}>
       <div className={styles.layout}>
-        <ul className={styles.grid} aria-label="Services">
+        <ul className={styles.grid} aria-label="Servicios">
           {SERVICES.map((s) => {
             const Icon = s.icon
             const active = s.id === selected.id
@@ -38,11 +38,11 @@ export default function ServicesApp() {
         <section className={styles.detail} aria-live="polite">
           <h2 className={shared.heading}>{selected.name}</h2>
           <p className={shared.text}>{selected.description}</p>
-          <span className={shared.demo}>Preliminary catalog</span>
+          <span className={shared.demo}>Catálogo preliminar</span>
         </section>
       </div>
       <Statusbar>
-        <span>{SERVICES.length} object(s)</span>
+        <span>{SERVICES.length} elemento(s)</span>
         <span>{selected.name}</span>
       </Statusbar>
     </div>

@@ -44,7 +44,7 @@ export default function Preloader({ onReady }: Props) {
         } as CSSProperties
       }
       role="status"
-      aria-label="Initializing system"
+      aria-label="Iniciando el sistema"
       onAnimationEnd={(e) => {
         if (leaving && e.target === e.currentTarget) setGone(true)
       }}
@@ -53,7 +53,7 @@ export default function Preloader({ onReady }: Props) {
         <div className={`${styles.step} ${styles.s2}`}>
           <Hourglass onCycle={() => filled && leave()} />
         </div>
-        <p className={`${styles.text} ${styles.step} ${styles.s3}`}>Initializing system...</p>
+        <p className={`${styles.text} ${styles.step} ${styles.s3}`}>Iniciando el sistema...</p>
         <div
           className={`${styles.barWrap} ${styles.step} ${styles.s4}`}
           onAnimationEnd={(e) => {
@@ -63,7 +63,7 @@ export default function Preloader({ onReady }: Props) {
           <div
             className={styles.bar}
             role="progressbar"
-            aria-label="System loading"
+            aria-label="Cargando el sistema"
             aria-valuemin={0}
             aria-valuemax={100}
             aria-valuenow={shown}
