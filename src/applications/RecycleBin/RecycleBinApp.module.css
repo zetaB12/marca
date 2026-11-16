@@ -1,0 +1,112 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px;
+  background: var(--c-window);
+  border-bottom: 1px solid var(--c-border);
+  box-shadow: 0 1px 0 var(--c-white);
+}
+
+.tool {
+  min-height: 28px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 0;
+  background: var(--c-window);
+  box-shadow: var(--bevel-raised);
+  font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+}
+
+.tool:active:not(:disabled) {
+  box-shadow: var(--bevel-pressed);
+}
+
+.tool:disabled {
+  color: var(--c-border);
+  text-shadow: 1px 1px 0 var(--c-white);
+}
+
+/* Lista en vista "Detalles", con borde hundido como en el Explorador de Windows 98. */
+.list {
+  flex: 1;
+  min-height: 0;
+  margin: 6px;
+  overflow: auto;
+  background: var(--c-white);
+  box-shadow: var(--bevel-sunken);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.6fr) 100px 70px;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 0 8px;
+  font: 400 var(--fs-ui-sm) / 1.2 var(--f-system);
+  text-align: left;
+}
+
+.head {
+  position: sticky;
+  top: 0;
+  min-height: 26px;
+  background: var(--c-window);
+  box-shadow: var(--bevel-raised);
+  color: var(--c-text);
+}
+
+.item {
+  min-height: 30px;
+  border: 1px dotted transparent;
+  border-radius: 0;
+  background: transparent;
+}
+
+.item span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.name svg {
+  flex: none;
+}
+
+.selected {
+  background: var(--c-title);
+  color: var(--c-white);
+  outline: none;
+}
+
+.item:focus-visible {
+  border-color: var(--c-white);
+}
+
+.empty {
+  margin: 0;
+  padding: 36px 16px;
+  text-align: center;
+  font: 400 var(--fs-ui) / 1.6 var(--f-system);
+  color: var(--c-muted);
+}
+
+@media (max-width: 700px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) 64px;
+  }
+  .hideSmall {
+    display: none;
+  }
+  .item {
+    min-height: 40px;
+  }
+}

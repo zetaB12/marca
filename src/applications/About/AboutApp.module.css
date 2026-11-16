@@ -1,0 +1,134 @@
+.tabs {
+  display: flex;
+  gap: 2px;
+  padding: 8px 8px 0;
+  background: var(--c-secondary);
+}
+
+.tab {
+  padding: 8px 16px;
+  border: 1px solid var(--c-border);
+  border-bottom: 0;
+  border-radius: 0px 0px 0 0;
+  background: var(--c-secondary);
+  font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+}
+
+.selected {
+  background: var(--c-window);
+  box-shadow: inset 1px 1px 0 var(--c-white);
+  margin-bottom: -1px;
+}
+
+.panel {
+  padding: 20px;
+  border-top: 1px solid var(--c-border);
+}
+
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  display: grid;
+  gap: 8px;
+}
+
+.steps li {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 10px 12px;
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  background: var(--c-white);
+  counter-increment: step;
+  font-size: calc(15px * var(--text-scale, 1));
+}
+
+.steps li::before {
+  content: counter(step);
+  min-width: 1.5em;
+  font: 400 var(--fs-ui) / 1 var(--f-system);
+  color: var(--c-muted);
+}
+
+.steps strong {
+  min-width: 7em;
+  font: 400 var(--fs-ui) / 1 var(--f-system);
+}
+
+.steps span {
+  color: var(--c-muted);
+}
+
+/* Behind N.: foto a la izquierda y secciones de texto a la derecha. */
+.behind {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.photo {
+  aspect-ratio: 4 / 5;
+  background: var(--c-white);
+  box-shadow: var(--bevel-sunken);
+  overflow: hidden;
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photoEmpty {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  font: 400 var(--fs-ui-sm) / 1.2 var(--f-system);
+  color: var(--c-muted);
+}
+
+.bio {
+  display: grid;
+  gap: 4px;
+}
+
+.role {
+  margin: 0 0 8px;
+  font: 400 var(--fs-ui) / 1.2 var(--f-system);
+  color: var(--c-muted);
+}
+
+.section {
+  padding: 12px 0;
+  border-top: 1px solid var(--c-border);
+  box-shadow: 0 -1px 0 var(--c-white);
+}
+
+.sectionTitle {
+  margin: 0 0 6px;
+  font: 400 var(--fs-ui) / 1.2 var(--f-system);
+}
+
+.pending {
+  margin: 0;
+  font-size: calc(14px * var(--text-scale, 1));
+  line-height: 1.5;
+  color: var(--c-muted);
+}
+
+@media (max-width: 700px) {
+  .behind {
+    grid-template-columns: 1fr;
+  }
+  .photo {
+    width: 140px;
+  }
+}

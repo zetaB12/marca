@@ -1,0 +1,48 @@
+.status {
+  width: calc(230px * var(--text-scale, 1));
+}
+
+.list {
+  margin: 0;
+  padding: 12px 14px;
+  display: grid;
+  gap: 8px;
+  font: 400 var(--fs-ui-sm)/1 var(--f-system);
+  letter-spacing: 0.08em;
+}
+
+.list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.list dt {
+  color: var(--c-muted);
+}
+
+.list dd {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--c-ok);
+  animation: blink 2s steps(2, jump-none) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.35;
+  }
+}

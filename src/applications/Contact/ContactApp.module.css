@@ -1,0 +1,17 @@
+.body {
+  padding: 24px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0 24px;
+}
+
+.note {
+  margin: 0;
+  font-size: calc(14px * var(--text-scale, 1));
+  line-height: 1.6;
+  color: var(--c-muted);
+}

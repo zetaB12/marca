@@ -1,0 +1,14 @@
+.logo {
+  display: block;
+  flex: none;
+  max-width: 100%;
+  color: var(--c-title);
+}
+
+.light {
+  color: var(--c-window);
+}
+
+.dot {
+  fill: var(--c-accent);
+}

@@ -1,0 +1,102 @@
+@property --boot-p {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: true;
+}
+
+.root {
+  --block: 13px;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: #000;
+  color: #fff;
+  font-family: var(--f-system);
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+  transition: --boot-p 1s linear;
+}
+
+.leaving {
+  pointer-events: none;
+  animation: out 0.2s ease-in forwards;
+}
+
+@keyframes out {
+  to {
+    opacity: 0;
+  }
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* Secuencia: reloj de arena → texto → barra. Aparición seca, estilo pixel. */
+.step {
+  opacity: 0;
+  animation: appear 1ms linear forwards;
+}
+
+.s2 {
+  animation-delay: 0.1s;
+}
+.s3 {
+  animation-delay: 0.3s;
+}
+.s4 {
+  animation-delay: 0.5s;
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+
+.text {
+  margin: 0;
+  font-size: var(--fs-ui);
+  line-height: 1;
+}
+
+.barWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.bar {
+  width: calc(var(--block) * 24 + 8px);
+  height: 24px;
+  padding: 3px;
+  background: var(--c-window);
+  box-shadow: var(--bevel-sunken);
+}
+
+.fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--c-title) 0 calc(var(--block) - 3px),
+    transparent calc(var(--block) - 3px) var(--block)
+  );
+  transition: width 1s steps(24, end);
+}
+
+.pct {
+  font-size: var(--fs-ui-sm);
+  line-height: 1;
+}
+
+.pct::after {
+  counter-reset: boot var(--boot-p);
+  content: counter(boot) '%';
+}

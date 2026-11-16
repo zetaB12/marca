@@ -1,0 +1,7 @@
+.layer {
+  position: fixed;
+  inset: 0 0 var(--taskbar-h) 0;
+  z-index: 500; /* debajo de la barra de tareas (1000), diálogos y menús */
+  pointer-events: none;
+  overflow: hidden;
+}

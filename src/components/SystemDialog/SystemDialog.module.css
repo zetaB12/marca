@@ -1,0 +1,21 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1500; /* sobre ventanas y barra de tareas, bajo el preloader */
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgb(32 33 36 / 0.18);
+}
+
+.dialog {
+  width: min(420px, 100%);
+  animation: pop 0.14s ease-out;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}

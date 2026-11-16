@@ -1,0 +1,94 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  padding: 3px; /* marco biselado de la ventana */
+  background: var(--c-window);
+  border-radius: var(--radius);
+  box-shadow: var(--bevel-window), var(--shadow-window);
+  overflow: hidden;
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+  padding: 0 3px 0 6px;
+  background: linear-gradient(90deg, var(--c-title), #34527c);
+  color: var(--c-white);
+  font-family: var(--f-system);
+  user-select: none;
+  touch-action: none; /* el arrastre con puntero no debe desplazar la página */
+}
+
+.inactive .titlebar {
+  background: linear-gradient(90deg, #5a6270, #6f7682);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+}
+
+/* Halo blanco de 1px: los iconos con partes azules no se pierden sobre la barra de título. */
+.icon svg {
+  filter: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff)
+    drop-shadow(0 -1px 0 #fff);
+}
+
+.title {
+  flex: 1;
+  margin: 0;
+  font: 400 var(--fs-ui-sm)/1 var(--f-system);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ctrl {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--c-window);
+  color: var(--c-text);
+  box-shadow: var(--bevel-raised);
+}
+
+.ctrl:active {
+  box-shadow: var(--bevel-pressed);
+}
+
+.ctrl:active > svg {
+  transform: translate(1px, 1px);
+}
+
+/* El guion de minimizar va abajo en el botón, como en Windows 98. */
+.minGlyph {
+  margin-top: 8px;
+}
+
+.ctrl:active > .minGlyph {
+  transform: translate(1px, 1px);
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+@media (max-width: 700px), (max-height: 520px) and (pointer: coarse) {
+  /* En móvil las ventanas van a pantalla completa: no hay maximizar. */
+  .maximize {
+    display: none;
+  }
+  .ctrl {
+    width: 32px;
+    height: 24px;
+  }
+}

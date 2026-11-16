@@ -1,0 +1,125 @@
+.wrap {
+  position: relative;
+  display: flex;
+}
+
+.trayBtn {
+  display: grid;
+  place-items: center;
+  width: calc(28px * var(--text-scale));
+  height: calc(28px * var(--text-scale));
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+/* Como en la bandeja de Windows 98: plano; relieve fino solo al pasar o pulsar. */
+.trayBtn:hover {
+  box-shadow: inset 1px 1px 0 var(--c-white), inset -1px -1px 0 var(--c-border);
+}
+
+.trayBtn:active,
+.pressed {
+  box-shadow: inset 1px 1px 0 var(--c-border), inset -1px -1px 0 var(--c-white);
+}
+
+.popup {
+  position: absolute;
+  right: -4px;
+  bottom: calc(100% + 8px);
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  width: 92px;
+  padding: 10px 8px 8px;
+  background: var(--c-window);
+  box-shadow: var(--bevel-window), var(--shadow-window);
+  font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+}
+
+.title {
+  color: var(--c-text);
+}
+
+.slider {
+  position: relative;
+  width: 36px;
+  height: 104px;
+  touch-action: none;
+  cursor: pointer;
+}
+
+.slider:focus-visible {
+  outline: 1px dotted var(--c-text);
+  outline-offset: 2px;
+}
+
+.groove {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  bottom: 4px;
+  width: 4px;
+  transform: translateX(-50%);
+  background: var(--c-white);
+  box-shadow: inset 1px 1px 0 var(--c-border), inset -1px -1px 0 var(--c-white);
+}
+
+/* Cursor del deslizador: rectángulo en relieve con marca central, como en Windows 98. */
+.thumb {
+  --th: 22px;
+  position: absolute;
+  left: 50%;
+  width: 22px;
+  height: var(--th);
+  transform: translateX(-50%);
+  bottom: calc((100% - var(--th)) * var(--v) / 100);
+  background: var(--c-window);
+  box-shadow: var(--bevel-raised);
+}
+
+.thumb::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--c-border);
+  box-shadow: 0 1px 0 var(--c-white);
+}
+
+.mute {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 24px;
+}
+
+.mute input {
+  appearance: none;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  background-color: var(--c-white);
+  box-shadow: var(--bevel-sunken);
+}
+
+.mute input:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' shape-rendering='crispEdges'%3E%3Cpath fill='%23202124' d='M4 8h2v2h1v1h1v-1h1V9h1V8h1V6h-2v2H9v1H8v1H7V9H6V8H4z'/%3E%3C/svg%3E");
+}
+
+.mute input:focus-visible {
+  outline: 1px dotted var(--c-text);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .trayBtn {
+    width: 40px;
+    height: 40px;
+  }
+}

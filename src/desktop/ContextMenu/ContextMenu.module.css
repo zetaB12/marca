@@ -1,0 +1,60 @@
+.menu {
+  position: fixed;
+  z-index: 1400;
+  padding: 3px;
+  background: var(--c-window);
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--bevel-window), var(--shadow-window);
+  font-family: var(--f-system);
+  animation: rise 0.12s ease-out;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+.menu:focus {
+  outline: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  text-align: left;
+  font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+}
+
+.item svg {
+  flex: none;
+}
+
+.item:hover,
+.item:focus-visible {
+  background: var(--c-title);
+  color: var(--c-white);
+  outline: none;
+}
+
+.sep {
+  margin: 4px 2px;
+  border: 0;
+  border-top: 1px solid var(--c-border);
+  box-shadow: 0 1px 0 var(--c-white);
+}
+
+/* Iconos de un solo color (Refresh, Open Start Menu): se vuelven blancos al resaltar la fila. */
+.mono:hover svg,
+.mono:focus-visible svg {
+  filter: brightness(0) invert(1);
+}

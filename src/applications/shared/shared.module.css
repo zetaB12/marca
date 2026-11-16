@@ -1,0 +1,45 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.main {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.statusbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 12px;
+  background: var(--c-secondary);
+  border-top: 1px solid var(--c-border);
+  font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+  color: var(--c-muted);
+}
+
+.demo {
+  display: inline-block;
+  padding: 2px 6px;
+  border: 1px solid var(--c-border);
+  background: var(--c-window);
+  font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+  color: var(--c-muted);
+}
+
+.heading {
+  margin: 0 0 8px;
+  font: 700 calc(22px * var(--text-scale, 1)) / 1.1 var(--f-display);
+  letter-spacing: 0.01em;
+}
+
+.text {
+  margin: 0 0 12px;
+  font-size: calc(16px * var(--text-scale, 1));
+  line-height: 1.55;
+  color: var(--c-muted);
+}

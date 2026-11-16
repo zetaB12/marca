@@ -1,0 +1,102 @@
+.menu {
+  position: absolute;
+  left: 0;
+  bottom: 100%; /* pegado a la barra, como en Windows 98 */
+  width: 320px;
+  max-width: calc(100vw - 2 * var(--taskbar-gap));
+  display: flex;
+  padding: 3px;
+  background: var(--c-window);
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--bevel-window), var(--shadow-window);
+  max-height: calc(100dvh - var(--taskbar-h) - 8px);
+  overflow-y: auto; /* en teléfonos apaisados el menú hace scroll en vez de salirse */
+  font-family: var(--f-system);
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+  animation: rise 0.14s ease-out;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.banner {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 34px;
+  padding: 10px 0;
+  background: linear-gradient(0deg, var(--c-title), #34527c);
+  color: var(--c-white);
+  font: 400 var(--fs-ui)/1 var(--f-system);
+  letter-spacing: 0.14em;
+}
+
+.banner span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+.list {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 2px;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 4px 12px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  text-align: left;
+  font: 400 var(--fs-ui)/1 var(--f-system);
+}
+
+.item svg {
+  color: var(--c-title);
+}
+
+.item:hover,
+.item:focus-visible {
+  background: var(--c-title);
+  color: var(--c-white);
+  outline: none;
+}
+
+.item:hover svg,
+.item:focus-visible svg {
+  color: var(--c-accent);
+}
+
+@media (max-width: 900px) {
+  .item {
+    padding: 16px 14px;
+    font-size: var(--fs-ui);
+  }
+}
+
+.divider {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--c-border);
+  box-shadow: 0 -1px 0 var(--c-white);
+}
+
+/* Shutdown es un icono de un solo color: al resaltar la fila se vuelve blanco, como el texto. */
+.mono .item:hover svg,
+.mono .item:focus-visible svg {
+  filter: brightness(0) invert(1);
+}

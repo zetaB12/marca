@@ -1,0 +1,38 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 0;
+  background: var(--c-window);
+  color: var(--c-text);
+  box-shadow: var(--bevel-raised);
+  font: 400 var(--fs-ui)/1.2 var(--f-system);
+  text-decoration: none;
+}
+
+a.btn:active {
+  box-shadow: var(--bevel-pressed);
+}
+
+a.btn:active > * {
+  transform: translate(1px, 1px);
+}
+
+.btn svg {
+  color: var(--c-title);
+}
+
+/* Desactivado: texto grabado (gris con luz blanca), como en Windows 98. */
+.off {
+  color: var(--c-border);
+  text-shadow: 1px 1px 0 var(--c-white);
+  text-align: center;
+}
+
+.off svg {
+  color: var(--c-border);
+}

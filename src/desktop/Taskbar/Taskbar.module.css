@@ -1,0 +1,192 @@
+.taskbar {
+  position: fixed;
+  z-index: 1000;
+  left: var(--taskbar-gap);
+  right: var(--taskbar-gap);
+  bottom: var(--taskbar-gap);
+  height: calc(var(--taskbar-h) - var(--taskbar-gap));
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 4px;
+  background: var(--c-window);
+  /* Barra plana a todo el ancho con la línea de luz superior de Windows 98. */
+  box-shadow: inset 0 1px 0 var(--c-white), 0 -1px 0 var(--c-border);
+  font-family: var(--f-system);
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: calc(36px * var(--text-scale));
+  padding: 0 calc(12px * var(--text-scale));
+  border: 0;
+  border-radius: 0;
+  background: var(--c-window);
+  box-shadow: var(--bevel-raised);
+  font: 400 var(--fs-ui)/1 var(--f-system);
+  color: var(--c-text);
+  white-space: nowrap;
+}
+
+/* Como en Windows 98: sin hover; al pulsar el bisel se invierte y el contenido baja 1px. */
+.btn:active,
+.pressed {
+  box-shadow: var(--bevel-pressed);
+}
+
+.btn:active > *,
+.pressed > * {
+  transform: translate(1px, 1px);
+}
+
+/* Ventana activa en la barra de tareas: hundida y con tramado. */
+.task.pressed {
+  background-color: var(--c-secondary);
+  background-image: var(--dither);
+}
+
+.start {
+  padding: 0 12px 0 8px;
+}
+
+.start svg {
+  color: var(--c-title);
+}
+
+/* Asa vertical doble que separa las zonas de la barra. */
+.grip {
+  flex: none;
+  align-self: center;
+  width: 6px;
+  height: calc(28px * var(--text-scale));
+  margin: 0 2px;
+  background: linear-gradient(
+    90deg,
+    var(--c-white) 0 1px,
+    var(--c-border) 1px 2px,
+    transparent 2px 4px,
+    var(--c-white) 4px 5px,
+    var(--c-border) 5px 6px
+  );
+}
+
+/* Inicio rápido: iconos planos que se elevan solo al pasar el ratón. */
+.quick {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.qbtn {
+  display: grid;
+  place-items: center;
+  width: calc(34px * var(--text-scale));
+  height: calc(34px * var(--text-scale));
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--c-title);
+}
+
+.qbtn:hover {
+  box-shadow: inset 1px 1px 0 var(--c-white), inset -1px -1px 0 var(--c-border);
+}
+
+.qbtn:active {
+  box-shadow: inset 1px 1px 0 var(--c-border), inset -1px -1px 0 var(--c-white);
+}
+
+.qbtn:active > svg {
+  transform: translate(1px, 1px);
+}
+
+.tasks {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tasks li {
+  flex: 0 1 180px;
+  min-width: 0; /* los botones se comprimen cuando hay muchas ventanas */
+}
+
+.task {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.task span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task svg {
+  flex: none;
+  color: var(--c-title);
+}
+
+/* Bandeja del sistema: una sola caja hundida con el volumen y la hora. */
+.tray {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: calc(32px * var(--text-scale));
+  padding: 0 6px 0 4px;
+  box-shadow: inset 1px 1px 0 var(--c-border), inset -1px -1px 0 var(--c-white);
+}
+
+.clock {
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  font: 400 var(--fs-ui)/1 var(--f-system);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 900px) {
+  .btn {
+    height: 44px;
+    font-size: var(--fs-ui-sm);
+    padding: 0 10px;
+  }
+  .qbtn {
+    width: 44px;
+    height: 44px;
+  }
+  .tray {
+    height: 40px;
+  }
+  .clock {
+    font-size: var(--fs-ui-sm);
+  }
+  .grip {
+    height: 36px;
+  }
+}
+
+@media (max-width: 560px) {
+  /* En móvil: sin inicio rápido (duplica Start) y solo icono en las tareas. */
+  .quick,
+  .gripQuick {
+    display: none;
+  }
+  .tasks li {
+    flex: 0 0 auto;
+  }
+  .task span {
+    display: none;
+  }
+  .task {
+    padding: 0 12px;
+  }
+}

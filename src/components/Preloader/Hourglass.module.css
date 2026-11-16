@@ -1,0 +1,35 @@
+.viewport {
+  --px: 5px;
+  width: calc(var(--px) * 21);
+  height: calc(var(--px) * 20);
+  overflow: hidden;
+}
+
+.strip {
+  display: block;
+  width: calc(var(--px) * 294);
+  height: calc(var(--px) * 20);
+  /* El retraso coincide con la aparición del reloj (.1s) para que el ciclo empiece visible. */
+  animation: play 1.7s steps(14) 0.1s infinite;
+}
+
+.glass {
+  fill: #fff;
+}
+
+.sand {
+  fill: var(--c-accent);
+}
+
+@keyframes play {
+  to {
+    transform: translateX(calc(var(--px) * -294));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip {
+    animation: none;
+    transform: translateX(calc(var(--px) * -84)); /* frame fijo con arena a medio caer */
+  }
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-square.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#243B5A" />
+    <title>Neal · Webs, software, automatización e IA en Trujillo, Perú</title>
+    <meta
+      name="description"
+      content="Neal diseña páginas web, tiendas online, automatizaciones e integraciones de IA para impulsar tu negocio. Trujillo, Perú."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- En recargas y atrás/adelante no hay preloader: se oculta la capa negra antes del primer pintado. -->
+    <style>.no-boot #boot{display:none}</style>
+    <script>
+      (function () {
+        var n = performance.getEntriesByType('navigation')[0]
+        if (n && n.type !== 'navigate') document.documentElement.classList.add('no-boot')
+      })()
+    </script>
+  </head>
+  <body>
+    <!-- Capa negra inmediata: evita el parpadeo gris antes de que React monte el preloader. -->
+    <div id="boot" style="position:fixed;inset:0;z-index:2000;background:#000"></div>
+    <noscript><style>#boot{display:none}</style></noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

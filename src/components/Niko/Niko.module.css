@@ -1,0 +1,48 @@
+/* Niko vive en el escritorio, en la esquina inferior derecha, apoyado sobre la barra de tareas. */
+.niko {
+  --s: 128px; /* sprite de 64 px ampliado ×2, sin suavizar */
+  position: fixed;
+  right: 24px;
+  bottom: calc(var(--taskbar-h) - 2px);
+  z-index: 400; /* sobre el escritorio, bajo las ventanas (500) y la barra de tareas */
+  width: var(--s);
+  height: var(--s);
+  pointer-events: none;
+}
+
+.mover {
+  width: 100%;
+  height: 100%;
+  transition-property: transform;
+  transition-timing-function: linear;
+}
+
+.sprite {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+}
+
+/* Hoja de 8 fotogramas: se recorre con steps(8) durante el ciclo de 0,8 s. */
+.walk {
+  background-size: calc(var(--s) * 8) var(--s);
+  animation: walk 0.8s steps(8) infinite;
+}
+
+@keyframes walk {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: calc(var(--s) * -8);
+  }
+}
+
+@media (max-width: 700px) {
+  .niko {
+    --s: 64px;
+    right: 12px;
+  }
+}

@@ -1,0 +1,106 @@
+.tabs {
+  display: flex;
+  gap: 2px;
+  padding: 8px 8px 0;
+  background: var(--c-secondary);
+}
+
+.tab {
+  padding: 8px 16px;
+  border: 1px solid var(--c-border);
+  border-bottom: 0;
+  border-radius: 0px 0px 0 0;
+  background: var(--c-secondary);
+  font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+}
+
+.selected {
+  background: var(--c-window);
+  box-shadow: inset 1px 1px 0 var(--c-white);
+  margin-bottom: -1px;
+}
+
+.panel {
+  padding: 20px;
+  border-top: 1px solid var(--c-border);
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 32px;
+  font: 400 var(--fs-ui) / 1.2 var(--f-system);
+}
+
+/* Casillas estilo Windows 98 (en lugar de los controles nativos del sistema). */
+.option input[type='checkbox'],
+.option input[type='radio'] {
+  appearance: none;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  background-color: var(--c-white);
+  box-shadow: var(--bevel-sunken);
+}
+
+.option input[type='checkbox']:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' shape-rendering='crispEdges'%3E%3Cpath fill='%23202124' d='M4 8h2v2h1v1h1v-1h1V9h1V8h1V6h-2v2H9v1H8v1H7V9H6V8H4z'/%3E%3C/svg%3E");
+}
+
+.option input[type='radio'] {
+  border-radius: 50%;
+}
+
+.option input[type='radio']:checked {
+  background-image: radial-gradient(circle, var(--c-text) 0 2px, transparent 2.5px);
+}
+
+.option input:focus-visible {
+  outline: 1px dotted var(--c-text);
+  outline-offset: 2px;
+}
+
+.info {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+  box-shadow: var(--bevel-sunken);
+  display: grid;
+  gap: 8px;
+}
+
+.info div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font: 400 var(--fs-ui-sm) / 1.2 var(--f-system);
+}
+
+.info dt {
+  color: var(--c-muted);
+}
+
+.info dd {
+  margin: 0;
+}
+
+.reset {
+  justify-self: start;
+  min-height: 40px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 0;
+  background: var(--c-window);
+  box-shadow: var(--bevel-raised);
+  font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+}
+
+.reset:active {
+  box-shadow: var(--bevel-pressed);
+}

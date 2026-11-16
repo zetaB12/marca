@@ -1,0 +1,22 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Niko — ciclo de caminar</title>
+<style>
+  body { margin: 0; padding: 32px; background: #c9c9c5; font: 14px Tahoma, sans-serif; color: #202124; }
+  h1 { font-size: 16px; margin: 0 0 16px; }
+  .row { display: flex; gap: 48px; align-items: flex-end; }
+  /* Cada fotograma mide 64×64; la hoja se recorre con steps(8). Ampliado ×3 sin suavizar. */
+  .niko { width: 192px; height: 192px; overflow: hidden; image-rendering: pixelated; }
+  .niko i { display: block; width: 1536px; height: 192px; background-size: 1536px 192px;
+            animation: walk 0.8s steps(8) infinite; }
+  .right i { background-image: url(niko-walk-right-sheet.png); }
+  .left  i { background-image: url(niko-walk-left-sheet.png); }
+  @keyframes walk { to { transform: translateX(-1536px); } }
+  p { margin: 14px 0 0; max-width: 560px; line-height: 1.5; }
+</style>
+<h1>Niko.exe — caminar (8 fotogramas, 0,8 s por ciclo)</h1>
+<div class="row">
+  <div class="niko right"><i></i></div>
+  <div class="niko left"><i></i></div>
+</div>
+<p>Hoja: 512×64 px (8 fotogramas de 64×64) con fondo transparente. La versión izquierda es el reflejo exacto de la derecha.</p>
