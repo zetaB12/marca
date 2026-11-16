@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
-import { ComputerIcon, PowerIcon, RefreshIcon, SettingsIcon } from '../../components/PixelIcon/pixelIcons'
+import { ComputerIcon, FolderIcon, OpenFolderIcon, PowerIcon, RefreshIcon, SettingsIcon } from '../../components/PixelIcon/pixelIcons'
 import { useDesktopStore } from '../../store/desktopStore'
+import { useExplorerStore } from '../../store/explorerStore'
 import styles from './ContextMenu.module.css'
 
 const WIDTH = 240
@@ -46,6 +47,44 @@ export default function ContextMenu() {
   const run = (action: () => void) => () => {
     closeContextMenu()
     action()
+  }
+
+  // Menú del icono My Computer: Open conserva la ruta actual; Explore abre en la carpeta principal.
+  if (menu.target === 'mycomputer') {
+    const { launch } = useDesktopStore.getState()
+    return (
+      <div
+        ref={ref}
+        className={styles.menu}
+        style={{ left: x, top: y, width: WIDTH }}
+        role="menu"
+        aria-label="My Computer"
+        tabIndex={-1}
+        onKeyDown={onKeyDown}
+        onMouseOver={(e) => (e.target as HTMLElement).closest('button')?.focus()}
+        onMouseLeave={() => ref.current?.focus()}
+        onContextMenu={(e) => e.preventDefault()}
+      >
+        <button type="button" role="menuitem" className={styles.item} onClick={run(() => launch('mycomputer'))}>
+          <OpenFolderIcon size={16} /> Open
+        </button>
+        <button
+          type="button"
+          role="menuitem"
+          className={styles.item}
+          onClick={run(() => {
+            useExplorerStore.getState().explore()
+            launch('mycomputer')
+          })}
+        >
+          <FolderIcon size={16} /> Explore
+        </button>
+        <hr className={styles.sep} />
+        <button type="button" role="menuitem" className={styles.item} onClick={run(() => launch('sysprops'))}>
+          <ComputerIcon size={16} /> Properties
+        </button>
+      </div>
+    )
   }
 
   return (

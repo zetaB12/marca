@@ -1,0 +1,56 @@
+.body {
+  padding: 20px;
+}
+
+.head {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.head svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+.list {
+  margin: 0;
+  padding: 4px 12px;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+  box-shadow: var(--bevel-sunken);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px dotted var(--c-border);
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.row dt {
+  font: 400 var(--fs-ui) / 1.2 var(--f-system);
+}
+
+.row dd {
+  margin: 0;
+  text-align: right;
+  font-size: calc(14px * var(--text-scale, 1));
+  color: var(--c-muted);
+}
+
+@media (max-width: 700px) {
+  .row {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .row dd {
+    text-align: left;
+  }
+}

@@ -3,6 +3,8 @@ import type { WindowAppId } from '../data/apps'
 import AboutApp from './About/AboutApp'
 import ContactApp from './Contact/ContactApp'
 import MyComputerApp from './MyComputer/MyComputerApp'
+import SystemPropertiesApp from './MyComputer/SystemPropertiesApp'
+import NotepadApp from './Notepad/NotepadApp'
 import ProjectsApp from './Projects/ProjectsApp'
 import RecycleBinApp from './RecycleBin/RecycleBinApp'
 import ServicesApp from './Services/ServicesApp'
@@ -16,6 +18,8 @@ export const APP_COMPONENTS: Record<WindowAppId, ComponentType> = {
   services: ServicesApp,
   about: AboutApp,
   mycomputer: MyComputerApp,
+  sysprops: SystemPropertiesApp,
+  notepad: NotepadApp,
   contact: ContactApp,
   recyclebin: RecycleBinApp,
   settings: SettingsApp,

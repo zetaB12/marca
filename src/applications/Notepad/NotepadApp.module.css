@@ -1,0 +1,23 @@
+.text {
+  flex: 1;
+  min-height: 0;
+  margin: 6px;
+  padding: 8px;
+  border: 0;
+  border-radius: 0;
+  resize: none;
+  overflow: auto;
+  background: var(--c-white);
+  box-shadow: var(--bevel-sunken);
+  color: var(--c-text);
+  font: 400 var(--fs-ui-sm) / 1.5 var(--f-system);
+  white-space: pre-wrap;
+  outline: none;
+}
+
+.path {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

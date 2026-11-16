@@ -698,7 +698,29 @@ export const RecycleBinFull16Icon = createPixelIcon(
   'RecycleBinFull16Icon',
 )
 
-export const ArrowUpRightIcon = createPixelIcon(
+export const FlaskIcon = createPixelIcon(
+  [
+    '................',
+    '.....KKKKKK.....',
+    '......KWWK......',
+    '......KWWK......',
+    '......KWWK......',
+    '.....KWWWWK.....',
+    '....KWWWWWWK....',
+    '...KWWNNNNWWK...',
+    '..KWWNNNNNNWWK..',
+    '..KWNNNNNNNNWK..',
+    '.KWWNNNNNNNNWWK.',
+    '.KWWNNNNNNNNWWK.',
+    '.KWWWNNNNNNWWWK.',
+    '..KKKKKKKKKKKK..',
+    '................',
+    '................',
+  ],
+  'FlaskIcon',
+)
+
+export const ArrowUpRightIcon =createPixelIcon(
   [
     '................',
     '................',

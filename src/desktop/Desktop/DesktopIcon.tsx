@@ -5,7 +5,7 @@ import styles from './DesktopIcon.module.css'
 
 export default function DesktopIcon({ id }: { id: WindowAppId }) {
   const { file, icon: Icon } = APPS[id]
-  const { selectedIcon, selectIcon, launch } = useDesktopStore()
+  const { selectedIcon, selectIcon, launch, openContextMenu } = useDesktopStore()
   const selected = selectedIcon === id
   // El icono pixel art crece en múltiplos de 16 px (siempre nítido): 48, 64, 80.
   const iconSize = Math.max(48, Math.round((48 * useUiScale()) / 16) * 16)
@@ -23,6 +23,16 @@ export default function DesktopIcon({ id }: { id: WindowAppId }) {
       onClick={onClick}
       onDoubleClick={() => launch(id)}
       onFocus={() => selectIcon(id)}
+      onContextMenu={
+        id === 'mycomputer'
+          ? (e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              selectIcon(id)
+              openContextMenu(e.clientX, e.clientY, 'mycomputer')
+            }
+          : undefined
+      }
       aria-label={`Open ${file}`}
     >
       <span className={styles.glyph}>

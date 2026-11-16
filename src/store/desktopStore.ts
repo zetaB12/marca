@@ -14,14 +14,15 @@ interface DesktopState {
   booted: boolean // el preloader terminó y el escritorio se revela
   startOpen: boolean
   selectedIcon: AppId | null
-  contextMenu: { x: number; y: number } | null
+  /** `target` identifica el icono sobre el que se abrió (si no, es el menú del escritorio). */
+  contextMenu: { x: number; y: number; target?: 'mycomputer' } | null
   dialog: DialogId | null
   setBooted: () => void
   toggleStart: () => void
   setStart: (open: boolean) => void
   closeStart: () => void
   selectIcon: (id: AppId | null) => void
-  openContextMenu: (x: number, y: number) => void
+  openContextMenu: (x: number, y: number, target?: 'mycomputer') => void
   closeContextMenu: () => void
   openDialog: (dialog: DialogId) => void
   closeDialog: () => void
@@ -44,7 +45,7 @@ export const useDesktopStore = create<DesktopState>((set, get) => ({
   setStart: (startOpen) => set({ startOpen, contextMenu: null }),
   closeStart: () => set({ startOpen: false }),
   selectIcon: (selectedIcon) => set({ selectedIcon }),
-  openContextMenu: (x, y) => set({ contextMenu: { x, y }, startOpen: false }),
+  openContextMenu: (x, y, target) => set({ contextMenu: { x, y, target }, startOpen: false }),
   closeContextMenu: () => set({ contextMenu: null }),
   openDialog: (dialog) => set({ dialog, startOpen: false, contextMenu: null }),
   closeDialog: () => set({ dialog: null }),

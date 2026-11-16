@@ -3,6 +3,7 @@ import NMark from '../components/NLogo/NMark'
 import {
   AboutIcon,
   ComputerIcon,
+  DocumentIcon,
   FolderIcon,
   HomeIcon,
   MailIcon,
@@ -18,6 +19,8 @@ export type AppId =
   | 'services'
   | 'about'
   | 'mycomputer'
+  | 'sysprops'
+  | 'notepad'
   | 'contact'
   | 'recyclebin'
   | 'settings'
@@ -73,15 +76,33 @@ export const APPS: Record<AppId, AppDef> = {
     windowTitle: 'About Us.exe',
     file: 'About Us.exe',
     icon: AboutIcon,
-    size: { w: 620, h: 480 },
+    size: { w: 640, h: 560 },
   },
   mycomputer: {
     id: 'mycomputer',
     title: 'My Computer',
-    windowTitle: 'My Computer — System Properties',
+    windowTitle: 'My Computer',
     file: 'My Computer',
     icon: ComputerIcon,
+    size: { w: 720, h: 500 },
+  },
+  /** Ventana independiente (Properties de My Computer); no tiene icono de escritorio ni entrada en Start. */
+  sysprops: {
+    id: 'sysprops',
+    title: 'System Properties',
+    windowTitle: 'My Computer — System Properties',
+    file: 'System Properties',
+    icon: ComputerIcon,
     size: { w: 560, h: 460 },
+  },
+  /** Visor de texto simple (Readme.txt y otros archivos de My Computer). */
+  notepad: {
+    id: 'notepad',
+    title: 'Notepad',
+    windowTitle: 'Notepad',
+    file: 'Notepad',
+    icon: DocumentIcon,
+    size: { w: 560, h: 420 },
   },
   contact: {
     id: 'contact',
