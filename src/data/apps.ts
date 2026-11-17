@@ -110,7 +110,7 @@ export const APPS: Record<AppId, AppDef> = {
     windowTitle: 'Contacto.exe',
     file: 'Contacto.exe',
     icon: MailIcon,
-    size: { w: 520, h: 400 },
+    size: { w: 560, h: 480 },
   },
   recyclebin: {
     id: 'recyclebin',

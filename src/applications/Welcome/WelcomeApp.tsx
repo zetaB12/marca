@@ -1,6 +1,5 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
-import NLogo from "../../components/NLogo/NLogo";
 import {
   ArrowUpRightIcon,
   UserIcon,
@@ -113,8 +112,6 @@ export default function WelcomeApp() {
         </section>
 
         <aside className={styles.aside} aria-label="Servicios">
-          <NLogo size={22} className={styles.reveal} />
-
           <div
             className={`${styles.group} ${styles.reveal}`}
             role="group"

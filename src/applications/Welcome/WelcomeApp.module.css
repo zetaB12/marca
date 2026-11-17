@@ -130,14 +130,18 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 22px 20px 18px;
+  padding: 24px 20px 20px;
   box-shadow: inset 1px 0 0 var(--c-border), inset 2px 0 0 var(--c-white);
   background: #e1e1dc;
 }
 
+/* El grupo ocupa el alto sobrante: la lista se reparte y el botón queda abajo. */
 .group {
   position: relative;
-  padding: 18px 4px 4px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 8px 8px;
   border: 1px solid var(--c-border);
   box-shadow: 1px 1px 0 var(--c-white), inset 1px 1px 0 var(--c-white);
 }
@@ -152,21 +156,27 @@
   letter-spacing: 0.06em;
 }
 
+/* Filas de igual alto: el espaciado no depende de las líneas de cada descripción. */
 .services {
+  flex: 1;
   display: grid;
+  grid-auto-rows: 1fr;
   gap: 2px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* Cada servicio es un botón: se resalta en azul como las opciones de un menú de Windows 98. */
+/* Cada servicio es un botón: se resalta en azul como las opciones de un menú de Windows 98.
+   Columna de icono fija (32px) para que nombres y descripciones compartan el mismo eje. */
 .service {
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: center;
   gap: 12px;
   width: 100%;
-  padding: 7px 8px;
+  height: 100%;
+  padding: 8px;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -176,8 +186,8 @@
 }
 
 .service svg {
-  flex: none;
-  margin-top: 1px;
+  display: block;
+  justify-self: center;
 }
 
 .serviceText {
