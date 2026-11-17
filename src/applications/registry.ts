@@ -2,6 +2,7 @@ import type { ComponentType } from 'react'
 import type { WindowAppId } from '../data/apps'
 import AboutApp from './About/AboutApp'
 import ContactApp from './Contact/ContactApp'
+import MinesweeperApp from './Minesweeper/MinesweeperApp'
 import MyComputerApp from './MyComputer/MyComputerApp'
 import SystemPropertiesApp from './MyComputer/SystemPropertiesApp'
 import NotepadApp from './Notepad/NotepadApp'
@@ -23,6 +24,7 @@ export const APP_COMPONENTS: Record<WindowAppId, ComponentType> = {
   notepad: NotepadApp,
   contact: ContactApp,
   terminal: TerminalApp,
+  minesweeper: MinesweeperApp,
   recyclebin: RecycleBinApp,
   settings: SettingsApp,
 }

@@ -9,7 +9,7 @@ export interface IconProps {
 }
 export type IconComponent = ComponentType<IconProps>
 
-const PALETTE: Record<string, string> = {'K': '#202124', 'W': '#ffffff', 'G': '#d4d4ce', 'D': '#858580', 'N': '#243b5a', 'A': '#b99a70', 'L': '#dccbaa', 'l': '#ecece8', 'M': '#b4b4ae', 'E': '#55554f', 'R': '#3f7d4e', 'r': '#2a5a36'}
+const PALETTE: Record<string, string> = {'K': '#202124', 'W': '#ffffff', 'G': '#d4d4ce', 'D': '#858580', 'N': '#243b5a', 'A': '#b99a70', 'L': '#dccbaa', 'l': '#ecece8', 'M': '#b4b4ae', 'E': '#55554f', 'R': '#3f7d4e', 'r': '#2a5a36', 'X': '#e02020', 'Y': '#ffe600'}
 
 /** Convierte una cuadrícula de píxeles en un icono SVG nítido (un trazo por color). */
 function createPixelIcon(rows: string[], label: string): IconComponent {
@@ -784,4 +784,114 @@ export const TerminalIcon = createPixelIcon(
     '................',
   ],
   'TerminalIcon',
+)
+
+export const MinesweeperIcon = createPixelIcon(
+  [
+    '................',
+    '.WWWWWWWWWWWWWD.',
+    '.WGGGGGGGGGGGGD.',
+    '.WGGGGGKKGGGGGD.',
+    '.WGGKGGKKGGKGGD.',
+    '.WGGGGXXXXGGGGD.',
+    '.WGGGXWXXXXGGGD.',
+    '.WGKKXWXXXXKKGD.',
+    '.WGKKXXXXXXKKGD.',
+    '.WGGGXXXXXXGGGD.',
+    '.WGGGGXXXXGGGGD.',
+    '.WGGKGGKKGGKGGD.',
+    '.WGGGGGKKGGGGGD.',
+    '.DDDDDDDDDDDDDD.',
+    '................',
+    '................',
+  ],
+  'MinesweeperIcon',
+)
+
+export const FaceHappyIcon = createPixelIcon(
+  [
+    '................',
+    '.....KKKKKK.....',
+    '...KKYYYYYYKK...',
+    '..KYYYYYYYYYYK..',
+    '.KYYYYYYYYYYYYK.',
+    '.KYYYKYYYYKYYYK.',
+    '.KYYYKYYYYKYYYK.',
+    '.KYYYYYYYYYYYYK.',
+    '.KYYYYYYYYYYYYK.',
+    '.KYYKYYYYYYKYYK.',
+    '.KYYYKKKKKKYYYK.',
+    '..KYYYYYYYYYYK..',
+    '...KKYYYYYYKK...',
+    '.....KKKKKK.....',
+    '................',
+    '................',
+  ],
+  'FaceHappyIcon',
+)
+
+export const FaceWowIcon = createPixelIcon(
+  [
+    '................',
+    '.....KKKKKK.....',
+    '...KKYYYYYYKK...',
+    '..KYYYYYYYYYYK..',
+    '.KYYYYYYYYYYYYK.',
+    '.KYYYKYYYYKYYYK.',
+    '.KYYYKYYYYKYYYK.',
+    '.KYYYYYYYYYYYYK.',
+    '.KYYYYYYYYYYYYK.',
+    '.KYYYYKKKKYYYYK.',
+    '.KYYYYKYYKYYYYK.',
+    '..KYYYKKKKYYYK..',
+    '...KKYYYYYYKK...',
+    '.....KKKKKK.....',
+    '................',
+    '................',
+  ],
+  'FaceWowIcon',
+)
+
+export const FaceWinIcon = createPixelIcon(
+  [
+    '................',
+    '.....KKKKKK.....',
+    '...KKYYYYYYKK...',
+    '..KYYYYYYYYYYK..',
+    '.KYYYYYYYYYYYYK.',
+    '.KYKKKKYYKKKKYK.',
+    '.KYYKKYYYYKKYYK.',
+    '.KYYYYYYYYYYYYK.',
+    '.KYYYYYYYYYYYYK.',
+    '.KYYKYYYYYYKYYK.',
+    '.KYYYKKKKKKYYYK.',
+    '..KYYYYYYYYYYK..',
+    '...KKYYYYYYKK...',
+    '.....KKKKKK.....',
+    '................',
+    '................',
+  ],
+  'FaceWinIcon',
+)
+
+export const FaceLostIcon = createPixelIcon(
+  [
+    '................',
+    '.....KKKKKK.....',
+    '...KKYYYYYYKK...',
+    '..KYYYYYYYYYYK..',
+    '.KYYYYYYYYYYYYK.',
+    '.KYYKYKYYKYKYYK.',
+    '.KYYYKYYYYKYYYK.',
+    '.KYYKYKYYKYKYYK.',
+    '.KYYYYYYYYYYYYK.',
+    '.KYYYKKKKKKYYYK.',
+    '.KYYKYYYYYYKYYK.',
+    '..KYYYYYYYYYYK..',
+    '...KKYYYYYYKK...',
+    '.....KKKKKK.....',
+    '................',
+    '................',
+  ],
+  'FaceLostIcon',
 )

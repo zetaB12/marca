@@ -7,6 +7,7 @@ import {
   FolderIcon,
   HomeIcon,
   MailIcon,
+  MinesweeperIcon,
   PowerIcon,
   ServicesIcon,
   SettingsIcon,
@@ -24,6 +25,7 @@ export type AppId =
   | 'notepad'
   | 'contact'
   | 'terminal'
+  | 'minesweeper'
   | 'recyclebin'
   | 'settings'
   | 'shutdown'
@@ -122,6 +124,14 @@ export const APPS: Record<AppId, AppDef> = {
     icon: TerminalIcon,
     size: { w: 760, h: 500 },
   },
+  minesweeper: {
+    id: 'minesweeper',
+    title: 'Buscaminas',
+    windowTitle: 'Buscaminas',
+    file: 'Buscaminas',
+    icon: MinesweeperIcon,
+    size: { w: 340, h: 500 },
+  },
   recyclebin: {
     id: 'recyclebin',
     title: 'Papelera de reciclaje',
@@ -155,6 +165,7 @@ export const START_MENU_ITEMS: AppId[] = [
   'mycomputer',
   'contact',
   'terminal',
+  'minesweeper',
   'settings',
   'shutdown',
 ]
@@ -169,6 +180,7 @@ export const DESKTOP_ICONS: WindowAppId[] = [
   'mycomputer',
   'contact',
   'terminal',
+  'minesweeper',
   'recyclebin',
 ]
 

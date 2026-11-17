@@ -1,0 +1,120 @@
+.levels {
+  display: flex;
+  gap: 4px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--c-border);
+  box-shadow: 0 1px 0 var(--c-white);
+}
+
+.level {
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 0;
+  background: var(--c-window);
+  color: var(--c-text);
+  box-shadow: var(--bevel-raised);
+  font: 400 var(--fs-ui-sm) / 1.2 var(--f-system);
+  letter-spacing: 0.02em;
+}
+
+.on {
+  box-shadow: var(--bevel-pressed);
+  background: #d9d9d4;
+}
+
+.flagBtn {
+  margin-left: auto;
+}
+
+.stage {
+  display: grid;
+  place-items: start center;
+  padding: 14px;
+  background: var(--c-window);
+}
+
+/* Marco en relieve y contadores hundidos, como en Windows 98. */
+.frame {
+  display: grid;
+  gap: 8px;
+  padding: 8px;
+  background: var(--c-window);
+  box-shadow: var(--bevel-raised);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 6px;
+  box-shadow: var(--bevel-sunken);
+}
+
+.led {
+  min-width: 3.1ch;
+  padding: 2px 4px;
+  background: #000;
+  color: #ff2a2a;
+  font: 400 26px / 1 'Consolas', 'Courier New', monospace;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.face {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--c-window);
+  color: var(--c-text);
+  box-shadow: var(--bevel-raised);
+}
+
+.face:active {
+  box-shadow: var(--bevel-pressed);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 26px);
+  grid-auto-rows: 26px;
+  box-shadow: var(--bevel-sunken);
+  padding: 3px;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.cell {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--c-window);
+  box-shadow: var(--bevel-raised);
+  font: 700 17px / 1 'Consolas', 'Courier New', monospace;
+  cursor: default;
+}
+
+.cell:disabled {
+  opacity: 1;
+}
+
+.open {
+  box-shadow: inset 1px 1px 0 var(--c-border);
+  background: #c7c7c2;
+}
+
+.boom {
+  background: #ff3b3b;
+}
+
+.cell:focus-visible {
+  outline: 1px dotted var(--c-text);
+  outline-offset: -4px;
+}
