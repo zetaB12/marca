@@ -25,25 +25,31 @@
     <meta property="og:site_name" content="Neal" />
     <meta property="og:locale" content="es_PE" />
     <meta property="og:url" content="https://neal.pe/" />
-    <meta property="og:title" content="Neal · Webs, software, automatización e IA en Trujillo, Perú" />
+    <meta
+      property="og:title"
+      content="Neal · Webs, software, automatización e IA en Trujillo, Perú"
+    />
     <meta
       property="og:description"
       content="Neal diseña páginas web, tiendas online, automatizaciones e integraciones de IA para impulsar tu negocio. Trujillo, Perú."
     />
     <!-- Imagen provisional: el isotipo de la marca (512×512). Sustitúyela por una de 1200×630 en /public/og-image.png. -->
-    <meta property="og:image" content="https://neal.pe/icon-512.png" />
+    <meta property="og:image" content="https://neal.pe/image/portal.png" />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
     <meta property="og:image:alt" content="Logotipo de Neal" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Neal · Webs, software, automatización e IA en Trujillo, Perú" />
+    <meta
+      name="twitter:title"
+      content="Neal · Webs, software, automatización e IA en Trujillo, Perú"
+    />
     <meta
       name="twitter:description"
       content="Neal diseña páginas web, tiendas online, automatizaciones e integraciones de IA para impulsar tu negocio. Trujillo, Perú."
     />
-    <meta name="twitter:image" content="https://neal.pe/icon-512.png" />
+    <meta name="twitter:image" content="https://neal.pe/image/portal.png" />
     <meta name="twitter:image:alt" content="Logotipo de Neal" />
 
     <!-- Datos estructurados: solo información que ya aparece en el sitio (nombre, ciudad, servicios, fundador). -->
@@ -59,11 +65,11 @@
             "url": "https://neal.pe/",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://neal.pe/icon-512.png",
+              "url": "https://neal.pe/image/portal.png",
               "width": 512,
               "height": 512
             },
-            "image": "https://neal.pe/icon-512.png",
+            "image": "https://neal.pe/image/portal.png",
             "description": "Estudio digital que crea soluciones digitales para negocios: desarrollo web, e-commerce, software y sistemas, automatización e inteligencia artificial.",
             "address": {
               "@type": "PostalAddress",
@@ -152,16 +158,37 @@
             "inLanguage": "es",
             "isPartOf": { "@id": "https://neal.pe/#website" },
             "about": { "@id": "https://neal.pe/#organization" },
-            "primaryImageOfPage": { "@type": "ImageObject", "url": "https://neal.pe/icon-512.png" }
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://neal.pe/image/portal.png"
+            }
           }
         ]
       }
     </script>
 
     <!-- Las fuentes críticas se piden ya, sin esperar al CSS. Todas se sirven desde /fonts (sin Google). -->
-    <link rel="preload" href="/fonts/W95FA.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/W95FA.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/space-grotesk-latin-700-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <!-- En recargas y atrás/adelante no hay preloader: se oculta la capa negra antes del primer pintado. -->
     <style>
@@ -202,7 +229,10 @@
         negocios: desarrollo web, e-commerce, software y sistemas,
         automatización, inteligencia artificial, marketing digital y SEO.
       </p>
-      <p>Este sitio es un escritorio interactivo y necesita JavaScript para mostrarse.</p></noscript
+      <p>
+        Este sitio es un escritorio interactivo y necesita JavaScript para
+        mostrarse.
+      </p></noscript
     >
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
