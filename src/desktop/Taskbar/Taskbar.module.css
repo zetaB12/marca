@@ -52,7 +52,8 @@
 }
 
 .start {
-  padding: 0 12px 0 8px;
+  gap: 8px;
+  padding: 0 calc(18px * var(--text-scale)) 0 calc(14px * var(--text-scale));
 }
 
 .start svg {
@@ -161,6 +162,9 @@
     height: 44px;
     font-size: var(--fs-ui-sm);
     padding: 0 10px;
+  }
+  .start {
+    padding: 0 16px 0 12px;
   }
   .qbtn {
     width: 44px;
