@@ -18,7 +18,7 @@ export const ABOUT_PROFILE: {
 } = {
   name: '',
   role: '',
-  photo: '/image/profile-98.png',
+  photo: '/image/profile-98.webp',
   sections: [
     { id: 'who', title: 'Quién soy', body: 'Soy Deyvi Neal. Creo, diseño y desarrollo soluciones digitales que conectan tecnología con ideas.' },
     { id: 'experience', title: 'Mi experiencia en desarrollo y tecnología', body: 'De la curiosidad por la tecnología a crear soluciones digitales que convierten ideas en realidad.' },

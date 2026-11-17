@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react'
-import { APP_COMPONENTS } from '../applications/registry'
+import { Suspense, useEffect, useRef } from 'react'
+import { APP_COMPONENTS, prefetchApps } from '../applications/registry'
 import { selectOpenWindows, useWindowStore } from '../store/windowStore'
 import ManagedWindow from './ManagedWindow'
 import styles from './WindowLayer.module.css'
@@ -9,6 +9,8 @@ export default function WindowLayer() {
   const ref = useRef<HTMLDivElement>(null)
   const windows = useWindowStore((s) => s.windows)
   const setBounds = useWindowStore((s) => s.setBounds)
+
+  useEffect(() => prefetchApps(), [])
 
   useEffect(() => {
     const el = ref.current
@@ -29,7 +31,9 @@ export default function WindowLayer() {
         const App = APP_COMPONENTS[win.appId]
         return (
           <ManagedWindow key={win.id} win={win}>
-            <App />
+            <Suspense fallback={null}>
+              <App />
+            </Suspense>
           </ManagedWindow>
         )
       })}

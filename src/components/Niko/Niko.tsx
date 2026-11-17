@@ -1,9 +1,9 @@
 import { useEffect, useState, type CSSProperties } from 'react'
 import { useIsMobile } from '../../hooks/useIsMobile'
 import { useSettingsStore } from '../../store/settingsStore'
-import idle from '../../assets/niko/idle.png'
-import walkLeft from '../../assets/niko/walk-left.png'
-import walkRight from '../../assets/niko/walk-right.png'
+import idle from '../../assets/niko/idle.webp'
+import walkLeft from '../../assets/niko/walk-left.webp'
+import walkRight from '../../assets/niko/walk-right.webp'
 import styles from './Niko.module.css'
 
 type Mode = 'idle' | 'left' | 'right'

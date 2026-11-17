@@ -1,30 +1,33 @@
-import type { ComponentType } from 'react'
+import { lazy, type ComponentType, type LazyExoticComponent } from 'react'
 import type { WindowAppId } from '../data/apps'
-import AboutApp from './About/AboutApp'
-import ContactApp from './Contact/ContactApp'
-import MinesweeperApp from './Minesweeper/MinesweeperApp'
-import MyComputerApp from './MyComputer/MyComputerApp'
-import SystemPropertiesApp from './MyComputer/SystemPropertiesApp'
-import NotepadApp from './Notepad/NotepadApp'
-import ProjectsApp from './Projects/ProjectsApp'
-import RecycleBinApp from './RecycleBin/RecycleBinApp'
-import ServicesApp from './Services/ServicesApp'
-import SettingsApp from './Settings/SettingsApp'
-import TerminalApp from './Terminal/TerminalApp'
 import WelcomeApp from './Welcome/WelcomeApp'
 
+type AppComponent = ComponentType | LazyExoticComponent<ComponentType>
+
+/** Cada aplicación se descarga al abrirla por primera vez (Bienvenida va en el paquete inicial). */
+const loaders: Record<Exclude<WindowAppId, 'home'>, () => Promise<{ default: ComponentType }>> = {
+  projects: () => import('./Projects/ProjectsApp'),
+  services: () => import('./Services/ServicesApp'),
+  about: () => import('./About/AboutApp'),
+  mycomputer: () => import('./MyComputer/MyComputerApp'),
+  sysprops: () => import('./MyComputer/SystemPropertiesApp'),
+  notepad: () => import('./Notepad/NotepadApp'),
+  contact: () => import('./Contact/ContactApp'),
+  terminal: () => import('./Terminal/TerminalApp'),
+  minesweeper: () => import('./Minesweeper/MinesweeperApp'),
+  recyclebin: () => import('./RecycleBin/RecycleBinApp'),
+  settings: () => import('./Settings/SettingsApp'),
+}
+
 /** Qué componente renderiza cada ventana. */
-export const APP_COMPONENTS: Record<WindowAppId, ComponentType> = {
+export const APP_COMPONENTS = {
   home: WelcomeApp,
-  projects: ProjectsApp,
-  services: ServicesApp,
-  about: AboutApp,
-  mycomputer: MyComputerApp,
-  sysprops: SystemPropertiesApp,
-  notepad: NotepadApp,
-  contact: ContactApp,
-  terminal: TerminalApp,
-  minesweeper: MinesweeperApp,
-  recyclebin: RecycleBinApp,
-  settings: SettingsApp,
+  ...Object.fromEntries(Object.entries(loaders).map(([id, load]) => [id, lazy(load)])),
+} as unknown as Record<WindowAppId, AppComponent>
+
+/** Descarga el resto de aplicaciones cuando el navegador está libre, para que abrirlas sea instantáneo. */
+export function prefetchApps() {
+  const run = () => Object.values(loaders).forEach((load) => void load().catch(() => undefined))
+  if (typeof window.requestIdleCallback === 'function') window.requestIdleCallback(run, { timeout: 4000 })
+  else setTimeout(run, 2000)
 }
