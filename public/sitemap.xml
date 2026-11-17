@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Una sola URL pública: el escritorio vive en "/" y las ventanas no tienen ruta propia.
+       Actualiza lastmod cuando cambie el contenido del sitio. -->
+  <url>
+    <loc>https://neal.pe/</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+</urlset>

@@ -1,0 +1,5 @@
+# Todo el sitio es público. No se bloquea nada (Google necesita rastrear /assets y /fonts para renderizar la página).
+User-agent: *
+Allow: /
+
+Sitemap: https://neal.pe/sitemap.xml

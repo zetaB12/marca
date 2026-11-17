@@ -2,18 +2,167 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon-square.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#243B5A" />
+    <meta name="theme-color" content="#0b1020" />
+
+    <!-- Iconos: SVG para navegadores modernos, ICO y PNG de respaldo (generados con tools/make_icons.py). -->
+    <link rel="icon" type="image/svg+xml" href="/favicon-square.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- SEO. La web es una sola ruta ("/"), así que los metadatos van aquí, en el HTML estático:
+         los rastreadores y los previsualizadores de enlaces (WhatsApp, Facebook, LinkedIn) no ejecutan JavaScript. -->
     <title>Neal · Webs, software, automatización e IA en Trujillo, Perú</title>
     <meta
       name="description"
       content="Neal diseña páginas web, tiendas online, automatizaciones e integraciones de IA para impulsar tu negocio. Trujillo, Perú."
     />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://neal.pe/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Neal" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:url" content="https://neal.pe/" />
+    <meta property="og:title" content="Neal · Webs, software, automatización e IA en Trujillo, Perú" />
+    <meta
+      property="og:description"
+      content="Neal diseña páginas web, tiendas online, automatizaciones e integraciones de IA para impulsar tu negocio. Trujillo, Perú."
+    />
+    <!-- Imagen provisional: el isotipo de la marca (512×512). Sustitúyela por una de 1200×630 en /public/og-image.png. -->
+    <meta property="og:image" content="https://neal.pe/icon-512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="Logotipo de Neal" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Neal · Webs, software, automatización e IA en Trujillo, Perú" />
+    <meta
+      name="twitter:description"
+      content="Neal diseña páginas web, tiendas online, automatizaciones e integraciones de IA para impulsar tu negocio. Trujillo, Perú."
+    />
+    <meta name="twitter:image" content="https://neal.pe/icon-512.png" />
+    <meta name="twitter:image:alt" content="Logotipo de Neal" />
+
+    <!-- Datos estructurados: solo información que ya aparece en el sitio (nombre, ciudad, servicios, fundador). -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://neal.pe/#organization",
+            "name": "Neal",
+            "alternateName": "N. Digital Studio",
+            "url": "https://neal.pe/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://neal.pe/icon-512.png",
+              "width": 512,
+              "height": 512
+            },
+            "image": "https://neal.pe/icon-512.png",
+            "description": "Estudio digital que crea soluciones digitales para negocios: desarrollo web, e-commerce, software y sistemas, automatización e inteligencia artificial.",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Trujillo",
+              "addressCountry": "PE"
+            },
+            "founder": { "@type": "Person", "name": "Deyvi Neal" },
+            "inLanguage": "es",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Servicios",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Desarrollo web",
+                    "description": "Diseño y desarrollo de páginas web profesionales para negocios."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "E-commerce",
+                    "description": "Tiendas online y soluciones para vender por Internet."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Software y sistemas",
+                    "description": "Aplicaciones y sistemas adaptados a las necesidades de cada negocio."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Automatización",
+                    "description": "Automatización de procesos, integración de herramientas y optimización de tareas empresariales."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Inteligencia artificial",
+                    "description": "Integración de inteligencia artificial para crear soluciones más inteligentes."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Marketing digital",
+                    "description": "Estrategias de marketing, publicidad digital, generación de leads y optimización de conversiones."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "SEO y GEO",
+                    "description": "Posicionamiento orgánico, SEO técnico y optimización para motores de búsqueda y experiencias de búsqueda con IA."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://neal.pe/#website",
+            "url": "https://neal.pe/",
+            "name": "Neal",
+            "inLanguage": "es",
+            "publisher": { "@id": "https://neal.pe/#organization" }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://neal.pe/#webpage",
+            "url": "https://neal.pe/",
+            "name": "Neal · Webs, software, automatización e IA en Trujillo, Perú",
+            "description": "Neal diseña páginas web, tiendas online, automatizaciones e integraciones de IA para impulsar tu negocio. Trujillo, Perú.",
+            "inLanguage": "es",
+            "isPartOf": { "@id": "https://neal.pe/#website" },
+            "about": { "@id": "https://neal.pe/#organization" },
+            "primaryImageOfPage": { "@type": "ImageObject", "url": "https://neal.pe/icon-512.png" }
+          }
+        ]
+      }
+    </script>
+
     <!-- Las fuentes críticas se piden ya, sin esperar al CSS. Todas se sirven desde /fonts (sin Google). -->
     <link rel="preload" href="/fonts/W95FA.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+
     <!-- En recargas y atrás/adelante no hay preloader: se oculta la capa negra antes del primer pintado. -->
     <style>
       .no-boot #boot {
@@ -39,7 +188,21 @@
         #boot {
           display: none;
         }
-      </style></noscript
+        body {
+          font-family: system-ui, sans-serif;
+          max-width: 40rem;
+          margin: 2rem auto;
+          padding: 0 1rem;
+          line-height: 1.5;
+        }
+      </style>
+      <h1>Neal · N. Digital Studio</h1>
+      <p>
+        Estudio digital en Trujillo, Perú. Creamos soluciones digitales para
+        negocios: desarrollo web, e-commerce, software y sistemas,
+        automatización, inteligencia artificial, marketing digital y SEO.
+      </p>
+      <p>Este sitio es un escritorio interactivo y necesita JavaScript para mostrarse.</p></noscript
     >
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
