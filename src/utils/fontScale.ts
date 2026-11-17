@@ -32,8 +32,8 @@ function apply() {
   const root = document.documentElement.style
   const px = (v: number) => `${Math.round(v * 100) / 100}px`
   root.setProperty('--text-scale', String(Math.round(scale * 100) / 100))
-  // Interfaz grande (taskbar, menús, botones): 18 px en laptop, hasta ~29 px en monitores grandes.
-  root.setProperty('--fs-ui', px(snap(18 * scale, dpr)))
+  // Interfaz grande (taskbar, menús, botones): 15 px base.
+  root.setProperty('--fs-ui', px(snap(15 * scale, dpr)))
   // Interfaz pequeña (títulos de ventana, etiquetas, estados): 12,5 px en laptop.
   root.setProperty('--fs-ui-sm', px(snap(12.5 * scale, dpr)))
 }

@@ -42,6 +42,7 @@
 
 .channel {
   font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+  letter-spacing: 0.02em;
   color: var(--c-muted);
 }
 
@@ -73,6 +74,7 @@
   box-shadow: var(--bevel-sunken);
   color: var(--c-text);
   font: 400 calc(15px * var(--text-scale, 1)) / 1.45 var(--f-system);
+  letter-spacing: 0.02em;
 }
 
 .input::placeholder {

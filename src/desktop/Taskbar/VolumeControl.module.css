@@ -36,6 +36,7 @@
   background: var(--c-window);
   box-shadow: var(--bevel-window), var(--shadow-window);
   font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+  letter-spacing: 0.02em;
 }
 
 .title {

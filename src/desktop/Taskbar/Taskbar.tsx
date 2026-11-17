@@ -40,7 +40,7 @@ export default function Taskbar() {
           return (
             <li key={id}>
               <button type="button" className={styles.qbtn} title={title} aria-label={title} onClick={() => launch(id)}>
-                <Icon size={32} aria-hidden />
+                <Icon size={28} aria-hidden />
               </button>
             </li>
           )

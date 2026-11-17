@@ -10,6 +10,7 @@ import {
   PowerIcon,
   ServicesIcon,
   SettingsIcon,
+  TerminalIcon,
   type IconComponent,
 } from '../components/PixelIcon/pixelIcons'
 
@@ -22,6 +23,7 @@ export type AppId =
   | 'sysprops'
   | 'notepad'
   | 'contact'
+  | 'terminal'
   | 'recyclebin'
   | 'settings'
   | 'shutdown'
@@ -112,6 +114,14 @@ export const APPS: Record<AppId, AppDef> = {
     icon: MailIcon,
     size: { w: 560, h: 480 },
   },
+  terminal: {
+    id: 'terminal',
+    title: 'Terminal',
+    windowTitle: 'Terminal - C:\\NEAL',
+    file: 'Terminal',
+    icon: TerminalIcon,
+    size: { w: 760, h: 500 },
+  },
   recyclebin: {
     id: 'recyclebin',
     title: 'Papelera de reciclaje',
@@ -144,6 +154,7 @@ export const START_MENU_ITEMS: AppId[] = [
   'about',
   'mycomputer',
   'contact',
+  'terminal',
   'settings',
   'shutdown',
 ]
@@ -157,6 +168,7 @@ export const DESKTOP_ICONS: WindowAppId[] = [
   'about',
   'mycomputer',
   'contact',
+  'terminal',
   'recyclebin',
 ]
 

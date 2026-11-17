@@ -17,6 +17,7 @@
   background: linear-gradient(90deg, var(--c-title), #34527c);
   color: var(--c-white);
   font-family: var(--f-system);
+  letter-spacing: 0.02em;
   user-select: none;
   touch-action: none; /* el arrastre con puntero no debe desplazar la página */
 }

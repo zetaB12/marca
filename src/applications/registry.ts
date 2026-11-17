@@ -9,6 +9,7 @@ import ProjectsApp from './Projects/ProjectsApp'
 import RecycleBinApp from './RecycleBin/RecycleBinApp'
 import ServicesApp from './Services/ServicesApp'
 import SettingsApp from './Settings/SettingsApp'
+import TerminalApp from './Terminal/TerminalApp'
 import WelcomeApp from './Welcome/WelcomeApp'
 
 /** Qué componente renderiza cada ventana. */
@@ -21,6 +22,7 @@ export const APP_COMPONENTS: Record<WindowAppId, ComponentType> = {
   sysprops: SystemPropertiesApp,
   notepad: NotepadApp,
   contact: ContactApp,
+  terminal: TerminalApp,
   recyclebin: RecycleBinApp,
   settings: SettingsApp,
 }

@@ -19,6 +19,7 @@
   background: var(--c-secondary);
   border-top: 1px solid var(--c-border);
   font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+  letter-spacing: 0.02em;
   color: var(--c-muted);
 }
 
@@ -28,6 +29,7 @@
   border: 1px solid var(--c-border);
   background: var(--c-window);
   font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+  letter-spacing: 0.02em;
   color: var(--c-muted);
 }
 

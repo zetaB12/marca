@@ -16,6 +16,7 @@
   background: var(--c-window);
   box-shadow: var(--bevel-raised);
   font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+  letter-spacing: 0.02em;
 }
 
 .tool:active:not(:disabled) {
@@ -45,6 +46,7 @@
   width: 100%;
   padding: 0 8px;
   font: 400 var(--fs-ui-sm) / 1.2 var(--f-system);
+  letter-spacing: 0.02em;
   text-align: left;
 }
 
@@ -96,6 +98,7 @@
   padding: 36px 16px;
   text-align: center;
   font: 400 var(--fs-ui) / 1.6 var(--f-system);
+  letter-spacing: 0.02em;
   color: var(--c-muted);
 }
 

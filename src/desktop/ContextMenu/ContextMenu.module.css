@@ -7,6 +7,7 @@
   border-radius: 0;
   box-shadow: var(--bevel-window), var(--shadow-window);
   font-family: var(--f-system);
+  letter-spacing: 0.02em;
   animation: rise 0.12s ease-out;
 }
 
@@ -33,6 +34,7 @@
   background: transparent;
   text-align: left;
   font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+  letter-spacing: 0.02em;
 }
 
 .item svg {

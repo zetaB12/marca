@@ -11,6 +11,7 @@
   box-shadow: var(--bevel-sunken);
   color: var(--c-text);
   font: 400 var(--fs-ui-sm) / 1.5 var(--f-system);
+  letter-spacing: 0.02em;
   white-space: pre-wrap;
   outline: none;
 }

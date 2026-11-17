@@ -42,6 +42,7 @@
 
 .label {
   font: 400 var(--fs-ui-sm) / 1.25 var(--f-system);
+  letter-spacing: 0.02em;
   overflow-wrap: anywhere;
 }
 

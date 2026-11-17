@@ -36,6 +36,7 @@
 
 .row dt {
   font: 400 var(--fs-ui) / 1.2 var(--f-system);
+  letter-spacing: 0.02em;
 }
 
 .row dd {

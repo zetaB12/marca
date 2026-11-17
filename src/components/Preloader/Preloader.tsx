@@ -1,10 +1,17 @@
-import { useLayoutEffect, useState, type CSSProperties } from 'react'
+import { useEffect, useLayoutEffect, useState, type CSSProperties } from 'react'
 import { useBootProgress } from '../../hooks/useBootProgress'
-import Hourglass from './Hourglass'
 import { HOURGLASS_CURSOR } from './hourglassSprite'
 import styles from './Preloader.module.css'
 
-const BLOCKS = 24
+const BLOCKS = 36
+
+/** Líneas de arranque: aparecen en secuencia; la última se completa con "OK" al terminar la carga. */
+const LINES = [
+  'NEAL BIOS v1.0 — firmware original, ningún hardware real fue dañado',
+  '> Iniciando NealOS...',
+  '> Cargando servicios...',
+  '> Cargando proyectos...',
+] as const
 
 interface Props {
   /** Se llama cuando la carga termina y el preloader empieza a retirarse. */
@@ -29,6 +36,29 @@ export default function Preloader({ onReady }: Props) {
     onReady()
   }
 
+  // Al terminar la carga se muestra "OK" un instante y se sale.
+  useEffect(() => {
+    if (!filled) return
+    const t = window.setTimeout(() => {
+      if (!leaving) {
+        setLeaving(true)
+        onReady()
+      }
+    }, 450)
+    return () => window.clearTimeout(t)
+  }, [filled, leaving, onReady])
+
+  // Clic o cualquier tecla omiten la espera.
+  useEffect(() => {
+    if (leaving) return
+    const skip = () => {
+      setLeaving(true)
+      onReady()
+    }
+    window.addEventListener('keydown', skip)
+    return () => window.removeEventListener('keydown', skip)
+  }, [leaving, onReady])
+
   // La barra solo avanza cuando ya es visible, para que la secuencia se vea completa.
   const shown = barVisible ? progress : 0
 
@@ -37,25 +67,38 @@ export default function Preloader({ onReady }: Props) {
   return (
     <div
       className={`${styles.root} ${leaving ? styles.leaving : ''}`}
-      style={
-        {
-          cursor: `url("${HOURGLASS_CURSOR}") 11 16, wait`,
-          '--boot-p': shown,
-        } as CSSProperties
-      }
+      style={{ cursor: `url("${HOURGLASS_CURSOR}") 11 16, wait` } as CSSProperties}
       role="status"
       aria-label="Iniciando el sistema"
+      onClick={leave}
       onAnimationEnd={(e) => {
         if (leaving && e.target === e.currentTarget) setGone(true)
       }}
     >
       <div className={styles.stack}>
-        <div className={`${styles.step} ${styles.s2}`}>
-          <Hourglass onCycle={() => filled && leave()} />
+        <h1 className={styles.title} aria-label="NealOS">
+          NEAL<span>OS</span>
+        </h1>
+
+        <div className={styles.log}>
+          {LINES.map((text, i) => (
+            <p
+              key={text}
+              className={styles.line}
+              style={{ animationDelay: `${0.25 + i * 0.35}s` }}
+            >
+              {text}
+              {i === LINES.length - 1 && (
+                <>
+                  {filled && ' OK'} <span className={styles.cursor} aria-hidden />
+                </>
+              )}
+            </p>
+          ))}
         </div>
-        <p className={`${styles.text} ${styles.step} ${styles.s3}`}>Iniciando el sistema...</p>
+
         <div
-          className={`${styles.barWrap} ${styles.step} ${styles.s4}`}
+          className={styles.barWrap}
           onAnimationEnd={(e) => {
             if (e.target === e.currentTarget) setBarVisible(true)
           }}
@@ -72,14 +115,24 @@ export default function Preloader({ onReady }: Props) {
               className={styles.fill}
               style={{ width: `calc(${Math.round((shown / 100) * BLOCKS)} * var(--block))` }}
               onTransitionEnd={(e) => {
-                if (e.propertyName !== 'width' || progress < 100 || !barVisible) return
-                // Con movimiento reducido el reloj no gira: se sale al llegar al 100%.
-                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) leave()
-                else setFilled(true)
+                if (e.propertyName === 'width' && progress >= 100 && barVisible) setFilled(true)
               }}
             />
           </div>
-          <span className={styles.pct} aria-hidden />
+        </div>
+
+        <div className={styles.foot}>
+          <span className={styles.hint}>haz clic o presiona cualquier tecla para omitir</span>
+          <button
+            type="button"
+            className={styles.skip}
+            onClick={(e) => {
+              e.stopPropagation()
+              leave()
+            }}
+          >
+            Omitir ⏎
+          </button>
         </div>
       </div>
     </div>

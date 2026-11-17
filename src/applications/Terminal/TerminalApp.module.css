@@ -1,0 +1,69 @@
+/* Consola oscura: colores propios de la referencia (fondo azul noche, texto claro, acentos dorado/verde). */
+.term {
+  height: 100%;
+  overflow: auto;
+  padding: 14px 16px;
+  background: #0b1020;
+  color: #e6e9f2;
+  font: 400 calc(14px * var(--text-scale, 1)) / 1.5 'Consolas', 'Courier New', monospace;
+  cursor: text;
+}
+
+.line {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.cmd,
+.out {
+  color: #e6e9f2;
+}
+
+.banner {
+  margin-bottom: 10px;
+  white-space: pre;
+  overflow-wrap: normal;
+  color: #f2b01e;
+  font-size: calc(14px * var(--text-scale, 1));
+  line-height: 1.15;
+}
+
+.info {
+  color: #7d97d6;
+}
+
+.head {
+  color: #f2b01e;
+}
+
+.err {
+  color: #ff7a7a;
+}
+
+.prompt {
+  color: #5fd68a;
+}
+
+.inputRow {
+  display: flex;
+  gap: 0.6em;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  caret-color: #f2b01e;
+}
+
+.term::selection,
+.term *::selection {
+  background: #243b5a;
+}

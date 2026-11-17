@@ -763,3 +763,25 @@ export const UserIcon = createPixelIcon(
   ],
   'UserIcon',
 )
+
+export const TerminalIcon = createPixelIcon(
+  [
+    '................',
+    '.EEEEEEEEEEEEEE.',
+    '.ENNNNNNNNNNNWE.',
+    '.EEEEEEEEEEEEEE.',
+    '.EKKKKKKKKKKKKE.',
+    '.EKRKKKKKKKKKKE.',
+    '.EKKRKKKKKKKKKE.',
+    '.EKKKRKKKKKKKKE.',
+    '.EKKRKKKKKKKKKE.',
+    '.EKRKKKKKKKKKKE.',
+    '.EKKKKRRRRKKKKE.',
+    '.EKKKKKKKKKKKKE.',
+    '.EKKKKKKKKKKKKE.',
+    '.EEEEEEEEEEEEEE.',
+    '................',
+    '................',
+  ],
+  'TerminalIcon',
+)

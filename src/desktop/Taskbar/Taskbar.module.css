@@ -13,6 +13,7 @@
   /* Barra plana a todo el ancho con la línea de luz superior de Windows 98. */
   box-shadow: inset 0 1px 0 var(--c-white), 0 -1px 0 var(--c-border);
   font-family: var(--f-system);
+  letter-spacing: 0.02em;
   -webkit-font-smoothing: none;
   font-smooth: never;
 }
@@ -28,6 +29,7 @@
   background: var(--c-window);
   box-shadow: var(--bevel-raised);
   font: 400 var(--fs-ui)/1 var(--f-system);
+  letter-spacing: 0.02em;
   color: var(--c-text);
   white-space: nowrap;
 }
@@ -150,6 +152,7 @@
   place-items: center;
   padding: 0 4px;
   font: 400 var(--fs-ui)/1 var(--f-system);
+  letter-spacing: 0.02em;
   font-variant-numeric: tabular-nums;
 }
 

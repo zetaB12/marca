@@ -82,6 +82,7 @@
   color: var(--c-text);
   box-shadow: var(--bevel-raised);
   font: 400 var(--fs-ui) / 1 var(--f-system);
+  letter-spacing: 0.02em;
   text-decoration: none;
   cursor: pointer;
 }
@@ -198,6 +199,7 @@
 
 .serviceName {
   font: 400 var(--fs-ui-sm) / 1.2 var(--f-system);
+  letter-spacing: 0.02em;
 }
 
 .serviceDesc {
@@ -237,6 +239,7 @@
   color: var(--c-text);
   box-shadow: var(--bevel-raised);
   font: 400 var(--fs-ui-sm) / 1 var(--f-system);
+  letter-spacing: 0.02em;
   cursor: pointer;
 }
 
