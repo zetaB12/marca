@@ -16,15 +16,29 @@
   background-size: 8px 8px, 100% 100%;
 }
 
+/* El escritorio no se desplaza en laptop/PC: ocupa exactamente la pantalla. */
+@media (min-width: 901px) {
+  .desktop {
+    height: 100dvh;
+    overflow: hidden;
+  }
+}
+
 .plain {
   background-image: none;
 }
 
 .icons {
   grid-area: icons;
-  display: grid;
-  gap: 10px;
-  justify-items: start;
+  /* Los iconos bajan en una columna; si no caben en la altura de la pantalla (laptops), el sobrante
+     pasa a una columna nueva arriba a la derecha, sin generar scroll en el escritorio. */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: 10px 4px;
+  max-height: calc(100dvh - var(--taskbar-h) - 40px);
 }
 
 .status {
@@ -50,6 +64,8 @@
     gap: 16px;
   }
   .icons {
+    display: grid;
+    max-height: none;
     grid-template-columns: repeat(6, minmax(0, 1fr));
     justify-items: stretch;
     gap: 2px;

@@ -5,6 +5,7 @@ El SVG es la fuente de verdad; este script solo redibuja la misma geometría (cu
   public/favicon.ico            16/32/48 px
   public/apple-touch-icon.png   180 px, sin esquinas redondeadas (iOS aplica su propia máscara)
   public/icon-192.png, icon-512.png   esquinas redondeadas, fondo transparente (también sirve para og:image)
+  public/icon-512-square.png          copia de icon-512 con esquinas rectas (cuadrado completo)
 Uso: python tools/make_icons.py   (requiere Pillow)
 """
 import pathlib
@@ -48,6 +49,7 @@ def round_(v):
 
 if __name__ == '__main__':
     render(512).save(ROOT / 'icon-512.png', optimize=True)
+    render(512, rounded=False).convert('RGB').save(ROOT / 'icon-512-square.png', optimize=True)
     render(192).save(ROOT / 'icon-192.png', optimize=True)
     render(180, rounded=False).convert('RGB').save(ROOT / 'apple-touch-icon.png', optimize=True)
     render(48).save(ROOT / 'favicon.ico', sizes=[(16, 16), (32, 32), (48, 48)])
