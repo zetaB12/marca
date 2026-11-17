@@ -10,14 +10,10 @@
       name="description"
       content="Neal diseña páginas web, tiendas online, automatizaciones e integraciones de IA para impulsar tu negocio. Trujillo, Perú."
     />
-    <!-- La fuente del sistema (8 KB) se pide ya, sin esperar al CSS. -->
+    <!-- Las fuentes críticas se piden ya, sin esperar al CSS. Todas se sirven desde /fonts (sin Google). -->
     <link rel="preload" href="/fonts/W95FA.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
     <!-- En recargas y atrás/adelante no hay preloader: se oculta la capa negra antes del primer pintado. -->
     <style>
       .no-boot #boot {
