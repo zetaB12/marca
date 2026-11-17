@@ -1,9 +1,16 @@
 :root {
-  --c-desktop: #c9c9c5;
+  --c-desktop: #0b1020; /* escritorio: azul noche (el mismo de la Terminal y el arranque) */
   --c-window: #e8e8e3;
   --c-text: #202124;
-  --c-title: #243b5a;
-  --c-accent: #b99a70;
+  --c-title: #1f3d73;
+  --c-accent: #f2b01e;
+  /* Paleta "noche": viene de la Terminal y el arranque; se usa en escritorio, barras de título y menús. */
+  --c-night: #0b1020;
+  --c-night-deep: #04060f;
+  --c-blue: #4a8be0;
+  --c-select: #2d5fb8; /* selección: etiquetas de iconos, texto seleccionado */
+  --c-sky: #d6e0ff;
+  --c-green: #5fd68a;
   --c-secondary: #d4d4ce;
   --c-border: #858580;
   --c-white: #ffffff;
@@ -36,8 +43,8 @@
     inset -2px -2px 0 var(--c-border), inset 2px 2px 0 var(--c-white);
   /* Tramado 2×2 del botón de tarea activo (como en Windows 98). */
   --dither: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' shape-rendering='crispEdges'%3E%3Crect width='1' height='1' fill='%23ffffff'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23ffffff'/%3E%3C/svg%3E");
-  --shadow-window: 0 1px 0 rgb(0 0 0 / 0.25), 4px 6px 0 rgb(32 33 36 / 0.14),
-    0 18px 40px rgb(32 33 36 / 0.12);
+  --shadow-window: 0 1px 0 rgb(0 0 0 / 0.25), 4px 6px 0 rgb(4 6 15 / 0.4),
+    0 18px 40px rgb(4 6 15 / 0.3);
 }
 
 @media (max-width: 900px) {

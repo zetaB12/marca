@@ -14,7 +14,8 @@
   gap: 8px;
   height: 28px;
   padding: 0 3px 0 6px;
-  background: linear-gradient(90deg, var(--c-title), #34527c);
+  /* Degradado Win98 llevado a la paleta noche: del azul noche al azul brillante. */
+  background: linear-gradient(90deg, var(--c-night), var(--c-title) 55%, var(--c-blue));
   color: var(--c-white);
   font-family: var(--f-system);
   letter-spacing: 0.02em;

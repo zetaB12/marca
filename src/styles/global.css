@@ -35,6 +35,11 @@ button {
   cursor: pointer;
 }
 
+::selection {
+  background: var(--c-select);
+  color: var(--c-white);
+}
+
 :focus-visible {
   outline: 2px dotted var(--c-title);
   outline-offset: 2px;

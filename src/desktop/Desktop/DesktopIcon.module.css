@@ -18,6 +18,9 @@
   display: grid;
   place-items: center;
   color: var(--c-text);
+  /* Contorno claro de 1px: los dibujos con trazo oscuro no se pierden sobre el azul noche. */
+  filter: drop-shadow(1px 0 0 rgb(214 224 255 / 0.28)) drop-shadow(-1px 0 0 rgb(214 224 255 / 0.28))
+    drop-shadow(0 1px 0 rgb(214 224 255 / 0.28)) drop-shadow(0 -1px 0 rgb(214 224 255 / 0.28));
 }
 
 .label {
@@ -26,7 +29,8 @@
   font-size: var(--fs-ui-sm);
   line-height: 1.2;
   text-align: center;
-  color: var(--c-text);
+  color: var(--c-white);
+  text-shadow: 1px 1px 0 var(--c-night-deep);
   overflow-wrap: break-word;
 }
 
@@ -36,16 +40,18 @@
 }
 
 .selected .label {
-  background: var(--c-title);
+  background: var(--c-select);
   color: var(--c-white);
+  text-shadow: none;
 }
 
 /* Foco de teclado: rectángulo punteado alrededor de la etiqueta. */
 .icon:focus-visible .label {
   outline: 1px dotted var(--c-white);
   outline-offset: -2px;
-  background: var(--c-title);
+  background: var(--c-select);
   color: var(--c-white);
+  text-shadow: none;
 }
 
 @media (max-width: 900px) {

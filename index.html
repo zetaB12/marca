@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon-blue.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-square.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#243B5A" />
     <title>Neal · Webs, software, automatización e IA en Trujillo, Perú</title>
@@ -17,18 +17,32 @@
       rel="stylesheet"
     />
     <!-- En recargas y atrás/adelante no hay preloader: se oculta la capa negra antes del primer pintado. -->
-    <style>.no-boot #boot{display:none}</style>
+    <style>
+      .no-boot #boot {
+        display: none;
+      }
+    </style>
     <script>
       (function () {
-        var n = performance.getEntriesByType('navigation')[0]
-        if (n && n.type !== 'navigate') document.documentElement.classList.add('no-boot')
-      })()
+        var n = performance.getEntriesByType("navigation")[0];
+        if (n && n.type !== "navigate")
+          document.documentElement.classList.add("no-boot");
+      })();
     </script>
   </head>
   <body>
     <!-- Capa negra inmediata: evita el parpadeo gris antes de que React monte el preloader. -->
-    <div id="boot" style="position:fixed;inset:0;z-index:2000;background:#04060f"></div>
-    <noscript><style>#boot{display:none}</style></noscript>
+    <div
+      id="boot"
+      style="position: fixed; inset: 0; z-index: 2000; background: #04060f"
+    ></div>
+    <noscript
+      ><style>
+        #boot {
+          display: none;
+        }
+      </style></noscript
+    >
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

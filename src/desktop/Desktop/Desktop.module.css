@@ -11,8 +11,9 @@
   align-items: start;
   background-color: var(--c-desktop);
   /* Puntos cuadrados de 2px cada 8px: nítidos en cualquier densidad de pantalla (no se difuminan). */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' shape-rendering='crispEdges'%3E%3Crect width='2' height='2' fill='%23202124' fill-opacity='0.2'/%3E%3C/svg%3E");
-  background-size: 8px 8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' shape-rendering='crispEdges'%3E%3Crect width='2' height='2' fill='%237d97d6' fill-opacity='0.12'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, var(--c-night) 0%, #101a38 65%, #1a2a52 100%);
+  background-size: 8px 8px, 100% 100%;
 }
 
 .plain {
