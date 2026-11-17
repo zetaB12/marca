@@ -132,7 +132,7 @@ export default function AboutApp() {
               Ideas que merecen hacerse realidad.
             </h2>
             <p className={`${shared.text} ${styles.lead}`}>
-              Creamos soluciones digitales para negocios que quieren dar el
+              Creo soluciones digitales para negocios que quieren dar el
               siguiente paso.
             </p>
             <hr className={styles.rule} />

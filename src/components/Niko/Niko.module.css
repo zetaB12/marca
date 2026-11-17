@@ -40,6 +40,68 @@
   }
 }
 
+/* El sprite es un botón: el contenedor ignora el puntero, pero Niko sí responde al clic. */
+.hit {
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.still {
+  cursor: default;
+}
+
+/* Hoja de reposo de 3 fotogramas: ojos abiertos, parpadeo y contento (se elige por clase, sin animar). */
+.idleSheet {
+  background-size: calc(var(--s) * 3) var(--s);
+}
+
+.f0 {
+  background-position-x: 0;
+}
+
+.f1 {
+  background-position-x: calc(var(--s) * -1);
+}
+
+.f2 {
+  background-position-x: calc(var(--s) * -2);
+}
+
+/* Pensando: 4 fotogramas (la burbuja suma un punto cada vez) en un ciclo de 1,6 s. */
+.think {
+  background-size: calc(var(--s) * 4) var(--s);
+  animation: think 1.6s steps(4) infinite;
+}
+
+@keyframes think {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: calc(var(--s) * -4);
+  }
+}
+
+/* Durmiendo: 4 fotogramas (letras zZz que suben y respiración) en un ciclo lento de 2,4 s. */
+.sleep {
+  background-size: calc(var(--s) * 4) var(--s);
+  animation: sleep 2.4s steps(4) infinite;
+}
+
+@keyframes sleep {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: calc(var(--s) * -4);
+  }
+}
+
 @media (max-width: 700px) {
   .niko {
     --s: 64px;

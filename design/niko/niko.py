@@ -6,6 +6,8 @@ solo cambia su posición o la expresión: por eso siempre es el mismo robot.
 import math, struct, zlib, pathlib
 
 N = 64
+# Cuánto baja el cuerpo (cabeza, torso, brazos) respecto a las piernas: acorta las piernas sin tocar las botas.
+BODY_DROP = 3
 # Paleta tomada de la hoja de referencia de Niko.
 PAL = {
     'o': (0x15, 0x19, 0x2a),   # contorno
@@ -28,8 +30,10 @@ SHADOW_ALPHA = 90
 class Canvas:
     def __init__(self):
         self.g = [['.'] * N for _ in range(N)]
+        self.dy = 0   # desplazamiento vertical de lo que se dibuja (el cuerpo baja; las piernas no)
 
     def put(self, x, y, c):
+        y += self.dy
         if 0 <= x < N and 0 <= y < N:
             self.g[y][x] = c
 
@@ -75,8 +79,15 @@ def rect(x0, y0, x1, y1):
     return {(x, y) for y in range(y0, y1 + 1) for x in range(x0, x1 + 1)}
 
 
-# Glifo "N" de 4×5 para las insignias (la diagonal evita que se lea como "H").
-GLYPH_N = ["#..#", "##.#", "#.##", "#..#", "#..#"]
+# Glifo "N" pequeño (4×4) para la insignia del pecho.
+GLYPH_N = ["#..#", "##.#", "#.##", "#..#"]   # 4×4: la diagonal evita que se lea como "H"
+GLYPH_Z = {
+    3: ["###", ".#.", "###"],
+    4: ["####", "..#.", ".#..", "####"],
+    5: ["#####", "...#.", "..#..", ".#...", "#####"],
+}
+
+
 def glyph(cv, x0, y0, rows, color):
     for j, row in enumerate(rows):
         for i, ch in enumerate(row):
@@ -85,7 +96,7 @@ def glyph(cv, x0, y0, rows, color):
 
 
 def face(cv, kind):
-    """Cara en la pantalla (x 15..48, y 14..30)."""
+    """Cara en la pantalla (x 20..43, y 11..24)."""
     def eye_arc(x0, y0):           # ^ grueso con brillo, como en la referencia
         for (dx, dy) in [(0, 3), (1, 2), (2, 1), (3, 0), (4, 0), (5, 1), (6, 2), (7, 3)]:
             cv.put(x0 + dx, y0 + dy, 'w')
@@ -97,72 +108,99 @@ def face(cv, kind):
             for i in range(w):
                 cv.put(x0 + i, y0 + j, 'w')
     if kind == 'happy':
-        eye_arc(20, 19); eye_arc(36, 19)
-    elif kind == 'idle':
-        eye_dot(23, 20); eye_dot(39, 20)
+        eye_arc(22, 14); eye_arc(34, 14)
+    elif kind == 'idle':                 # ojos abiertos
+        eye_dot(25, 15); eye_dot(37, 15)
+    elif kind in ('blink', 'sleep'):     # ojos cerrados: párpado en curva suave (∪) de 6 px, centrado en el ojo
+        for x0 in (23, 34):
+            cv.put(x0, 16, 'w'); cv.put(x0 + 5, 16, 'w')
+            for dx in range(1, 5):
+                cv.put(x0 + dx, 17, 'w')
+    elif kind == 'think':                # mira arriba y a la derecha, hacia la burbuja
+        eye_dot(26, 13); eye_dot(38, 13)
+        cv.put(26, 16, 'x'); cv.put(38, 16, 'x')
     return cv
 
 
-def niko_front(expression='happy', left_arm=(0, 0), right_arm=(0, 0)):
-    """Niko de frente. `left_arm` / `right_arm` desplazan brazo y mano (dx, dy): sirven para
-    levantar la mano, saludar o balancear los brazos al caminar sin redibujar nada."""
+def niko_front(expression='happy', left_arm=(0, 0), right_arm=(0, 0), bubble=None, lit=False, zs=(), breath=0):
+    """Niko de frente, proporciones esbeltas: cabeza 30×20 sobre un torso de 22 px y piernas largas.
+    `left_arm` / `right_arm` desplazan brazo y mano (dx, dy): sirven para levantar la mano o
+    balancear los brazos al caminar sin redibujar nada."""
     cv = Canvas()
     # sombra del suelo
-    for (x, y) in ellipse(32, 62, 15, 1.8):
+    for (x, y) in ellipse(32, 62, 13, 1.6):
         cv.put(x, y, 'S')
 
     # piernas y botas
-    cv.part(rect(23, 51, 28, 56), 'n', 's')
-    cv.part(rect(35, 51, 40, 56), 'n', 's')
-    cv.part(rrect(21, 56, 30, 61, 2), 'c', 'd')
-    cv.part(rrect(33, 56, 42, 61, 2), 'c', 'd')
+    cv.part(rect(25, 46, 29, 56), 'n', 's')
+    cv.part(rect(34, 46, 38, 56), 'n', 's')
+    cv.part(rrect(22, 56, 30, 61, 2), 'c', 'd')
+    cv.part(rrect(33, 56, 41, 61, 2), 'c', 'd')
 
-    # sudadera (torso ancho)
-    cv.part(rrect(18, 37, 45, 52, 3), 'c', 'd')
-    for y in range(41, 51, 2):           # cremallera
+    cv.dy = BODY_DROP + breath   # desde aquí, todo el cuerpo baja (breath: 1 px extra al respirar dormido)
+    # sudadera (torso estrecho)
+    cv.part(rrect(21, 29, 42, 47, 3), 'c', 'd')
+    for y in range(33, 46, 2):           # cremallera
         cv.put(31, y, 'g'); cv.put(32, y, 'g')
-    for x in range(22, 42):              # bolsillo
-        cv.put(x, 49, 'd')
+    for x in range(24, 40):              # bolsillo
+        cv.put(x, 44, 'd')
     # capucha oscura: asoma bajo la cabeza
-    cv.part(rrect(22, 34, 41, 40, 3), 'n', 's')
+    cv.part(rrect(24, 26, 39, 31, 3), 'n', 's')
     # parche "N."
-    cv.part(rect(36, 41, 43, 47), 'n', None, outline=False)
-    glyph(cv, 37, 42, GLYPH_N, 'w'); cv.put(42, 46, 'a')
+    # parche cuadrado perfecto (8×8) con la "N." pequeña: letra 4×4 y punto, centrados en el cuadrado
+    cv.part(rect(34, 33, 41, 40), 'n', None, outline=False)
+    glyph(cv, 35, 35, GLYPH_N, 'w'); cv.put(40, 38, 'a')
 
-    # brazos separados del torso (hueco de 1 px) y manos: dejan margen para moverlos
+    # brazos finos separados del torso (hueco de 1 px) y manos
     def arm(x0, d):
         dx, dy = d
-        cv.part(rrect(x0 + dx, 38 + dy, x0 + 6 + dx, 49 + dy, 2), 'c', 'd')
-        for x in range(x0 + 1 + dx, x0 + 6 + dx):
-            cv.put(x, 47 + dy, 'd')       # puño
-        cv.part(ellipse(x0 + 3.5 + dx, 52 + dy, 3, 2.8), 'c', 'd')
-    arm(10, left_arm)
-    arm(47, right_arm)
+        cv.part(rrect(x0 + dx, 30 + dy, x0 + 4 + dx, 43 + dy, 2), 'c', 'd')
+        for x in range(x0 + 1 + dx, x0 + 4 + dx):
+            cv.put(x, 41 + dy, 'd')       # puño
+        cv.part(ellipse(x0 + 2.5 + dx, 45.5 + dy, 2.6, 2.4), 'c', 'd')
+    arm(15, left_arm)
+    arm(44, right_arm)
 
-    # auriculares: placas finas pegadas a los lados de la cabeza (asoman 3 px por lado)
+    # auriculares: placas finas pegadas a los lados de la cabeza (asoman 4 px por lado)
     for left in (True, False):
-        x0 = 8 if left else 49
-        cv.part(rrect(x0, 16, x0 + 6, 30, 3), 'd', None)                  # aro arena
-        cv.part(rrect(x0 + 1, 17, x0 + 5, 29, 2), 'n', 's', outline=False)  # placa oscura
-        ox = x0 + (1 if left else 4)
-        for yy in (22, 23, 24):                                           # luz naranja
+        x0 = 13 if left else 45
+        cv.part(rrect(x0, 12, x0 + 5, 24, 2), 'd', None)
+        cv.part(rrect(x0 + 1, 13, x0 + 4, 23, 1), 'n', 's', outline=False)
+        ox = x0 + (1 if left else 3)
+        for yy in (17, 18, 19):                                           # luz naranja
             cv.put(ox, yy, 'a'); cv.put(ox + 1, yy, 'a')
-        cv.put(ox, 22, 'A')
+        cv.put(ox, 17, 'A')
 
-    # cabeza compacta (carcasa 40×25)
-    cv.part(rrect(12, 11, 51, 35, 6), 'c', 'd')
-    for x in range(16, 48):              # reborde superior
-        cv.put(x, 12, 'c')
-    # pantalla (32×17)
-    cv.part(rrect(16, 15, 47, 31, 3), 'k', None, outline=True)
-    for (x, y) in [(42, 17), (43, 17), (43, 18), (44, 18)]:
+    # cabeza compacta (carcasa 30×20)
+    cv.part(rrect(17, 8, 46, 27, 5), 'c', 'd')
+    for x in range(21, 43):              # reborde superior
+        cv.put(x, 9, 'c')
+    # pantalla (24×14)
+    cv.part(rrect(20, 11, 43, 24, 3), 'k', None, outline=True)
+    for (x, y) in [(39, 13), (40, 13), (40, 14), (41, 14)]:
         cv.put(x, y, 'x')                # reflejo
     face(cv, expression)
 
     # antena
-    cv.part(rect(31, 6, 32, 10), 'n', None)
-    cv.part(ellipse(31.5, 5, 2.8, 2.8), 'a', None)
-    cv.put(30, 4, 'A'); cv.put(31, 3, 'A')
+    cv.part(rect(31, 4, 32, 7), 'n', None)
+    cv.part(ellipse(31.5, 3, 2.6, 2.6), 'A' if lit else 'a', None)
+    cv.put(30, 2, 'w' if lit else 'A'); cv.put(31, 1, 'w' if lit else 'A')
+
+    # letras zZz al dormir (coordenadas absolutas): tamaños 3, 4 y 5 que suben hacia la esquina
+    ZPOS = {3: (47, 10), 4: (51, 5), 5: (57, 0)}
+    if zs:
+        cv.dy = 0
+        for size in zs:
+            glyph(cv, *ZPOS[size], GLYPH_Z[size], 'w')
+
+    # burbuja de pensamiento (coordenadas absolutas: no baja con el cuerpo). `bubble` = puntos visibles 0..3
+    if bubble is not None:
+        cv.dy = 0
+        cv.part(ellipse(49.5, 13, 1.5, 1.5), 'w', 'x')
+        cv.part(rrect(51, 1, 63, 11, 4), 'w', 'x')
+        for k in range(bubble):
+            for (dx, dy) in ((0, 0), (1, 0), (0, 1), (1, 1)):
+                cv.put(54 + 3 * k + dx, 5 + dy, 'n')
     return cv
 
 
@@ -184,8 +222,9 @@ def capsule(p0, p1, r):
 def niko_side(i, frames=8, expression='idle'):
     """Niko de perfil mirando a la derecha: fotograma `i` de un ciclo de caminar de `frames` pasos.
 
-    Mismo rig de piezas que la vista frontal. Las piernas se calculan con la fase del paso
-    (zancada + elevación del pie que avanza) y los brazos balancean en sentido contrario.
+    Mismo rig de piezas que la vista frontal, con las proporciones esbeltas. Las piernas se calculan
+    con la fase del paso (zancada + elevación del pie que avanza) y los brazos balancean en sentido
+    contrario.
     """
     t = i / frames
     c = math.cos(2 * math.pi * t)
@@ -193,55 +232,58 @@ def niko_side(i, frames=8, expression='idle'):
     bob = round(math.cos(4 * math.pi * t))          # +1 en los apoyos, -1 al pasar el pie
     LIFT, STRIDE = 3.0, 6.0
     cv = Canvas()
-    for (x, y) in ellipse(32, 62, 15, 1.8):
+    for (x, y) in ellipse(32, 62, 13, 1.6):
         cv.put(x, y, 'S')
+    cv.dy = BODY_DROP
 
     def leg(sign, far):
+        cv.dy = 0                                        # las piernas no bajan con el cuerpo
         fx = 31 + sign * STRIDE * c                      # posición del pie en x
         swing = max(0.0, -sn) if sign > 0 else max(0.0, sn)
         fy = 58.5 - LIFT * swing                         # el pie que avanza se eleva
-        hip = (31, 49 + bob)
+        hip = (31, 45 + BODY_DROP + bob)
         pants, pshade, boot, bshade = ('s', 'n', 'd', 'g') if far else ('n', 's', 'c', 'd')
-        cv.part(capsule(hip, (fx, fy - 2), 2.6), pants, pshade)
+        cv.part(capsule(hip, (fx, fy - 2), 2.3), pants, pshade)
         foot = rrect(round(fx - 4), round(fy - 2.5), round(fx + 5), round(fy + 2.5), 2)
         cv.part(foot, boot, bshade)
+        cv.dy = BODY_DROP
 
     def arm(sign, far):
         ang = -sign * 0.5 * c                            # opuesto a la pierna del mismo lado
-        sh = (31, 41 + bob)
-        elbow = (sh[0] + 7 * math.sin(ang), sh[1] + 7 * math.cos(ang))
-        hand = (sh[0] + 9.5 * math.sin(ang), sh[1] + 9.5 * math.cos(ang))
+        sh = (31, 33 + bob)
+        elbow = (sh[0] + 6 * math.sin(ang), sh[1] + 6 * math.cos(ang))
+        hand = (sh[0] + 8.5 * math.sin(ang), sh[1] + 8.5 * math.cos(ang))
         body, cuff = ('d', 'g') if far else ('c', 'd')
-        cv.part(capsule(sh, elbow, 2.6), body, cuff)
-        cv.part(ellipse(hand[0], hand[1], 2.8, 2.7), body, cuff)
+        cv.part(capsule(sh, elbow, 2.1), body, cuff)
+        cv.part(ellipse(hand[0], hand[1], 2.5, 2.4), body, cuff)
 
     # orden de dibujo: lo más lejano primero. Las piernas quedan debajo de la sudadera.
     leg(-1, True)
     arm(+1, True)
-    cv.part(rrect(15, 38 + bob, 24, 49 + bob, 3), 'b', 's')         # mochila (detrás)
-    cv.part(rect(16, 41 + bob, 19, 42 + bob), 's', None, outline=False)
+    cv.part(rrect(19, 30 + bob, 26, 44 + bob, 3), 'b', 's')         # mochila (detrás)
+    cv.part(rect(20, 33 + bob, 22, 34 + bob), 's', None, outline=False)
     leg(+1, False)
-    cv.part(rrect(23, 37 + bob, 38, 50 + bob, 3), 'c', 'd')         # sudadera (torso estrecho)
-    for x in range(26, 36):
-        cv.put(x, 48 + bob, 'd')                                     # bolsillo
-    cv.part(rrect(24, 34 + bob, 37, 39 + bob, 3), 'n', 's')         # capucha oscura
+    cv.part(rrect(25, 29 + bob, 38, 47 + bob, 3), 'c', 'd')         # sudadera (misma altura que de frente)
+    for x in range(27, 36):
+        cv.put(x, 44 + bob, 'd')                                     # bolsillo
+    cv.part(rrect(26, 26 + bob, 37, 31 + bob, 3), 'n', 's')         # capucha oscura
     arm(-1, False)                                                   # brazo cercano, delante
 
     # cabeza de perfil: carcasa, pantalla al frente (derecha) y oreja pequeña en el centro
-    cv.part(rrect(18, 11 + bob, 45, 35 + bob, 6), 'c', 'd')
-    cv.part(rrect(37, 15 + bob, 44, 31 + bob, 3), 'k', None, outline=True)
-    for yy in range(20, 26):                               # ojo (barra vertical)
-        cv.put(40, yy + bob, 'w'); cv.put(41, yy + bob, 'w')
-    cv.put(42, 17 + bob, 'x'); cv.put(42, 18 + bob, 'x')   # reflejo
-    cv.part(rrect(25, 18 + bob, 32, 29 + bob, 3), 'd', None)
-    cv.part(rrect(26, 19 + bob, 31, 28 + bob, 2), 'n', 's', outline=False)
-    for yy in (23, 24):                                    # luz naranja
-        cv.put(28, yy + bob, 'a'); cv.put(29, yy + bob, 'a')
-    cv.put(28, 23 + bob, 'A')
+    cv.part(rrect(21, 8 + bob, 46, 27 + bob, 5), 'c', 'd')
+    cv.part(rrect(38, 11 + bob, 45, 24 + bob, 3), 'k', None, outline=True)
+    for yy in range(15, 21):                               # ojo (barra vertical)
+        cv.put(41, yy + bob, 'w'); cv.put(42, yy + bob, 'w')
+    cv.put(43, 13 + bob, 'x'); cv.put(43, 14 + bob, 'x')   # reflejo
+    cv.part(rrect(27, 13 + bob, 33, 23 + bob, 3), 'd', None)
+    cv.part(rrect(28, 14 + bob, 32, 22 + bob, 2), 'n', 's', outline=False)
+    for yy in (17, 18):                                    # luz naranja
+        cv.put(29, yy + bob, 'a'); cv.put(30, yy + bob, 'a')
+    cv.put(29, 17 + bob, 'A')
     # antena
-    cv.part(rect(30, 8 + bob, 31, 10 + bob), 'n', None)
-    cv.part(ellipse(30.5, 6 + bob, 2.8, 2.8), 'a', None)
-    cv.put(29, 5 + bob, 'A'); cv.put(30, 4 + bob, 'A')
+    cv.part(rect(32, 4 + bob, 33, 7 + bob), 'n', None)
+    cv.part(ellipse(32.5, 3 + bob, 2.6, 2.6), 'a', None)
+    cv.put(31, 2 + bob, 'A'); cv.put(32, 1 + bob, 'A')
     return cv
 
 
@@ -300,4 +342,24 @@ if __name__ == '__main__':
     walk = [niko_side(i) for i in range(8)]
     write_png(out / 'niko-walk-right-sheet.png', sheet(walk), 1)
     write_png(out / 'niko-walk-preview.png', sheet(walk, gap=2), 4)
+    # Recursos que usa la app: src/assets/niko/{idle,walk-left,walk-right}.webp (sin pérdida).
+    from PIL import Image
+    def to_img(rgba):
+        im = Image.new('RGBA', (len(rgba[0]), len(rgba)))
+        im.putdata([px for row in rgba for px in row])
+        return im
+    assets = pathlib.Path(__file__).resolve().parents[2] / 'src' / 'assets' / 'niko'
+    # Reposo: hoja de 3 fotogramas [ojos abiertos, parpadeo, contento]. Pensando: 4 fotogramas (0..3 puntos).
+    idle_frames = [niko_front('idle'), niko_front('blink'), niko_front('happy')]
+    think_frames = [niko_front('think', bubble=k, lit=bool(k % 2)) for k in range(4)]
+    to_img(sheet(idle_frames)).save(assets / 'idle.webp', lossless=True, quality=100, method=6)
+    to_img(sheet(think_frames)).save(assets / 'think.webp', lossless=True, quality=100, method=6)
+    sleep_frames = [niko_front('sleep', zs=z, breath=b) for z, b in
+                    (((3,), 0), ((3, 4), 1), ((3, 4, 5), 0), ((4, 5), 1))]
+    to_img(sheet(sleep_frames)).save(assets / 'sleep.webp', lossless=True, quality=100, method=6)
+    write_png(out / 'niko-sleep-preview.png', [[(px if px[3] else (11, 16, 32, 255)) for px in row] for row in sheet(sleep_frames, gap=2)], 4)
+    write_png(out / 'niko-idle-sheet-preview.png', sheet(idle_frames, gap=2), 4)
+    write_png(out / 'niko-think-preview.png', sheet(think_frames, gap=2), 4)
+    to_img(sheet(walk)).save(assets / 'walk-right.webp', lossless=True, quality=100, method=6)
+    to_img(sheet([mirror(f) for f in walk])).save(assets / 'walk-left.webp', lossless=True, quality=100, method=6)
     print('ok')
