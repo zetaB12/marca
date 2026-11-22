@@ -36,8 +36,7 @@
 
 .title {
   margin: 0;
-  font: 400 clamp(48px, 11vw, 88px) / 1 var(--f-system);
-  letter-spacing: 0em;
+  font: 700 clamp(48px, 11vw, 88px) / 1 var(--f-pixel);
   color: #d6e0ff;
 }
 

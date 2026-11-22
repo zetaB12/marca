@@ -20,6 +20,8 @@
   --f-body: 'Inter', system-ui, sans-serif;
   --f-display: 'Space Grotesk', 'Inter', sans-serif;
   /* Interfaz tipo Windows (W95FA, OFL): taskbar, menús, barras de título, botones, estados. */
+  /* Títulos y marca en pixel art (Pixelify Sans, OFL). La interfaz del sistema sigue en W95FA. */
+  --f-pixel: 'Pixelify Sans', 'W95FA', monospace;
   --f-system: 'W95FA', Tahoma, 'Segoe UI', sans-serif;
 
   /* Escala según el tamaño de pantalla (fontScale.ts): 1 en laptop, hasta 1,6 en monitores grandes. */

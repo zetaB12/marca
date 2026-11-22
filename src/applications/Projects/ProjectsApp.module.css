@@ -71,8 +71,7 @@
 
 .name {
   margin: 0 0 4px;
-  font: 400 var(--fs-ui) / 1.2 var(--f-system);
-  letter-spacing: 0.02em;
+  font: 700 var(--fs-ui) / 1.2 var(--f-pixel);
 }
 
 .desc {

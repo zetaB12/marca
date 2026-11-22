@@ -63,8 +63,7 @@
 
 .steps strong {
   min-width: 7em;
-  font: 400 var(--fs-ui) / 1 var(--f-system);
-  letter-spacing: 0.02em;
+  font: 700 var(--fs-ui) / 1 var(--f-pixel);
 }
 
 .steps span {
@@ -113,8 +112,7 @@
 
 .role {
   margin: 0 0 8px;
-  font: 400 var(--fs-ui) / 1.2 var(--f-system);
-  letter-spacing: 0.02em;
+  font: 700 var(--fs-ui) / 1.2 var(--f-pixel);
   color: var(--c-muted);
 }
 
@@ -126,8 +124,7 @@
 
 .sectionTitle {
   margin: 0 0 6px;
-  font: 400 var(--fs-ui) / 1.2 var(--f-system);
-  letter-spacing: 0.02em;
+  font: 700 var(--fs-ui) / 1.2 var(--f-pixel);
 }
 
 .pending {
@@ -174,8 +171,7 @@
 
 .subtitle {
   margin: 0;
-  font: 400 var(--fs-ui) / 1.2 var(--f-system);
-  letter-spacing: 0.02em;
+  font: 700 var(--fs-ui) / 1.2 var(--f-pixel);
 }
 
 .help {
@@ -207,8 +203,7 @@
 .helpTitle {
   display: block;
   margin-bottom: 2px;
-  font: 400 var(--fs-ui) / 1.2 var(--f-system);
-  letter-spacing: 0.02em;
+  font: 700 var(--fs-ui) / 1.2 var(--f-pixel);
 }
 
 .helpText {
@@ -228,8 +223,7 @@
 
 .ctaTitle {
   margin: 0 0 4px;
-  font: 400 var(--fs-ui) / 1.2 var(--f-system);
-  letter-spacing: 0.02em;
+  font: 700 var(--fs-ui) / 1.2 var(--f-pixel);
 }
 
 .ctaText {

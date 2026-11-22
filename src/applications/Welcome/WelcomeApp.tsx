@@ -1,7 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ArrowUpRightIcon } from "../../components/PixelIcon/pixelIcons";
-import WallpaperScene from "../../components/Wallpaper/WallpaperScene";
 import { WHATSAPP_ENABLED, whatsappUrl } from "../../data/site";
 import { useDesktopStore } from "../../store/desktopStore";
 import styles from "./WelcomeApp.module.css";
@@ -80,11 +79,6 @@ export default function WelcomeApp() {
   return (
     <div ref={ref} className={styles.app}>
       <div className={styles.main}>
-        {/* Paisaje del fondo del escritorio, con la misma paleta según la hora. */}
-        <div className={styles.scene}>
-          <WallpaperScene />
-        </div>
-
         <section className={styles.copy}>
           <div className={styles.brand}>
             <h1 className={`${styles.logo} ${styles.reveal}`}>NEAL.PE</h1>

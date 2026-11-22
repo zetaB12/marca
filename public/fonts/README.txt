@@ -8,3 +8,6 @@ Inter (400, 600) — Rasmus Andersson, SIL Open Font License 1.1 (Inter-OFL.txt)
 Space Grotesk (500, 700) — Florian Karsten, SIL Open Font License 1.1 (SpaceGrotesk-OFL.txt).
 Files obtained from the npm packages @fontsource/inter and @fontsource/space-grotesk (WOFF2, latin subset), unmodified.
 Self-hosted so the site does not depend on Google Fonts at runtime.
+
+Pixelify Sans (400, 700) — Stefie Justprince, SIL Open Font License 1.1 (PixelifySans-OFL.txt).
+File obtained from the npm package @fontsource/pixelify-sans (WOFF2, latin subset), unmodified.

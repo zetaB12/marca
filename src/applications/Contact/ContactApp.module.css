@@ -36,8 +36,7 @@
 }
 
 .name {
-  font: 400 var(--fs-ui) / 1 var(--f-system);
-  letter-spacing: 0.06em;
+  font: 700 var(--fs-ui) / 1 var(--f-pixel);
 }
 
 .channel {
