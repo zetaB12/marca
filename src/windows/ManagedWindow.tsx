@@ -1,6 +1,8 @@
 import { useEffect, useRef, type PointerEvent, type ReactNode } from 'react'
+import { gsap } from 'gsap'
 import WindowFrame from '../components/WindowFrame/WindowFrame'
 import { useIsMobile } from '../hooks/useIsMobile'
+import { useSettingsStore } from '../store/settingsStore'
 import { useWindowStore, type WindowState } from '../store/windowStore'
 import ResizeHandles from './ResizeHandles'
 import styles from './ManagedWindow.module.css'
@@ -31,6 +33,14 @@ export default function ManagedWindow({ win, children }: Props) {
       el.focus({ preventScroll: true })
     }
   }, [win.isActive, win.isMinimized])
+
+  const animations = useSettingsStore((s) => s.animations)
+  // Cierre con un fundido corto; sin animaciones (o con "reducir movimiento") se cierra al instante.
+  const closeSmoothly = () => {
+    const el = shellRef.current
+    if (!el || !animations || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return closeWindow(id)
+    gsap.to(el, { opacity: 0, scale: 0.96, duration: 0.14, ease: 'power1.in', onComplete: () => closeWindow(id) })
+  }
 
   const toggleMaximize = () => (win.isMaximized ? restoreWindow(id) : maximizeWindow(id))
 
@@ -77,7 +87,7 @@ export default function ManagedWindow({ win, children }: Props) {
         maximized={win.isMaximized}
         onMinimize={() => minimizeWindow(id)}
         onToggleMaximize={toggleMaximize}
-        onClose={() => closeWindow(id)}
+        onClose={closeSmoothly}
         className={styles.frame}
         titlebarProps={{
           onPointerDown: onTitleDown,

@@ -1,4 +1,4 @@
-import { PowerIcon } from "../../components/PixelIcon/pixelIcons";
+import { RocketIcon } from "../../components/PixelIcon/pixelIcons";
 import { APPS, QUICK_LAUNCH } from "../../data/apps";
 import { useClock } from "../../hooks/useClock";
 import { useDesktopStore } from "../../store/desktopStore";
@@ -28,7 +28,7 @@ export default function Taskbar() {
         aria-controls="start-menu"
         onClick={toggleStart}
       >
-        <PowerIcon size={16} />
+        <RocketIcon size={16} />
         <span>Start</span>
       </button>
 

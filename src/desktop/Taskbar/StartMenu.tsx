@@ -60,7 +60,7 @@ export default function StartMenu() {
       <div className={styles.panel}>
         <div className={styles.header}>
           <img
-            src="/favicon-blue.svg"
+            src="/icon-192.png"
             width={40}
             height={40}
             alt=""

@@ -49,7 +49,7 @@
 
 @media (max-width: 900px) {
   :root {
-    --taskbar-h: 56px;
+    --taskbar-h: calc(56px + env(safe-area-inset-bottom, 0px));
     --taskbar-gap: 0px;
   }
 }

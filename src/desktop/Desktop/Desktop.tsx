@@ -1,4 +1,6 @@
-import { useRef, type KeyboardEvent } from 'react'
+import { useEffect, useLayoutEffect, useRef, type KeyboardEvent } from 'react'
+import { gsap } from 'gsap'
+import Wallpaper from '../../components/Wallpaper/Wallpaper'
 import { DESKTOP_ICONS } from '../../data/apps'
 import { useDesktopStore } from '../../store/desktopStore'
 import { useSettingsStore } from '../../store/settingsStore'
@@ -9,7 +11,44 @@ import styles from './Desktop.module.css'
 export default function Desktop() {
   const selectIcon = useDesktopStore((s) => s.selectIcon)
   const openContextMenu = useDesktopStore((s) => s.openContextMenu)
-  const pattern = useSettingsStore((s) => s.pattern)
+  const animations = useSettingsStore((s) => s.animations)
+  const booted = useDesktopStore((s) => s.booted)
+  const wallRef = useRef<HTMLDivElement>(null)
+  const iconsRef = useRef<HTMLDivElement>(null)
+  const motionOk = () => animations && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  // CAPA 2: los iconos aparecen de uno en uno cuando el escritorio se revela.
+  useLayoutEffect(() => {
+    const box = iconsRef.current
+    if (!booted || !box || !motionOk()) return
+    const tween = gsap.from(box.children, { opacity: 0, y: 10, duration: 0.35, stagger: 0.07, delay: 0.1, ease: 'power2.out', clearProps: 'all' })
+    return () => {
+      tween.revert()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [booted])
+
+  // Parallax suave con el puntero (solo ratón): se mueve únicamente el fondo; los iconos quedan quietos.
+  useEffect(() => {
+    const wall = wallRef.current
+    if (!booted || !wall || !motionOk() || !window.matchMedia('(pointer: fine)').matches) return
+    const opts = { duration: 1.2, ease: 'power3.out' }
+    const wx = gsap.quickTo(wall, 'x', opts)
+    const wy = gsap.quickTo(wall, 'y', opts)
+    const onMove = (e: PointerEvent) => {
+      const nx = (e.clientX / window.innerWidth - 0.5) * 2
+      const ny = (e.clientY / window.innerHeight - 0.5) * 2
+      wx(-nx * 16)
+      wy(-ny * 10)
+    }
+    window.addEventListener('pointermove', onMove, { passive: true })
+    return () => {
+      window.removeEventListener('pointermove', onMove)
+      gsap.set(wall, { x: 0, y: 0 })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [booted, animations])
+
   // En táctil no hay clic derecho: mantener pulsado sobre el escritorio abre el mismo menú.
   const press = useRef<{ timer: number; x: number; y: number } | null>(null)
   const cancelPress = () => {
@@ -31,7 +70,7 @@ export default function Desktop() {
   return (
     <main
       id="desktop"
-      className={`${styles.desktop} ${pattern ? '' : styles.plain}`}
+      className={styles.desktop}
       onPointerDown={(e) => {
         if (e.target !== e.currentTarget) return
         selectIcon(null)
@@ -59,7 +98,8 @@ export default function Desktop() {
         openContextMenu(e.clientX, e.clientY)
       }}
     >
-      <div className={styles.icons} onKeyDown={onIconKeys}>
+      <Wallpaper layerRef={wallRef} />
+      <div ref={iconsRef} className={styles.icons} onKeyDown={onIconKeys}>
         {DESKTOP_ICONS.map((id) => (
           <DesktopIcon key={id} id={id} />
         ))}

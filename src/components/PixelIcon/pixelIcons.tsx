@@ -9,7 +9,7 @@ export interface IconProps {
 }
 export type IconComponent = ComponentType<IconProps>
 
-const PALETTE: Record<string, string> = {'K': '#202124', 'W': '#ffffff', 'G': '#d4d4ce', 'D': '#858580', 'N': '#243b5a', 'A': '#b99a70', 'L': '#dccbaa', 'l': '#ecece8', 'M': '#b4b4ae', 'E': '#55554f', 'R': '#3f7d4e', 'r': '#2a5a36', 'X': '#e02020', 'Y': '#ffe600'}
+const PALETTE: Record<string, string> = {'K': '#202124', 'W': '#ffffff', 'G': '#d4d4ce', 'D': '#858580', 'N': '#243b5a', 'A': '#b99a70', 'L': '#dccbaa', 'l': '#ecece8', 'M': '#b4b4ae', 'E': '#55554f', 'R': '#3f7d4e', 'r': '#2a5a36', 'X': '#e02020', 'Y': '#ffe600', 'O': '#ff8a00'}
 
 /** Convierte una cuadrícula de píxeles en un icono SVG nítido (un trazo por color). */
 function createPixelIcon(rows: string[], label: string): IconComponent {
@@ -41,26 +41,48 @@ function createPixelIcon(rows: string[], label: string): IconComponent {
 export const HomeIcon = createPixelIcon(
   [
     '................',
-    '.......KK.......',
-    '......KNNK......',
-    '.....KNNNNK.....',
-    '....KNNNNNNK....',
+    '....K.K..K.K....',
+    '....M.M..M.M....',
+    '...KKKKKKKKKK...',
+    '.KMKYNNNNNNNKMK.',
     '...KNNNNNNNNK...',
-    '..KNNNNNNNNNNK..',
-    '.KNNNNNNNNNNNNK.',
-    'KKKKKKKKKKKKKKKK',
-    '.KWWWWWWWWWWWWK.',
-    '.KWKKKKWWWWWWWK.',
-    '.KWKDDKWWKKKKWK.',
-    '.KWKDDKWWKAAKWK.',
-    '.KWKKKKWWKAAKWK.',
-    '.KKKKKKKKKKKKKK.',
+    '.KMKNNWWWWNNKMK.',
+    '...KNNWDDWNNK...',
+    '...KNNWDDWNNK...',
+    '.KMKNNWWWWNNKMK.',
+    '...KNNNNNNNNK...',
+    '.KMKNNNNNNNNKMK.',
+    '...KKKKKKKKKK...',
+    '....M.M..M.M....',
+    '....K.K..K.K....',
     '................',
   ],
   'HomeIcon',
 )
 
-export const FolderIcon = createPixelIcon(
+export const RocketIcon = createPixelIcon(
+  [
+    '................',
+    '..........KKKK..',
+    '........KKXXXXK.',
+    '.......KWWXXXXK.',
+    '......KWWWWXXXK.',
+    '....KKWWWWWGXXK.',
+    '.KKKXWWNNWGGGK..',
+    'KXXXWWWNNNGGGK..',
+    '.KXWWWWNNNGGK...',
+    '..KWWWWGGGGK....',
+    '...KWWGGGGK.....',
+    '..KYYKGGGXK.....',
+    '.KYOKKGGXK......',
+    'KOOK..KXXK......',
+    '.KK....KXK......',
+    '........K.......',
+  ],
+  'RocketIcon',
+)
+
+export const FolderIcon =createPixelIcon(
   [
     '................',
     '................',

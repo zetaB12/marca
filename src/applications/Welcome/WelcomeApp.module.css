@@ -1,65 +1,81 @@
-/* El diseño responde al ancho de la ventana (que se puede redimensionar), no al de la pantalla. */
+/* Bienvenida: ventana oscura (azul noche) con botón amarillo, como en image/bienvenida.png.
+   El diseño responde al ancho de la ventana (que se puede redimensionar), no al de la pantalla. */
 .app {
   container-type: inline-size;
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  background: var(--c-night);
+  color: var(--c-white);
 }
 
 .main {
   flex: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) calc(300px * var(--text-scale, 1));
-  background: linear-gradient(var(--c-window), #efefea);
+  display: flex;
+  background: radial-gradient(120% 100% at 85% 0%, #1b2b72 0%, #101c52 55%, #0c1540 100%);
 }
 
-/* Columna principal: eyebrow → titular → descripción → botones → mensaje de diferenciación. */
 .copy {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 18px;
-  padding: 32px 36px 28px 40px;
+  width: 100%;
+  padding: 32px 40px 28px;
+}
+
+.brand {
+  display: grid;
+  gap: 8px;
+}
+
+/* Marca pixel: W95FA grande con un engrosado de 1px para que pese como en la imagen. */
+.logo {
+  margin: 0;
+  font: 400 clamp(calc(44px * var(--text-scale, 1)), 11cqi, calc(84px * var(--text-scale, 1))) / 1 var(--f-system);
+  letter-spacing: 0.04em;
+  color: var(--c-white);
+  -webkit-text-stroke: 1px var(--c-white);
+  text-shadow: 3px 3px 0 #1f3d73;
+}
+
+.tagline {
+  margin: 0;
+  font: 400 calc(20px * var(--text-scale, 1)) / 1.2 var(--f-system);
+  letter-spacing: 0.06em;
+  color: var(--c-white);
 }
 
 .eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   margin: 0;
   font: 400 var(--fs-ui-sm) / 1.3 var(--f-system);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--c-muted);
+  color: #8ea3d4;
 }
 
-/* Cuadrado dorado: la firma de color, sin depender de un texto de bajo contraste. */
-.eyebrow::before {
-  content: '';
-  flex: none;
-  width: 8px;
-  height: 8px;
-  background: var(--c-accent);
+/* Barra dorada a la izquierda del mensaje principal. */
+.pitch {
+  display: grid;
+  gap: 10px;
+  padding-left: 16px;
+  border-left: 8px solid var(--c-accent);
+  max-width: 40em;
 }
 
 .headline {
   margin: 0;
-  font: 700 clamp(calc(30px * var(--text-scale, 1)), 6.2cqi, calc(46px * var(--text-scale, 1))) / 1.05 var(--f-display);
-  letter-spacing: -0.015em;
-  color: var(--c-text);
+  font: 400 calc(21px * var(--text-scale, 1)) / 1.35 var(--f-system);
+  letter-spacing: 0.02em;
+  color: var(--c-white);
   text-wrap: balance;
-}
-
-.strong {
-  color: var(--c-title);
 }
 
 .description {
   margin: 0;
-  max-width: 36em;
-  font-size: calc(16px * var(--text-scale, 1));
+  font-size: calc(15px * var(--text-scale, 1));
   line-height: 1.6;
-  color: var(--c-muted);
+  color: #b9c4e2;
 }
 
 .actions {
@@ -69,31 +85,33 @@
   margin-top: 4px;
 }
 
-/* Botones Windows 98: bisel de 4 capas, sin radio; hover sutil, pulsado hundido. */
+/* Botones de la imagen: el principal amarillo; los demás, borde claro sobre azul noche. */
 .cta {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   min-height: 48px;
   padding: 0 20px;
-  border: 0;
+  border: 2px solid var(--c-white);
   border-radius: 0;
-  background: var(--c-window);
-  color: var(--c-text);
-  box-shadow: var(--bevel-raised);
+  background: transparent;
+  color: var(--c-white);
   font: 400 var(--fs-ui) / 1 var(--f-system);
   letter-spacing: 0.02em;
   text-decoration: none;
   cursor: pointer;
 }
 
+.cta svg {
+  filter: invert(1);
+}
+
 .cta:hover {
-  background: #f1f1ed;
+  background: rgb(255 255 255 / 0.12);
 }
 
 .cta:active {
-  background: var(--c-window);
-  box-shadow: var(--bevel-pressed);
+  background: rgb(255 255 255 / 0.2);
 }
 
 .cta:active > * {
@@ -101,168 +119,37 @@
 }
 
 .cta:focus-visible {
-  outline: 1px dotted var(--c-text);
-  outline-offset: -6px;
+  outline: 1px dotted var(--c-white);
+  outline-offset: 3px;
 }
 
-/* Botón predeterminado de Windows 98: marco negro extra alrededor del bisel. */
 .primary {
-  box-shadow: 0 0 0 1px var(--c-text), var(--bevel-raised);
+  border-color: var(--c-text);
+  background: var(--c-accent);
+  color: var(--c-text);
+  box-shadow: 0 0 0 2px var(--c-accent);
+}
+
+.primary svg {
+  filter: none;
+}
+
+.primary:hover {
+  background: #ffc231;
 }
 
 .primary:active {
-  box-shadow: 0 0 0 1px var(--c-text), var(--bevel-pressed);
+  background: #d99a14;
 }
 
-/* Mensaje de diferenciación: discreto, separado por un surco. */
 .promise {
   margin: 4px 0 0;
   padding-top: 14px;
-  max-width: 36em;
-  border-top: 1px solid var(--c-border);
-  box-shadow: 0 -1px 0 var(--c-white);
+  max-width: 40em;
+  border-top: 1px solid #2a3a6a;
   font-size: calc(14px * var(--text-scale, 1));
   line-height: 1.5;
-  color: var(--c-muted);
-}
-
-/* Columna lateral: marca pequeña, servicios y acceso a "Behind N.". */
-.aside {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 24px 20px 20px;
-  box-shadow: inset 1px 0 0 var(--c-border), inset 2px 0 0 var(--c-white);
-  background: #e1e1dc;
-}
-
-/* El grupo ocupa el alto sobrante: la lista se reparte y el botón queda abajo. */
-.group {
-  position: relative;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 8px 8px;
-  border: 1px solid var(--c-border);
-  box-shadow: 1px 1px 0 var(--c-white), inset 1px 1px 0 var(--c-white);
-}
-
-.legend {
-  position: absolute;
-  top: -8px;
-  left: 10px;
-  padding: 0 6px;
-  background: #e1e1dc;
-  font: 400 var(--fs-ui-sm) / 1 var(--f-system);
-  letter-spacing: 0.06em;
-}
-
-/* Filas de igual alto: el espaciado no depende de las líneas de cada descripción. */
-.services {
-  flex: 1;
-  display: grid;
-  grid-auto-rows: 1fr;
-  gap: 2px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-/* Cada servicio es un botón: se resalta en azul como las opciones de un menú de Windows 98.
-   Columna de icono fija (32px) para que nombres y descripciones compartan el mismo eje. */
-.service {
-  display: grid;
-  grid-template-columns: 32px minmax(0, 1fr);
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  height: 100%;
-  padding: 8px;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  color: var(--c-text);
-  text-align: left;
-  cursor: pointer;
-}
-
-.service svg {
-  display: block;
-  justify-self: center;
-}
-
-.serviceText {
-  display: grid;
-  gap: 3px;
-  min-width: 0;
-}
-
-.serviceName {
-  font: 400 var(--fs-ui-sm) / 1.2 var(--f-system);
-  letter-spacing: 0.02em;
-}
-
-.serviceDesc {
-  font-size: calc(12.5px * var(--text-scale, 1));
-  line-height: 1.4;
-  color: var(--c-muted);
-}
-
-.service:hover,
-.service:focus-visible {
-  background: var(--c-title);
-  color: var(--c-white);
-  outline: none;
-}
-
-.service:hover .serviceDesc,
-.service:focus-visible .serviceDesc {
-  color: #d4d9e1;
-}
-
-.service:active {
-  background: #1b2d46;
-}
-
-/* "Behind N.": acceso a la presentación personal. */
-.behind {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  min-height: 40px;
-  margin-top: auto;
-  padding: 0 14px;
-  border: 0;
-  border-radius: 0;
-  background: var(--c-window);
-  color: var(--c-text);
-  box-shadow: var(--bevel-raised);
-  font: 400 var(--fs-ui-sm) / 1 var(--f-system);
-  letter-spacing: 0.02em;
-  cursor: pointer;
-}
-
-.behind svg:first-child {
-  margin-right: -2px;
-}
-
-.behind span,
-.behind {
-  text-align: left;
-}
-
-.behind:hover {
-  background: #f1f1ed;
-}
-
-.behind:active {
-  box-shadow: var(--bevel-pressed);
-}
-
-.behind:focus-visible {
-  outline: 1px dotted var(--c-text);
-  outline-offset: -6px;
+  color: #8ea3d4;
 }
 
 .status {
@@ -270,32 +157,21 @@
   justify-content: space-between;
   gap: 12px;
   padding: 7px 14px;
-  background: var(--c-secondary);
-  border-top: 1px solid var(--c-border);
+  background: var(--c-night-deep);
+  border-top: 1px solid #2a3a6a;
   font: 400 var(--fs-ui-sm) / 1.2 var(--f-system);
   letter-spacing: 0.06em;
-  color: var(--c-muted);
+  color: #8ea3d4;
 }
 
 .reveal {
   will-change: transform, opacity;
 }
 
-/* Ventana estrecha (incluida la de móvil): una sola columna; la lateral baja debajo. */
 @container (max-width: 700px) {
-  .main {
-    grid-template-columns: 1fr;
-  }
   .copy {
     padding: 28px 20px 24px;
     gap: 16px;
-  }
-  .aside {
-    padding: 22px 20px 24px;
-    box-shadow: inset 0 1px 0 var(--c-border), inset 0 2px 0 var(--c-white);
-  }
-  .behind {
-    margin-top: 0;
   }
   .actions {
     flex-direction: column;
@@ -306,16 +182,9 @@
   }
 }
 
-/* Pantallas bajas (teléfono apaisado): titular y espacios más compactos. */
 @media (max-height: 520px) {
-  .headline {
-    font-size: calc(26px * var(--text-scale, 1));
-  }
   .copy {
     padding: 20px 24px 16px;
     gap: 12px;
-  }
-  .aside {
-    padding: 16px 16px 14px;
   }
 }
