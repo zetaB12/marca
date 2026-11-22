@@ -104,24 +104,50 @@
   min-width: 88px;
   min-height: 36px;
   padding: 0 14px;
-  border: 0;
+  margin: 0 3px 3px 0;
+  border: 2px solid var(--pixel-ink);
   border-radius: 0;
-  background: var(--c-window);
-  box-shadow: var(--bevel-raised);
+  background: var(--pixel-face);
+  box-shadow: var(--pixel-raised);
   font: 400 var(--fs-ui-sm) / 1 var(--f-system);
   letter-spacing: 0.02em;
+  transition: var(--pixel-motion);
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--pixel-face-hover);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--pixel-hover);
 }
 
 .btn:active:not(:disabled) {
-  box-shadow: var(--bevel-pressed);
+  transform: translate(3px, 3px);
+  box-shadow: var(--pixel-pressed);
 }
 
-/* Botón predeterminado: marco negro extra. */
+/* Botón predeterminado: amarillo, igual que el principal de la bienvenida. */
 .btn[data-autofocus] {
-  box-shadow: 0 0 0 1px var(--c-text), var(--bevel-raised);
+  background: #f4ca58;
+  font-weight: 700;
+  box-shadow: inset 2px 2px 0 #fff0b3, inset -2px -2px 0 #c28d28, 3px 3px 0 var(--pixel-ink);
+}
+
+.btn[data-autofocus]:hover:not(:disabled) {
+  background: #ffda70;
+  box-shadow: inset 2px 2px 0 #fff5c8, inset -2px -2px 0 #c28d28, 4px 4px 0 var(--pixel-ink);
+}
+
+.btn[data-autofocus]:active:not(:disabled) {
+  box-shadow: inset 2px 2px 0 #c28d28, inset -2px -2px 0 #fff0b3, 0 0 0 var(--pixel-ink);
+}
+
+.btn:focus-visible {
+  outline: 2px dashed var(--pixel-ink);
+  outline-offset: 3px;
 }
 
 .btn:disabled {
+  box-shadow: var(--pixel-flat);
   color: var(--c-border);
   text-shadow: 1px 1px 0 var(--c-white);
 }

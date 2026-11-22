@@ -41,6 +41,18 @@
     inset -2px -2px 0 #f4f4f0, inset 2px 2px 0 var(--c-text);
   --bevel-window: inset -1px -1px 0 var(--c-text), inset 1px 1px 0 #f4f4f0,
     inset -2px -2px 0 var(--c-border), inset 2px 2px 0 var(--c-white);
+  /* Botones pixel / LEGO: borde oscuro, bisel interior y sombra dura. "-sm" = sombra de 2px para barras de herramientas. */
+  --pixel-ink: #171717;
+  --pixel-face: #e8e8e3;
+  --pixel-face-hover: #f4f4f0;
+  --pixel-raised: inset 2px 2px 0 #fff, inset -2px -2px 0 #b4b4ad, 3px 3px 0 var(--pixel-ink);
+  --pixel-hover: inset 2px 2px 0 #fff, inset -2px -2px 0 #b4b4ad, 4px 4px 0 var(--pixel-ink);
+  --pixel-pressed: inset 2px 2px 0 #b4b4ad, inset -2px -2px 0 #fff, 0 0 0 var(--pixel-ink);
+  --pixel-raised-sm: inset 2px 2px 0 #fff, inset -2px -2px 0 #b4b4ad, 2px 2px 0 var(--pixel-ink);
+  --pixel-hover-sm: inset 2px 2px 0 #fff, inset -2px -2px 0 #b4b4ad, 3px 3px 0 var(--pixel-ink);
+  --pixel-pressed-sm: inset 2px 2px 0 #b4b4ad, inset -2px -2px 0 #fff, 0 0 0 var(--pixel-ink);
+  --pixel-flat: inset 2px 2px 0 #fff, inset -2px -2px 0 #b4b4ad;
+  --pixel-motion: transform 100ms ease, box-shadow 100ms ease, background 100ms ease;
   /* Tramado 2×2 del botón de tarea activo (como en Windows 98). */
   --dither: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' shape-rendering='crispEdges'%3E%3Crect width='1' height='1' fill='%23ffffff'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23ffffff'/%3E%3C/svg%3E");
   --shadow-window: 0 1px 0 rgb(0 0 0 / 0.25), 4px 6px 0 rgb(4 6 15 / 0.4),
@@ -52,4 +64,14 @@
     --taskbar-h: calc(56px + env(safe-area-inset-bottom, 0px));
     --taskbar-gap: 0px;
   }
+}
+
+/* Sin movimiento: los botones pixel cambian de estado al instante. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --pixel-motion: none;
+  }
+}
+:root[data-motion='off'] {
+  --pixel-motion: none;
 }

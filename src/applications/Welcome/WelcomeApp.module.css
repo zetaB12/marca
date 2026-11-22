@@ -1,4 +1,4 @@
-/* Bienvenida: ventana oscura (azul noche) con botón amarillo, como en image/bienvenida.png.
+/* Bienvenida: ventana oscura (azul noche), tipografía y jerarquía de la maqueta image/Bienvenida.exe.
    El diseño responde al ancho de la ventana (que se puede redimensionar), no al de la pantalla. */
 .app {
   container-type: inline-size;
@@ -10,30 +10,45 @@
 }
 
 .main {
+  position: relative;
   flex: 1;
   display: flex;
+  overflow: hidden;
   background: radial-gradient(120% 100% at 85% 0%, #1b2b72 0%, #101c52 55%, #0c1540 100%);
 }
 
+/* Paisaje a la derecha, difuminado hacia la izquierda para que el texto se lea encima. */
+.scene {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+}
+
 .copy {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 18px;
+  gap: calc(14px * var(--text-scale, 1));
   width: 100%;
-  padding: 32px 40px 28px;
+  padding: 28px 44px 24px;
 }
 
 .brand {
   display: grid;
-  gap: 8px;
+  gap: 6px;
 }
 
 /* Marca pixel: W95FA grande con un engrosado de 1px para que pese como en la imagen. */
 .logo {
   margin: 0;
-  font: 400 clamp(calc(44px * var(--text-scale, 1)), 11cqi, calc(84px * var(--text-scale, 1))) / 1 var(--f-system);
-  letter-spacing: 0.04em;
+  font: 400 clamp(calc(52px * var(--text-scale, 1)), 11.5cqi, calc(108px * var(--text-scale, 1))) / 1 var(--f-system);
+  letter-spacing: 0.02em;
   color: var(--c-white);
   -webkit-text-stroke: 1px var(--c-white);
   text-shadow: 3px 3px 0 #1f3d73;
@@ -41,65 +56,76 @@
 
 .tagline {
   margin: 0;
-  font: 400 calc(20px * var(--text-scale, 1)) / 1.2 var(--f-system);
-  letter-spacing: 0.06em;
-  color: var(--c-white);
+  font: 500 calc(17px * var(--text-scale, 1)) / 1.2 var(--f-display);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #a9bce8;
+}
+
+/* Barrita amarilla bajo el nombre. */
+.rule {
+  display: block;
+  width: 64px;
+  height: 7px;
+  background: var(--c-accent);
 }
 
 .eyebrow {
   margin: 0;
-  font: 400 var(--fs-ui-sm) / 1.3 var(--f-system);
-  letter-spacing: 0.1em;
+  font: 500 calc(15px * var(--text-scale, 1)) / 1.3 var(--f-display);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #8ea3d4;
 }
 
-/* Barra dorada a la izquierda del mensaje principal. */
-.pitch {
-  display: grid;
-  gap: 10px;
-  padding-left: 16px;
-  border-left: 8px solid var(--c-accent);
-  max-width: 40em;
-}
-
+/* Titular con barra dorada a la izquierda; "tu negocio." en amarillo. */
 .headline {
-  margin: 0;
-  font: 400 calc(21px * var(--text-scale, 1)) / 1.35 var(--f-system);
-  letter-spacing: 0.02em;
+  margin: 4px 0 0;
+  max-width: 17.5em;
+  padding-left: 18px;
+  border-left: 8px solid var(--c-accent);
+  font: 700 calc(28px * var(--text-scale, 1)) / 1.2 var(--f-display);
   color: var(--c-white);
   text-wrap: balance;
 }
 
+.headline em {
+  font-style: normal;
+  color: var(--c-accent);
+}
+
 .description {
   margin: 0;
-  font-size: calc(15px * var(--text-scale, 1));
-  line-height: 1.6;
-  color: #b9c4e2;
+  max-width: 32em;
+  font: 500 calc(17px * var(--text-scale, 1)) / 1.5 var(--f-display);
+  color: #a9b8e0;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
   margin-top: 4px;
 }
 
-/* Botones de la imagen: el principal amarillo; los demás, borde claro sobre azul noche. */
+/* Botones pixel: el principal amarillo; el secundario azul. Misma estructura (borde, bisel, sombra dura). */
 .cta {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  min-height: 48px;
-  padding: 0 20px;
-  border: 2px solid var(--c-white);
+  justify-content: center;
+  gap: 12px;
+  min-height: calc(54px * var(--text-scale, 1));
+  padding: 0 28px;
+  margin: 0 3px 3px 0;
+  border: 2px solid #04060f;
   border-radius: 0;
-  background: transparent;
+  background: #3a52a8;
   color: var(--c-white);
-  font: 400 var(--fs-ui) / 1 var(--f-system);
-  letter-spacing: 0.02em;
+  box-shadow: inset 2px 2px 0 #7f98e6, inset -2px -2px 0 #22337a, 3px 3px 0 #04060f;
+  font: 700 calc(19px * var(--text-scale, 1)) / 1 var(--f-display);
   text-decoration: none;
   cursor: pointer;
+  transition: var(--pixel-motion);
 }
 
 .cta svg {
@@ -107,27 +133,36 @@
 }
 
 .cta:hover {
-  background: rgb(255 255 255 / 0.12);
+  background: #4660c0;
+  transform: translate(-1px, -1px);
+  box-shadow: inset 2px 2px 0 #96abee, inset -2px -2px 0 #22337a, 4px 4px 0 #04060f;
 }
 
 .cta:active {
-  background: rgb(255 255 255 / 0.2);
-}
-
-.cta:active > * {
-  transform: translate(1px, 1px);
+  transform: translate(3px, 3px);
+  box-shadow: inset 2px 2px 0 #22337a, inset -2px -2px 0 #7f98e6, 0 0 0 #04060f;
 }
 
 .cta:focus-visible {
-  outline: 1px dotted var(--c-white);
-  outline-offset: 3px;
+  outline: 2px dashed var(--c-white);
+  outline-offset: 5px;
 }
 
+/* Botón amarillo con relieve pixel / LEGO: bisel claro arriba-izquierda, oscuro abajo-derecha y sombra dura. */
 .primary {
-  border-color: var(--c-text);
-  background: var(--c-accent);
-  color: var(--c-text);
-  box-shadow: 0 0 0 2px var(--c-accent);
+  border-color: #171717;
+  background: #f4ca58;
+  color: #171717;
+  font-weight: 700;
+  margin: 0 3px 3px 0; /* deja sitio a la sombra dura sin mover el resto */
+  box-shadow:
+    inset 2px 2px 0 #fff0b3,
+    inset -2px -2px 0 #c28d28,
+    3px 3px 0 #171717;
+  transition:
+    transform 100ms ease,
+    box-shadow 100ms ease,
+    background 100ms ease;
 }
 
 .primary svg {
@@ -135,43 +170,107 @@
 }
 
 .primary:hover {
-  background: #ffc231;
+  background: #ffda70;
+  transform: translate(-1px, -1px);
+  box-shadow:
+    inset 2px 2px 0 #fff5c8,
+    inset -2px -2px 0 #c28d28,
+    4px 4px 0 #171717;
 }
 
 .primary:active {
-  background: #d99a14;
+  background: #f4ca58;
+  transform: translate(3px, 3px);
+  box-shadow:
+    inset 2px 2px 0 #c28d28,
+    inset -2px -2px 0 #fff0b3,
+    0 0 0 #171717;
 }
 
-.promise {
-  margin: 4px 0 0;
-  padding-top: 14px;
-  max-width: 40em;
-  border-top: 1px solid #2a3a6a;
-  font-size: calc(14px * var(--text-scale, 1));
-  line-height: 1.5;
-  color: #8ea3d4;
+.primary:focus-visible {
+  outline: 2px dashed #ffffff;
+  outline-offset: 5px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .primary {
+    transition: none;
+  }
+}
+
+/* Servicios en fila bajo una línea divisoria, separados por rayas verticales. */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  margin: 6px 0 0;
+  padding: 18px 0 0;
+  max-width: 44em;
+  list-style: none;
+  border-top: 2px solid #2d3f94;
+}
+
+.service {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 28px;
+  color: var(--c-white);
+  font: 500 calc(15px * var(--text-scale, 1)) / 1.3 var(--f-display);
+}
+
+.service:first-child {
+  padding-left: 0;
+}
+
+.service + .service {
+  border-left: 2px solid #2d3f94;
+}
+
+.service svg {
+  flex: none;
+}
+
+/* Pie: línea clara arriba, cuadrito amarillo y versión. */
 .status {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  padding: 7px 14px;
+  padding: 8px 18px;
   background: var(--c-night-deep);
-  border-top: 1px solid #2a3a6a;
-  font: 400 var(--fs-ui-sm) / 1.2 var(--f-system);
-  letter-spacing: 0.06em;
-  color: #8ea3d4;
+  border-top: 2px solid #e8eaf5;
+  font: 500 calc(14px * var(--text-scale, 1)) / 1.2 var(--f-display);
+  color: #c9d3ee;
+}
+
+.brandName {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brandName::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  background: var(--c-accent);
 }
 
 .reveal {
   will-change: transform, opacity;
 }
 
-@container (max-width: 700px) {
+/* Ventana estrecha: sin paisaje, todo en una columna. */
+@container (max-width: 760px) {
+  .scene {
+    display: none;
+  }
   .copy {
-    padding: 28px 20px 24px;
-    gap: 16px;
+    padding: 24px 20px 20px;
+    gap: 12px;
+  }
+  .headline {
+    font-size: calc(23px * var(--text-scale, 1));
   }
   .actions {
     flex-direction: column;
@@ -180,11 +279,21 @@
     width: 100%;
     justify-content: space-between;
   }
+  .services {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .service,
+  .service:first-child,
+  .service + .service {
+    padding: 0;
+    border-left: 0;
+  }
 }
 
-@media (max-height: 520px) {
+@media (max-height: 620px) {
   .copy {
-    padding: 20px 24px 16px;
-    gap: 12px;
+    padding: 18px 28px 14px;
+    gap: 10px;
   }
 }

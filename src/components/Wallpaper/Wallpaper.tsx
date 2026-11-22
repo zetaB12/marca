@@ -1,6 +1,6 @@
 import { useEffect, useRef, type Ref } from "react";
 import { gsap } from "gsap";
-import { useDayPeriod } from "../../hooks/useDayPeriod";
+import { useWallpaperPeriod } from "../../hooks/useWallpaperPeriod";
 import { useSettingsStore } from "../../store/settingsStore";
 import wallpaperSvg from "./fondo.svg?raw";
 import styles from "./Wallpaper.module.css";
@@ -17,9 +17,7 @@ export default function Wallpaper({
 }) {
   const pattern = useSettingsStore((s) => s.pattern);
   const animations = useSettingsStore((s) => s.animations);
-  const mode = useSettingsStore((s) => s.wallpaperMode);
-  const auto = useDayPeriod();
-  const period = mode === "auto" ? auto : mode;
+  const period = useWallpaperPeriod();
   const box = useRef<HTMLDivElement>(null);
 
   // Titileo: las estrellas (<rect> de 3-4 px en el cielo) suben y bajan de brillo, sin crear elementos nuevos.

@@ -242,22 +242,31 @@
 .ctaButton {
   min-height: 40px;
   padding: 0 20px;
-  border: 0;
+  margin: 0 3px 3px 0;
+  border: 2px solid var(--pixel-ink);
   border-radius: 0;
-  background: var(--c-window);
+  background: #f4ca58;
   color: var(--c-text);
-  box-shadow: var(--bevel-raised);
-  font: 400 var(--fs-ui) / 1.2 var(--f-system);
+  box-shadow: inset 2px 2px 0 #fff0b3, inset -2px -2px 0 #c28d28, 3px 3px 0 var(--pixel-ink);
+  font: 700 var(--fs-ui) / 1.2 var(--f-system);
   letter-spacing: 0.02em;
+  transition: var(--pixel-motion);
+}
+
+.ctaButton:hover {
+  background: #ffda70;
+  transform: translate(-1px, -1px);
+  box-shadow: inset 2px 2px 0 #fff5c8, inset -2px -2px 0 #c28d28, 4px 4px 0 var(--pixel-ink);
 }
 
 .ctaButton:active {
-  box-shadow: var(--bevel-pressed);
+  transform: translate(3px, 3px);
+  box-shadow: inset 2px 2px 0 #c28d28, inset -2px -2px 0 #fff0b3, 0 0 0 var(--pixel-ink);
 }
 
 .ctaButton:focus-visible {
-  outline: 1px dotted var(--c-text);
-  outline-offset: -5px;
+  outline: 2px dashed var(--pixel-ink);
+  outline-offset: 3px;
 }
 
 @media (max-width: 700px) {

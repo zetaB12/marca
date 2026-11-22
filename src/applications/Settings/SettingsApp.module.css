@@ -97,14 +97,23 @@
   justify-self: start;
   min-height: 40px;
   padding: 0 18px;
-  border: 0;
+  margin: 0 3px 3px 0;
+  border: 2px solid var(--pixel-ink);
   border-radius: 0;
-  background: var(--c-window);
-  box-shadow: var(--bevel-raised);
+  background: var(--pixel-face);
+  box-shadow: var(--pixel-raised);
   font: 400 var(--fs-ui-sm) / 1 var(--f-system);
   letter-spacing: 0.02em;
+  transition: var(--pixel-motion);
+}
+
+.reset:hover {
+  background: var(--pixel-face-hover);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--pixel-hover);
 }
 
 .reset:active {
-  box-shadow: var(--bevel-pressed);
+  transform: translate(3px, 3px);
+  box-shadow: var(--pixel-pressed);
 }

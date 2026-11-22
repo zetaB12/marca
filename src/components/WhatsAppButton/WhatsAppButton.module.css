@@ -5,22 +5,27 @@
   gap: 8px;
   min-height: 48px;
   padding: 0 22px;
-  border: 0;
+  margin: 0 3px 3px 0;
+  border: 2px solid var(--pixel-ink);
   border-radius: 0;
-  background: var(--c-window);
+  background: var(--pixel-face);
   color: var(--c-text);
-  box-shadow: var(--bevel-raised);
+  box-shadow: var(--pixel-raised);
+  transition: var(--pixel-motion);
   font: 400 var(--fs-ui)/1.2 var(--f-system);
   letter-spacing: 0.02em;
   text-decoration: none;
 }
 
-a.btn:active {
-  box-shadow: var(--bevel-pressed);
+a.btn:hover {
+  background: var(--pixel-face-hover);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--pixel-hover);
 }
 
-a.btn:active > * {
-  transform: translate(1px, 1px);
+a.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: var(--pixel-pressed);
 }
 
 .btn svg {

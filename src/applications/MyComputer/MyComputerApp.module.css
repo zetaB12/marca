@@ -15,20 +15,30 @@
   gap: 6px;
   min-height: 28px;
   padding: 0 10px;
-  border: 0;
+  margin: 0 2px 2px 0;
+  border: 2px solid var(--pixel-ink);
   border-radius: 0;
-  background: var(--c-window);
-  box-shadow: var(--bevel-raised);
+  background: var(--pixel-face);
+  box-shadow: var(--pixel-raised-sm);
   font: 400 var(--fs-ui-sm) / 1 var(--f-system);
   letter-spacing: 0.02em;
+  transition: var(--pixel-motion);
+}
+
+.tool:hover:not(:disabled) {
+  background: var(--pixel-face-hover);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--pixel-hover-sm);
 }
 
 .tool:active:not(:disabled),
 .tool[aria-pressed='true'] {
-  box-shadow: var(--bevel-pressed);
+  transform: translate(2px, 2px);
+  box-shadow: var(--pixel-pressed-sm);
 }
 
 .tool:disabled {
+  box-shadow: var(--pixel-flat);
   color: var(--c-border);
   text-shadow: 1px 1px 0 var(--c-white);
 }
