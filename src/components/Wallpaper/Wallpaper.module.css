@@ -24,3 +24,122 @@
   height: 100%;
   display: block;
 }
+.svg {
+  transition-property: --s0, --s1, --s2, --s3, --m1, --m2, --m3, --m4, --tree, --cl1, --cl2, --cl3, --cl4, --sun-a, --sun-b, --sun-g, --dcl1, --dcl2, --star-o, --moon-o, --sun-o, --dcl-o, --sunx, --suny;
+  transition-duration: 2.5s;
+  transition-timing-function: ease-in-out;
+}
+.still {
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .svg {
+    transition: none;
+  }
+}
+
+/* Paletas por período del día (America/Lima). La forma del paisaje es la misma; cambia el color, el astro y las estrellas. */
+.svg[data-period="night"] {
+  --s0: #000830;
+  --s1: #000b3b;
+  --s2: #04104c;
+  --s3: #2d2a90;
+  --m1: #5547ba;
+  --m2: #0c2478;
+  --m3: #000c32;
+  --m4: #000a27;
+  --tree: #050a2e;
+  --cl1: #4b4ab0;
+  --cl2: #5b58bc;
+  --cl3: #7873cb;
+  --cl4: #8a84d6;
+  --star-o: 1;
+  --moon-o: 1;
+  --sun-o: 0;
+  --sunx: 0px;
+  --suny: 640px;
+  --sun-a: #fff2b0;
+  --sun-b: #ffc050;
+  --sun-g: #ffe29a;
+  --dcl1: #8a84d6;
+  --dcl2: #7873cb;
+  --dcl-o: 0;
+}
+.svg[data-period="morning"] {
+  --s0: #4f95e0;
+  --s1: #8dc0ee;
+  --s2: #f3c7a8;
+  --s3: #ff9f6e;
+  --m1: #c79ac0;
+  --m2: #7f86cc;
+  --m3: #4f5fae;
+  --m4: #31438f;
+  --tree: #1c2a5e;
+  --cl1: #f3b9b0;
+  --cl2: #f8cfc0;
+  --cl3: #fde0cf;
+  --cl4: #fff0e4;
+  --star-o: 0;
+  --moon-o: 0;
+  --sun-o: 1;
+  --sunx: -970px;
+  --suny: 340px;
+  --sun-a: #fff4b8;
+  --sun-b: #ffc457;
+  --sun-g: #ffe6a0;
+  --dcl1: #fff0e6;
+  --dcl2: #f6cdbf;
+  --dcl-o: 1;
+}
+.svg[data-period="afternoon"] {
+  --s0: #2d7ce0;
+  --s1: #4f9df0;
+  --s2: #8fc9fa;
+  --s3: #cdeaff;
+  --m1: #8f96ea;
+  --m2: #5f78d6;
+  --m3: #3a56b8;
+  --m4: #263f96;
+  --tree: #162a6c;
+  --cl1: #cfe4fb;
+  --cl2: #e0eefc;
+  --cl3: #f1f7ff;
+  --cl4: #ffffff;
+  --star-o: 0;
+  --moon-o: 0;
+  --sun-o: 1;
+  --sunx: -260px;
+  --suny: -40px;
+  --sun-a: #fffbd0;
+  --sun-b: #ffe45e;
+  --sun-g: #fff7b0;
+  --dcl1: #ffffff;
+  --dcl2: #dcebfb;
+  --dcl-o: 1;
+}
+.svg[data-period="sunset"] {
+  --s0: #2a1f6e;
+  --s1: #6b2f8f;
+  --s2: #e5568c;
+  --s3: #ff9a4a;
+  --m1: #8c3f9c;
+  --m2: #5a2d86;
+  --m3: #331f66;
+  --m4: #1d1550;
+  --tree: #120e3a;
+  --cl1: #8a3f9a;
+  --cl2: #c0508f;
+  --cl3: #f0708a;
+  --cl4: #ffa070;
+  --star-o: 0.5;
+  --moon-o: 0.35;
+  --sun-o: 1;
+  --sunx: -330px;
+  --suny: 420px;
+  --sun-a: #ffe08a;
+  --sun-b: #ff7a2e;
+  --sun-g: #ffb060;
+  --dcl1: #ffb08a;
+  --dcl2: #e0608a;
+  --dcl-o: 0.9;
+}

@@ -1,5 +1,6 @@
 import { useEffect, useRef, type Ref } from "react";
 import { gsap } from "gsap";
+import { useDayPeriod } from "../../hooks/useDayPeriod";
 import { useSettingsStore } from "../../store/settingsStore";
 import wallpaperSvg from "./fondo.svg?raw";
 import styles from "./Wallpaper.module.css";
@@ -16,18 +17,24 @@ export default function Wallpaper({
 }) {
   const pattern = useSettingsStore((s) => s.pattern);
   const animations = useSettingsStore((s) => s.animations);
+  const mode = useSettingsStore((s) => s.wallpaperMode);
+  const auto = useDayPeriod();
+  const period = mode === "auto" ? auto : mode;
   const box = useRef<HTMLDivElement>(null);
 
   // Titileo: las estrellas (<rect> de 3-4 px en el cielo) suben y bajan de brillo, sin crear elementos nuevos.
   useEffect(() => {
     const root = box.current;
-    if (!root || !animations || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const stars = Array.from(root.querySelectorAll<SVGRectElement>("svg > rect")).filter((r) => {
+    if (!root || !animations || period === "morning" || period === "afternoon" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const stars = Array.from(root.querySelectorAll<SVGRectElement>("#stars > rect")).filter((r) => {
       const size = Number(r.getAttribute("width"));
       return size > 0 && size <= 4 && Number(r.getAttribute("height")) === size && Number(r.getAttribute("y")) < 640;
     });
+    // Cada cambio de opacidad repinta el SVG (ocupa toda la pantalla): pocas estrellas, y en táctil/móvil muchas menos.
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    const count = coarse ? 5 : 10;
     const ctx = gsap.context(() => {
-      gsap.utils.shuffle(stars).slice(0, Math.ceil(stars.length * 0.6)).forEach((el) => {
+      gsap.utils.shuffle(stars).slice(0, count).forEach((el) => {
         gsap.fromTo(
           el,
           { opacity: 1 },
@@ -37,13 +44,13 @@ export default function Wallpaper({
             delay: gsap.utils.random(0, 3),
             repeat: -1,
             yoyo: true,
-            ease: "sine.inOut",
+            ease: "steps(5)", // pocos pasos: estética pixel y apenas repintados
           },
         );
       });
     }, root);
     return () => ctx.revert();
-  }, [animations]);
+  }, [animations, period]);
 
   return (
     <div
@@ -53,7 +60,8 @@ export default function Wallpaper({
     >
       <div
         ref={box}
-        className={styles.svg}
+        data-period={period}
+        className={`${styles.svg} ${animations ? "" : styles.still}`}
         dangerouslySetInnerHTML={{ __html: wallpaperSvg }}
       />
     </div>

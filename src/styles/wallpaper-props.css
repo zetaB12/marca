@@ -1,0 +1,25 @@
+/* Variables del fondo por hora: registradas para que el navegador pueda animarlas (transiciones entre períodos). */
+@property --s0 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --s1 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --s2 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --s3 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --m1 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --m2 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --m3 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --m4 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --tree { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --cl1 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --cl2 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --cl3 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --cl4 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --sun-a { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --sun-b { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --sun-g { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --dcl1 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --dcl2 { syntax: '<color>'; inherits: true; initial-value: #000; }
+@property --star-o { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --moon-o { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --sun-o { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --dcl-o { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --sunx { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --suny { syntax: '<length>'; inherits: true; initial-value: 0px; }

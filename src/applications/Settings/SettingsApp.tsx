@@ -1,7 +1,15 @@
-import { useSettingsStore, type SettingsTab } from '../../store/settingsStore'
+import { useSettingsStore, type SettingsTab, type WallpaperMode } from '../../store/settingsStore'
 import Statusbar from '../shared/Statusbar'
 import shared from '../shared/shared.module.css'
 import styles from './SettingsApp.module.css'
+
+const WALLPAPER_MODES: { id: WallpaperMode; label: string }[] = [
+  { id: 'auto', label: 'Automático (hora de Lima)' },
+  { id: 'morning', label: 'Mañana' },
+  { id: 'afternoon', label: 'Tarde' },
+  { id: 'sunset', label: 'Atardecer' },
+  { id: 'night', label: 'Noche' },
+]
 
 const TABS: { id: SettingsTab; label: string }[] = [
   { id: 'display', label: 'Pantalla' },
@@ -10,7 +18,7 @@ const TABS: { id: SettingsTab; label: string }[] = [
 
 /** Configuración real: las preferencias se aplican de inmediato y se recuerdan en el navegador. */
 export default function SettingsApp() {
-  const { tab, setTab, pattern, setPattern, animations, setAnimations, reset } = useSettingsStore()
+  const { tab, setTab, pattern, setPattern, animations, setAnimations, wallpaperMode, setWallpaperMode, reset } = useSettingsStore()
   const dpr = window.devicePixelRatio || 1
 
   return (
@@ -43,6 +51,16 @@ export default function SettingsApp() {
             <label className={styles.option}>
               <input type="checkbox" checked={pattern} onChange={(e) => setPattern(e.target.checked)} />
               <span>Mostrar el patrón del escritorio</span>
+            </label>
+            <label className={styles.option}>
+              <span>Fondo del escritorio</span>
+              <select value={wallpaperMode} onChange={(e) => setWallpaperMode(e.target.value as WallpaperMode)}>
+                {WALLPAPER_MODES.map((m) => (
+                  <option key={m.id} value={m.id}>
+                    {m.label}
+                  </option>
+                ))}
+              </select>
             </label>
             <dl className={styles.info}>
               <div>
