@@ -39,12 +39,12 @@ export const TYPE_LABEL: Record<FsNodeType, string> = {
   shortcut: 'Acceso directo',
 }
 
-const README = `N. DIGITAL STUDIO
+const README = `Digital Studio
 =================
 
-Bienvenido a Neal OS 1.0.0.
+Bienvenido a Neal OS 1.0.1.
 
-N. Digital Studio crea soluciones digitales para negocios: desarrollo web, e-commerce, software y sistemas, automatización e inteligencia artificial.
+Digital Studio crea soluciones digitales para negocios: desarrollo web, e-commerce, software y sistemas, automatización e inteligencia artificial.
 
 
 CÓMO EXPLORAR
@@ -65,7 +65,7 @@ CARPETAS
 --------
 Servicios     Lo que ofrece el estudio.
 Proyectos     Proyectos (por ahora, demos).
-Nosotros      Sobre N. Digital Studio.
+Nosotros      Sobre Digital Studio.
 Contacto      Cómo solicitar un proyecto.
 Experimentos  Demos e innovaciones.
 
@@ -122,14 +122,14 @@ export const ROOT: FsNode = {
       name: 'N-DIGITAL-STUDIO',
       type: 'folder',
       icon: FolderIcon,
-      description: 'Carpeta principal de N. Digital Studio.',
+      description: 'Carpeta principal de Digital Studio.',
       children: [
         {
           id: 'services',
           name: 'Servicios',
           type: 'folder',
           icon: ServicesIcon,
-          description: 'Servicios de N. Digital Studio.',
+          description: 'Servicios de Digital Studio.',
           children: [
             {
               id: 'services-app',
@@ -165,7 +165,7 @@ export const ROOT: FsNode = {
           name: 'Nosotros',
           type: 'folder',
           icon: AboutIcon,
-          description: 'Sobre N. Digital Studio: su filosofía y su enfoque tecnológico.',
+          description: 'Sobre Digital Studio: su filosofía y su enfoque tecnológico.',
           children: [
             {
               id: 'about-app',
@@ -217,7 +217,7 @@ export const ROOT: FsNode = {
           name: 'Readme.txt',
           type: 'file',
           icon: DocumentIcon,
-          description: 'Presentación de N. Digital Studio y cómo explorar el sistema.',
+          description: 'Presentación de Digital Studio y cómo explorar el sistema.',
           content: README,
         },
       ],

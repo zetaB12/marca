@@ -22,6 +22,6 @@ export const ABOUT_PROFILE: {
   sections: [
     { id: 'who', title: 'Quién soy', body: 'Soy Deyvi Neal. Creo, diseño y desarrollo soluciones digitales que conectan tecnología con ideas.' },
     { id: 'experience', title: 'Mi experiencia en desarrollo y tecnología', body: 'De la curiosidad por la tecnología a crear soluciones digitales que convierten ideas en realidad.' },
-    { id: 'why', title: 'Por qué creé N. Digital Studio', body: 'Creé N. Digital Studio para llevar mis ideas y conocimientos más allá, ayudando a negocios a aprovechar la tecnología y convertir sus ideas en proyectos digitales.' },
+    { id: 'why', title: 'Por qué creé Digital Studio', body: 'Creé Digital Studio para llevar mis ideas y conocimientos más allá, ayudando a negocios a aprovechar la tecnología y convertir sus ideas en proyectos digitales.' },
   ],
 }

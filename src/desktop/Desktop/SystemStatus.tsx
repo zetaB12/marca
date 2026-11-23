@@ -1,5 +1,5 @@
-import WindowFrame from '../../components/WindowFrame/WindowFrame'
-import styles from './SystemStatus.module.css'
+import WindowFrame from "../../components/WindowFrame/WindowFrame";
+import styles from "./SystemStatus.module.css";
 
 export default function SystemStatus() {
   return (
@@ -13,9 +13,9 @@ export default function SystemStatus() {
         </div>
         <div>
           <dt>VERSIÓN:</dt>
-          <dd>1.0.0</dd>
+          <dd>1.0.1</dd>
         </div>
       </dl>
     </WindowFrame>
-  )
+  );
 }

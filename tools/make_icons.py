@@ -1,4 +1,4 @@
-"""Genera favicon e iconos a partir de public/logo-neal.png (marca negra sobre fondo blanco).
+"""Genera favicon e iconos a partir de public/logo-neal.webp (marca negra sobre fondo blanco).
 
 Salidas en public/:
   favicon.ico (16/32/48), favicon-16.png, favicon-32.png, favicon-48.png
@@ -16,7 +16,7 @@ SS = 4
 
 def load_mark():
     """Marca recortada a su caja, como máscara alfa (negro = opaco)."""
-    src = Image.open(ROOT / 'logo-neal.png').convert('L')
+    src = Image.open(ROOT / 'logo-neal.webp').convert('L')
     alpha = ImageChops.invert(src)
     alpha = alpha.point(lambda v: 0 if v < 8 else min(255, int(v * 255 / 247)))
     return alpha.crop(alpha.point(lambda v: 255 if v > 40 else 0).getbbox())

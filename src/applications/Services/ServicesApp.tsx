@@ -1,50 +1,61 @@
-import { SERVICES } from '../../data/services'
-import { useNavStore } from '../../store/navStore'
-import Statusbar from '../shared/Statusbar'
-import shared from '../shared/shared.module.css'
-import styles from './ServicesApp.module.css'
+import { SERVICES } from "../../data/services";
+import { ArrowIcon, FolderIcon } from "../../components/PixelIcon/pixelIcons";
+import { useDesktopStore } from "../../store/desktopStore";
+import styles from "./ServicesApp.module.css";
 
-/** Catálogo provisional de servicios; el detalle por servicio llega en la Fase 3. */
+/** Servicios.exe: catálogo en tarjetas con la misma jerarquía que Mis proyectos. */
 export default function ServicesApp() {
-  const selectedId = useNavStore((s) => s.serviceId)
-  const setSelectedId = useNavStore((s) => s.selectService)
-  const selected = SERVICES.find((s) => s.id === selectedId) ?? SERVICES[0]
+  const launch = useDesktopStore((s) => s.launch);
 
   return (
-    <div className={shared.app}>
-      <div className={styles.layout}>
-        <ul className={styles.grid} aria-label="Servicios">
-          {SERVICES.map((s) => {
-            const Icon = s.icon
-            const active = s.id === selected.id
-            return (
-              <li key={s.id}>
-                <button
-                  type="button"
-                  className={`${styles.item} ${active ? styles.active : ''}`}
-                  aria-pressed={active}
-                  onClick={() => setSelectedId(s.id)}
-                >
-                  <span className={styles.glyph}>
-                    <Icon size={32} />
-                  </span>
-                  <span className={styles.label}>{s.name}</span>
-                </button>
-              </li>
-            )
-          })}
-        </ul>
+    <div className={styles.app}>
+      <header className={styles.head}>
+        <div className={styles.intro}>
+          <p className={styles.eyebrow}>
+            <span>/</span> Servicios
+          </p>
+          <h1 className={styles.title}>
+            What we <em>create.</em>
+          </h1>
+          <p className={styles.lead}>Soluciones digitales hechas a medida.</p>
+        </div>
+        <span className={styles.folder} aria-hidden>
+          <FolderIcon size={72} />
+        </span>
+      </header>
 
-        <section className={styles.detail} aria-live="polite">
-          <h2 className={shared.heading}>{selected.name}</h2>
-          <p className={shared.text}>{selected.description}</p>
-          <span className={shared.demo}>Catálogo preliminar</span>
-        </section>
-      </div>
-      <Statusbar>
-        <span>{SERVICES.length} elemento(s)</span>
-        <span>{selected.name}</span>
-      </Statusbar>
+      <ul className={styles.grid} aria-label="Servicios">
+        {SERVICES.map((s, i) => {
+          const Icon = s.icon;
+          return (
+            <li key={s.id}>
+              <article className={styles.card}>
+                <span className={styles.glyph}>
+                  <Icon size={32} />
+                </span>
+                <h2 className={styles.name}>
+                  {s.title[0]} {s.title[1]}
+                </h2>
+                <p className={styles.sub}>{s.summary}</p>
+                <div className={styles.foot}>
+                  <span className={styles.num}>
+                    {String(i + 1).padStart(2, "0")} /{" "}
+                    {String(SERVICES.length).padStart(2, "0")}
+                  </span>
+                  <button
+                    type="button"
+                    className={styles.go}
+                    aria-label={`Consultar ${s.name}`}
+                    onClick={() => launch("contact")}
+                  >
+                    <ArrowIcon size={20} />
+                  </button>
+                </div>
+              </article>
+            </li>
+          );
+        })}
+      </ul>
     </div>
-  )
+  );
 }

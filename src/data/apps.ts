@@ -64,7 +64,7 @@ export const APPS: Record<AppId, AppDef> = {
     windowTitle: 'Mis proyectos',
     file: 'Mis proyectos',
     icon: FolderIcon,
-    size: { w: 760, h: 500 },
+    size: { w: 1020, h: 660 },
   },
   services: {
     id: 'services',
@@ -72,7 +72,7 @@ export const APPS: Record<AppId, AppDef> = {
     windowTitle: 'Servicios.exe',
     file: 'Servicios.exe',
     icon: ServicesIcon,
-    size: { w: 720, h: 500 },
+    size: { w: 950, h: 700 },
   },
   about: {
     id: 'about',
@@ -114,7 +114,7 @@ export const APPS: Record<AppId, AppDef> = {
     windowTitle: 'Contacto.exe',
     file: 'Contacto.exe',
     icon: MailIcon,
-    size: { w: 560, h: 480 },
+    size: { w: 640, h: 520 },
   },
   terminal: {
     id: 'terminal',

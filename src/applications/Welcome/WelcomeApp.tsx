@@ -1,6 +1,9 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ArrowUpRightIcon } from "../../components/PixelIcon/pixelIcons";
+import {
+  ArrowUpRightIcon,
+  ArrowIcon,
+} from "../../components/PixelIcon/pixelIcons";
 import { WHATSAPP_ENABLED, whatsappUrl } from "../../data/site";
 import { useDesktopStore } from "../../store/desktopStore";
 import styles from "./WelcomeApp.module.css";
@@ -99,8 +102,8 @@ export default function WelcomeApp() {
           </h2>
 
           <p className={`${styles.description} ${styles.reveal}`}>
-            Diseño web, desarrollo de plataformas y soluciones digitales
-            creadas para marcas que buscan destacar.
+            Diseño web, desarrollo de plataformas y soluciones digitales creadas
+            para marcas que buscan destacar.
           </p>
 
           <div className={`${styles.actions} ${styles.reveal}`}>
@@ -109,13 +112,15 @@ export default function WelcomeApp() {
               className={`${styles.cta} ${styles.primary}`}
               onClick={() => launch("projects")}
             >
-              Ver proyectos <ArrowUpRightIcon size={18} />
+              Ver proyectos <ArrowIcon size={18} />
             </button>
             {/* WhatsApp con mensaje listo si hay número configurado; si no, abre Contact. */}
             {WHATSAPP_ENABLED ? (
               <a
                 className={styles.cta}
-                href={whatsappUrl("Hola, me gustaría hablar sobre mi proyecto.")}
+                href={whatsappUrl(
+                  "Hola, me gustaría hablar sobre mi proyecto.",
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -148,8 +153,8 @@ export default function WelcomeApp() {
       </div>
 
       <footer className={styles.status}>
-        <span className={styles.brandName}>N. Digital Studio</span>
-        <span>Versión 2.0.0</span>
+        <span className={styles.brandName}>Trujilo, Perú</span>
+        <span>Versión 1.0.1</span>
       </footer>
     </div>
   );

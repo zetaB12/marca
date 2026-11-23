@@ -1,33 +1,115 @@
-.layout {
+/* Servicios.exe: misma jerarquía visual que Mis proyectos (tipografías, tamaños, espacios y sombras duras). */
+.app {
+  container-type: inline-size;
   flex: 1;
+  height: 100%;
   min-height: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 260px;
+  overflow: auto;
+  padding: 28px 28px 32px;
+  background: #faf5ec;
+  color: #171717;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.intro {
+  min-width: 0;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font: 500 calc(15px * var(--text-scale, 1)) / 1 var(--f-display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.eyebrow span {
+  color: #e0a21a;
+  margin-right: 6px;
+}
+
+.title {
+  margin: 0;
+  font: 700 clamp(36px, 6cqi, 56px) / 1 var(--f-pixel);
+  letter-spacing: 0;
+}
+
+.title em {
+  font-style: normal;
+  color: #e0a21a;
+}
+
+.lead {
+  margin: 10px 0 0;
+  font: 500 calc(18px * var(--text-scale, 1)) / 1.3 var(--f-display);
+}
+
+.folder {
+  flex: none;
+  image-rendering: pixelated;
 }
 
 .grid {
-  margin: 0;
-  padding: 12px;
-  list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(116px, 1fr));
-  gap: 8px;
-  align-content: start;
-  overflow: auto;
-  background: var(--c-white);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.item {
+/* Paleta pastel por tarjeta (referencia image/colores.png): azul, naranja, verde, lila, amarillo, celeste. */
+.grid > li:nth-child(6n + 1) {
+  --tone: #a9b9ee;
+}
+.grid > li:nth-child(6n + 2) {
+  --tone: #f6ae91;
+}
+.grid > li:nth-child(6n + 3) {
+  --tone: #9ed5c0;
+}
+.grid > li:nth-child(6n + 4) {
+  --tone: #cdb5ee;
+}
+.grid > li:nth-child(6n + 5) {
+  --tone: #fbe09a;
+}
+.grid > li:nth-child(6n) {
+  --tone: #a5d9e8;
+}
+
+/* El séptimo servicio ocupa la fila completa para cerrar la cuadrícula. */
+.grid > li:last-child:nth-child(3n + 1) {
+  grid-column: 1 / -1;
+}
+
+.card {
+  position: relative;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  padding: 10px 4px;
-  border: 1px dotted transparent;
-  border-radius: 6px;
-  background: transparent;
-  text-align: center;
+  gap: 14px;
+  margin: 0 3px 3px 0;
+  padding: 18px 16px 16px;
+  border: 2px solid #171717;
+  background: var(--tone, #f4f2ec);
+  box-shadow: 3px 3px 0 #171717;
+  transition:
+    transform 100ms ease,
+    box-shadow 100ms ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #171717;
 }
 
 .glyph {
@@ -35,44 +117,100 @@
   place-items: center;
   width: 56px;
   height: 56px;
-  border-radius: 0;
-  background: var(--c-window);
-  box-shadow: var(--bevel-raised);
+  border: 2px solid #171717;
+  background: #fbf3e0;
 }
 
-.label {
-  font: 400 var(--fs-ui-sm) / 1.25 var(--f-system);
+.name {
+  margin: 0;
+  font: 700 calc(19px * var(--text-scale, 1)) / 1.15 var(--f-display);
+  text-transform: uppercase;
   letter-spacing: 0.02em;
-  overflow-wrap: anywhere;
 }
 
-.item:hover .glyph {
-  background: var(--c-secondary);
+.sub {
+  margin: 0;
+  flex: 1;
+  font: 500 calc(13px * var(--text-scale, 1)) / 1.3 var(--f-display);
 }
 
-.active {
-  border-color: var(--c-text);
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 4px;
 }
 
-.active .label {
-  background: var(--c-secondary);
+.num {
+  font: 700 calc(13px * var(--text-scale, 1)) / 1 var(--f-pixel);
+  letter-spacing: 0.08em;
+  color: #171717;
 }
 
-.detail {
-  padding: 16px;
-  overflow: auto;
-  background: var(--c-window);
-  border-left: 1px solid var(--c-border);
+/* Botón pixel: mismo relieve y sombra dura que los controles de Mis proyectos. */
+.go {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 40px;
+  margin: 0 3px 3px 0;
+  border: 2px solid #171717;
+  border-radius: 0;
+  background: #fbf3e0;
+  color: #171717;
+  box-shadow: 3px 3px 0 #171717;
+  cursor: pointer;
+  transition:
+    transform 100ms ease,
+    box-shadow 100ms ease,
+    background 100ms ease;
 }
 
-@media (max-width: 700px) {
-  .layout {
-    grid-template-columns: 1fr;
-    grid-template-rows: minmax(0, 1fr) auto;
+.go:hover {
+  background: #fff;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #171717;
+}
+
+.go:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 #171717;
+}
+
+.go:focus-visible {
+  outline: 2px dashed #171717;
+  outline-offset: 3px;
+}
+
+/* Ventana estrecha: 3 → 2 → 1 columnas. */
+@container (max-width: 820px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .detail {
-    border-left: 0;
-    border-top: 1px solid var(--c-border);
-    max-height: 40%;
+  .grid > li:last-child:nth-child(3n + 1) {
+    grid-column: auto;
+  }
+  .grid > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@container (max-width: 520px) {
+  .app {
+    padding: 20px 16px 24px;
+  }
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .folder {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .go {
+    transition: none;
   }
 }

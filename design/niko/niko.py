@@ -1,4 +1,4 @@
-"""Niko.exe — robot de N. Digital Studio, dibujado con piezas en una cuadrícula de 64×64.
+"""Niko.exe — robot de Digital Studio, dibujado con piezas en una cuadrícula de 64×64.
 
 Cada fotograma sale de las mismas piezas (cabeza, auriculares, cuerpo, brazos, piernas, cara),
 solo cambia su posición o la expresión: por eso siempre es el mismo robot.

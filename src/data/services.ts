@@ -12,6 +12,10 @@ import {
 export interface Service {
   id: string
   name: string
+  /** Título de la tarjeta en Servicios.exe (en dos líneas). */
+  title: [string, string]
+  /** Descripción corta de la tarjeta. */
+  summary: string
   description: string
   icon: IconComponent
 }
@@ -21,36 +25,40 @@ export const SERVICES: Service[] = [
   {
     id: 'web',
     name: 'DESARROLLO WEB',
+    title: ['Digital', 'Experiences'],
+    summary: 'Páginas web, landing pages y experiencias de alto impacto.',
     description: 'Diseño y desarrollo de páginas web profesionales para negocios.',
     icon: WebIcon,
   },
   {
     id: 'ecommerce',
     name: 'E-COMMERCE',
+    title: ['E-commerce', 'Solutions'],
+    summary: 'Tiendas online y comercio digital para vender más.',
     description: 'Creo tiendas online y soluciones para vender por Internet.',
     icon: CartIcon,
   },
   {
     id: 'software',
     name: 'SOFTWARE Y SISTEMAS',
+    title: ['Digital', 'Systems'],
+    summary: 'Aplicaciones y sistemas a medida para cada negocio.',
     description: 'Desarrollo aplicaciones y sistemas adaptados a las necesidades de cada negocio.',
     icon: ServicesIcon,
   },
   {
     id: 'automation',
     name: 'AUTOMATIZACIÓN',
+    title: ['Smart', 'Automation'],
+    summary: 'Procesos automatizados e integraciones entre herramientas.',
     description: 'Automatizo procesos, integro herramientas y optimizo tareas empresariales.',
     icon: AutomationIcon,
   },
   {
-    id: 'ai',
-    name: 'INTELIGENCIA ARTIFICIAL',
-    description: 'Integro inteligencia artificial para crear soluciones más inteligentes.',
-    icon: AIIcon,
-  },
-  {
     id: 'marketing',
     name: 'MARKETING DIGITAL',
+    title: ['Digital', 'Marketing'],
+    summary: 'Publicidad digital, generación de leads y más conversiones.',
     description:
       'Estrategias de marketing, publicidad digital, generación de leads y optimización de conversiones.',
     icon: MegaphoneIcon,
@@ -58,6 +66,8 @@ export const SERVICES: Service[] = [
   {
     id: 'seo',
     name: 'SEO Y GEO',
+    title: ['SEO', '& GEO'],
+    summary: 'Posiciónate en Google y en las búsquedas con IA.',
     description:
       'Posicionamiento orgánico, SEO técnico y optimización para motores de búsqueda y experiencias de búsqueda con IA.',
     icon: SearchIcon,

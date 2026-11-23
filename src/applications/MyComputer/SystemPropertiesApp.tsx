@@ -1,8 +1,8 @@
-import { ComputerIcon } from '../../components/PixelIcon/pixelIcons'
-import { STACK } from '../../data/stack'
-import Statusbar from '../shared/Statusbar'
-import shared from '../shared/shared.module.css'
-import styles from './SystemPropertiesApp.module.css'
+import { ComputerIcon } from "../../components/PixelIcon/pixelIcons";
+import { STACK } from "../../data/stack";
+import Statusbar from "../shared/Statusbar";
+import shared from "../shared/shared.module.css";
+import styles from "./SystemPropertiesApp.module.css";
 
 /** Propiedades del sistema: tecnologías con las que está construido este sitio. */
 export default function SystemPropertiesApp() {
@@ -13,7 +13,9 @@ export default function SystemPropertiesApp() {
           <ComputerIcon size={48} />
           <div>
             <h2 className={shared.heading}>Sistema</h2>
-            <p className={shared.text}>Neal OS 1.0.0 — tecnologías y herramientas en uso.</p>
+            <p className={shared.text}>
+              Neal OS 1.0.1 — tecnologías y herramientas en uso.
+            </p>
           </div>
         </div>
         <dl className={styles.list}>
@@ -27,8 +29,8 @@ export default function SystemPropertiesApp() {
       </div>
       <Statusbar>
         <span>{STACK.length} tecnologías</span>
-        <span>Versión 1.0.0</span>
+        <span>Versión 1.0.1</span>
       </Statusbar>
     </div>
-  )
+  );
 }
