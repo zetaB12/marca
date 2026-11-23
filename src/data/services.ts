@@ -1,5 +1,4 @@
 import {
-  AIIcon,
   AutomationIcon,
   CartIcon,
   MegaphoneIcon,
