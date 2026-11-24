@@ -80,7 +80,7 @@ export const APPS: Record<AppId, AppDef> = {
     windowTitle: 'Nosotros.exe',
     file: 'Nosotros.exe',
     icon: AboutIcon,
-    size: { w: 640, h: 560 },
+    size: { w: 900, h: 640 },
   },
   mycomputer: {
     id: 'mycomputer',

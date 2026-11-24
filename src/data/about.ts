@@ -16,8 +16,8 @@ export const ABOUT_PROFILE: {
   photo: string | null
   sections: AboutSection[]
 } = {
-  name: '',
-  role: '',
+  name: 'Deyvi Neal',
+  role: 'Founder / Digital Creator',
   photo: '/image/profile-98.webp',
   sections: [
     { id: 'who', title: 'Quién soy', body: 'Soy Deyvi Neal. Creo, diseño y desarrollo soluciones digitales que conectan tecnología con ideas.' },
