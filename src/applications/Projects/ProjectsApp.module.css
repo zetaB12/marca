@@ -30,7 +30,7 @@
 }
 
 .eyebrow span {
-  color: #e0a21a;
+  color: var(--c-accent);
   margin-right: 6px;
 }
 
@@ -42,7 +42,7 @@
 
 .title em {
   font-style: normal;
-  color: #e0a21a;
+  color: var(--c-accent);
 }
 
 .lead {
@@ -79,8 +79,8 @@
 }
 
 .filter[aria-pressed='true'] {
-  background: #f4ca58;
-  box-shadow: inset 2px 2px 0 #fff0b3, inset -2px -2px 0 #c28d28;
+  background: var(--c-accent);
+  box-shadow: inset 2px 2px 0 var(--c-accent-light), inset -2px -2px 0 var(--c-accent-dark);
 }
 
 .filter:focus-visible {
@@ -151,7 +151,7 @@
   left: 8px;
   padding: 3px 6px;
   border: 2px solid #171717;
-  background: #f4ca58;
+  background: var(--c-accent);
   font: 700 11px / 1 var(--f-display);
   text-transform: uppercase;
   letter-spacing: 0.08em;

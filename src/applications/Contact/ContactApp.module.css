@@ -25,7 +25,7 @@
 }
 
 .eyebrow span {
-  color: #e0a21a;
+  color: var(--c-accent);
   margin-right: 6px;
 }
 
@@ -38,7 +38,7 @@
 
 .title em {
   font-style: normal;
-  color: #e0a21a;
+  color: var(--c-accent);
 }
 
 .lead {
@@ -86,10 +86,10 @@
   margin: 0 3px 3px 0;
   border: 2px solid #171717;
   border-radius: 0;
-  background: #f4ca58;
+  background: var(--c-accent);
   box-shadow:
-    inset 2px 2px 0 #fff0b3,
-    inset -2px -2px 0 #c28d28,
+    inset 2px 2px 0 var(--c-accent-light),
+    inset -2px -2px 0 var(--c-accent-dark),
     3px 3px 0 #171717;
   font: 700 calc(18px * var(--text-scale, 1)) / 1 var(--f-display);
   color: #171717;
@@ -102,11 +102,11 @@
 }
 
 .btn:hover {
-  background: #ffda70;
+  background: var(--c-accent-hover);
   transform: translate(-1px, -1px);
   box-shadow:
-    inset 2px 2px 0 #fff5c8,
-    inset -2px -2px 0 #c28d28,
+    inset 2px 2px 0 var(--c-accent-light),
+    inset -2px -2px 0 var(--c-accent-dark),
     4px 4px 0 #171717;
 }
 

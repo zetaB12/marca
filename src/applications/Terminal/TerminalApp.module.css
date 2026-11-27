@@ -23,7 +23,7 @@
   margin-bottom: 10px;
   white-space: pre;
   overflow-wrap: normal;
-  color: #f2b01e;
+  color: var(--c-accent);
   font-size: calc(14px * var(--text-scale, 1));
   line-height: 1.15;
 }
@@ -33,7 +33,7 @@
 }
 
 .head {
-  color: #f2b01e;
+  color: var(--c-accent);
 }
 
 .err {
@@ -60,7 +60,7 @@
   color: inherit;
   font: inherit;
   letter-spacing: inherit;
-  caret-color: #f2b01e;
+  caret-color: var(--c-accent);
 }
 
 .term::selection,

@@ -127,18 +127,18 @@
 
 /* Botón predeterminado: amarillo, igual que el principal de la bienvenida. */
 .btn[data-autofocus] {
-  background: #f4ca58;
+  background: var(--c-accent);
   font-weight: 700;
-  box-shadow: inset 2px 2px 0 #fff0b3, inset -2px -2px 0 #c28d28, 3px 3px 0 var(--pixel-ink);
+  box-shadow: inset 2px 2px 0 var(--c-accent-light), inset -2px -2px 0 var(--c-accent-dark), 3px 3px 0 var(--pixel-ink);
 }
 
 .btn[data-autofocus]:hover:not(:disabled) {
-  background: #ffda70;
-  box-shadow: inset 2px 2px 0 #fff5c8, inset -2px -2px 0 #c28d28, 4px 4px 0 var(--pixel-ink);
+  background: var(--c-accent-hover);
+  box-shadow: inset 2px 2px 0 var(--c-accent-light), inset -2px -2px 0 var(--c-accent-dark), 4px 4px 0 var(--pixel-ink);
 }
 
 .btn[data-autofocus]:active:not(:disabled) {
-  box-shadow: inset 2px 2px 0 #c28d28, inset -2px -2px 0 #fff0b3, 0 0 0 var(--pixel-ink);
+  box-shadow: inset 2px 2px 0 var(--c-accent-dark), inset -2px -2px 0 var(--c-accent-light), 0 0 0 var(--pixel-ink);
 }
 
 .btn:focus-visible {

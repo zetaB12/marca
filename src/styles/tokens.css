@@ -3,7 +3,11 @@
   --c-window: #e8e8e3;
   --c-text: #202124;
   --c-title: #1f3d73;
+  /* Único amarillo de la interfaz; los otros tres son solo para el relieve y el hover. */
   --c-accent: #f2b01e;
+  --c-accent-hover: #ffc23d;
+  --c-accent-light: #ffda85;
+  --c-accent-dark: #b88210;
   /* Paleta "noche": viene de la Terminal y el arranque; se usa en escritorio, barras de título y menús. */
   --c-night: #0b1020;
   --c-night-deep: #04060f;

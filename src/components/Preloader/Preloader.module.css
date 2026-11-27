@@ -41,7 +41,7 @@
 }
 
 .title span {
-  color: #f2b01e;
+  color: var(--c-accent);
 }
 
 .log {

@@ -1,0 +1,296 @@
+/* Escena de la derecha. Todo se mide en --u (1 píxel de la maqueta), así escala con la ventana sin descuadrarse.
+   El texto de las ventanitas es parte de la ilustración y no sigue --text-scale. */
+.scene {
+  container-type: inline-size;
+  width: 100%;
+}
+
+.canvas {
+  --u: calc(100cqi / 506);
+  position: relative;
+  height: calc(412 * var(--u));
+}
+
+.window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: calc(4 * var(--u));
+  border: calc(1.5 * var(--u)) solid #0a0f2c;
+  border-radius: 0;
+  background: #d9d9e6;
+  box-shadow:
+    inset calc(2 * var(--u)) calc(2 * var(--u)) 0 #ffffff,
+    inset calc(-2 * var(--u)) calc(-2 * var(--u)) 0 #8d8fb0,
+    calc(5 * var(--u)) calc(6 * var(--u)) 0 rgb(3 6 24 / 0.45);
+  text-align: left;
+  color: #14183a;
+  font-family: var(--f-display);
+  transform-origin: 0 0;
+}
+
+button.window {
+  cursor: pointer;
+}
+
+button.window:hover {
+  filter: brightness(1.07);
+}
+
+button.window:focus-visible {
+  outline: 2px dashed var(--c-white);
+  outline-offset: 4px;
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: calc(7 * var(--u));
+  flex: none;
+  height: calc(28 * var(--u));
+  padding: 0 calc(4 * var(--u)) 0 calc(8 * var(--u));
+  background: linear-gradient(90deg, #14237a, #2f56d6);
+  color: #fff;
+  font: 700 calc(12.5 * var(--u)) / 1 var(--f-display);
+}
+
+.titlebar > svg {
+  flex: none;
+  width: calc(17 * var(--u));
+  height: auto;
+}
+
+.title {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.controls {
+  display: flex;
+  gap: calc(2 * var(--u));
+}
+
+.controls i {
+  position: relative;
+  width: calc(16 * var(--u));
+  height: calc(16 * var(--u));
+  background: #d4d4e2;
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    inset -1px -1px 0 #50526e;
+}
+
+.controls i::before,
+.controls i::after {
+  content: "";
+  position: absolute;
+}
+
+.min::before {
+  left: 22%;
+  right: 30%;
+  bottom: 22%;
+  height: 14%;
+  background: #0a0f2c;
+}
+
+.max::before {
+  inset: 22%;
+  border: 1px solid #0a0f2c;
+  border-top-width: 2px;
+}
+
+.close::before,
+.close::after {
+  top: 44%;
+  left: 18%;
+  width: 64%;
+  height: 13%;
+  background: #0a0f2c;
+  transform: rotate(45deg);
+}
+
+.close::after {
+  transform: rotate(-45deg);
+}
+
+/* Proyecto_web.exe: sitio de ejemplo. */
+.project {
+  left: calc(25 * var(--u));
+  top: calc(5 * var(--u));
+  width: calc(383 * var(--u));
+  height: calc(276 * var(--u));
+  transform: skewY(3deg);
+}
+
+.site {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-top: calc(3 * var(--u));
+  overflow: hidden;
+}
+
+.siteNav {
+  display: flex;
+  align-items: center;
+  gap: calc(17 * var(--u));
+  flex: none;
+  height: calc(55 * var(--u));
+  padding: 0 calc(16 * var(--u)) 0 calc(28 * var(--u));
+  background: #f4e6dc;
+  color: #3b2a24;
+  font: 600 calc(9.5 * var(--u)) / 1 var(--f-display);
+}
+
+.siteBrand {
+  display: grid;
+  gap: calc(2 * var(--u));
+  margin-right: auto;
+  font: 400 calc(24 * var(--u)) / 1 Georgia, "Times New Roman", serif;
+}
+
+.siteBrand small {
+  font-size: calc(8 * var(--u));
+}
+
+.siteHero {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(16 * var(--u));
+  padding: calc(32 * var(--u)) calc(30 * var(--u));
+  background: linear-gradient(100deg, #bf927c 0%, #cba593 45%, #dab8a7 100%);
+}
+
+.siteTitle {
+  color: #fff8f2;
+  font: 400 calc(22 * var(--u)) / 1.15 Georgia, "Times New Roman", serif;
+}
+
+.siteButton {
+  padding: calc(7 * var(--u)) calc(13 * var(--u));
+  border-radius: calc(20 * var(--u));
+  background: #f8e9df;
+  color: #3b2a24;
+  font: 600 calc(10 * var(--u)) / 1 var(--f-display);
+}
+
+.photo {
+  position: absolute;
+  left: calc(216 * var(--u));
+  top: calc(96 * var(--u));
+  width: calc(188 * var(--u));
+  height: calc(158 * var(--u));
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%);
+  mask-image: linear-gradient(90deg, transparent, #000 18%);
+}
+
+/* Servicios.exe */
+.servicesWin {
+  left: calc(10 * var(--u));
+  top: calc(262 * var(--u));
+  width: calc(233 * var(--u));
+  height: calc(143 * var(--u));
+  transform: skewY(-2.6deg);
+}
+
+.panel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(6 * var(--u));
+  margin-top: calc(3 * var(--u));
+  padding: 0 calc(18 * var(--u));
+  background: #ececf5;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: calc(10 * var(--u));
+  white-space: nowrap;
+  font: 600 calc(11.5 * var(--u)) / 1.2 var(--f-display);
+}
+
+.row .folder {
+  flex: none;
+  width: calc(21 * var(--u));
+}
+
+/* Sistema_gestion.exe */
+.system {
+  left: calc(268 * var(--u));
+  top: calc(195 * var(--u));
+  width: calc(232 * var(--u));
+  height: calc(180 * var(--u));
+  transform: skewY(-2.7deg);
+}
+
+.dashboard {
+  display: flex;
+  flex: 1;
+  gap: calc(8 * var(--u));
+  margin-top: calc(3 * var(--u));
+  padding-right: calc(7 * var(--u));
+  background: #d3d4e8;
+}
+
+.sidebar {
+  display: flex;
+  justify-content: center;
+  width: calc(50 * var(--u));
+  padding-top: calc(12 * var(--u));
+  background: #1b2a72;
+  color: #e2e6ff;
+}
+
+.sidebar svg {
+  width: calc(21 * var(--u));
+  height: calc(118 * var(--u));
+}
+
+.card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: calc(4 * var(--u));
+  margin: calc(8 * var(--u)) 0;
+  padding: calc(10 * var(--u)) calc(11 * var(--u));
+  background: #f7f7fc;
+}
+
+.cardLabel {
+  font: 700 calc(10.5 * var(--u)) / 1.2 var(--f-display);
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: calc(4 * var(--u));
+  color: #17855a;
+  font: 700 calc(25 * var(--u)) / 1 var(--f-display);
+}
+
+.metric svg {
+  width: calc(22 * var(--u));
+  margin-top: calc(-8 * var(--u));
+}
+
+.bars {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  gap: calc(5 * var(--u));
+  border-bottom: 1px solid #b6b8d4;
+}
+
+.bars i {
+  flex: 1;
+  background: linear-gradient(180deg, #4a46c8, #8f86e8);
+}

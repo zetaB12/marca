@@ -56,7 +56,7 @@ export const APPS: Record<AppId, AppDef> = {
     file: 'Bienvenida',
     icon: HomeIcon,
     windowIcon: NMark,
-    size: { w: 920, h: 680 },
+    size: { w: 1040, h: 680 },
   },
   projects: {
     id: 'projects',

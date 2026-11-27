@@ -39,8 +39,8 @@
 
 .selected,
 .selected:hover {
-  background: #f4ca58;
-  box-shadow: inset 2px 2px 0 #fff0b3, inset -2px 0 0 #c28d28;
+  background: var(--c-accent);
+  box-shadow: inset 2px 2px 0 var(--c-accent-light), inset -2px 0 0 var(--c-accent-dark);
   margin-bottom: -2px;
   padding-bottom: 2px;
 }
@@ -158,7 +158,7 @@
 }
 
 .eyebrow span {
-  color: #e0a21a;
+  color: var(--c-accent);
   margin-right: 6px;
 }
 
@@ -316,18 +316,18 @@
   gap: 10px;
   border: 2px solid #171717;
   border-radius: 0;
-  background: #f4ca58;
+  background: var(--c-accent);
   color: #171717;
-  box-shadow: inset 2px 2px 0 #fff0b3, inset -2px -2px 0 #c28d28, 3px 3px 0 #171717;
+  box-shadow: inset 2px 2px 0 var(--c-accent-light), inset -2px -2px 0 var(--c-accent-dark), 3px 3px 0 #171717;
   font: 700 calc(16px * var(--text-scale, 1)) / 1.2 var(--f-display);
   cursor: pointer;
   transition: transform 100ms ease, box-shadow 100ms ease, background 100ms ease;
 }
 
 .ctaButton:hover {
-  background: #ffda70;
+  background: var(--c-accent-hover);
   transform: translate(-1px, -1px);
-  box-shadow: inset 2px 2px 0 #fff5c8, inset -2px -2px 0 #c28d28, 4px 4px 0 #171717;
+  box-shadow: inset 2px 2px 0 var(--c-accent-light), inset -2px -2px 0 var(--c-accent-dark), 4px 4px 0 #171717;
 }
 
 .ctaButton:active {

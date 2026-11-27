@@ -31,7 +31,7 @@
 }
 
 .eyebrow span {
-  color: #e0a21a;
+  color: var(--c-accent);
   margin-right: 6px;
 }
 
@@ -43,7 +43,7 @@
 
 .title em {
   font-style: normal;
-  color: #e0a21a;
+  color: var(--c-accent);
 }
 
 .lead {
