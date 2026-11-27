@@ -3,11 +3,9 @@ import { gsap } from "gsap";
 import {
   ArrowUpRightIcon,
   ArrowIcon,
-  ComputerIcon,
 } from "../../components/PixelIcon/pixelIcons";
 import { WHATSAPP_ENABLED, whatsappUrl } from "../../data/site";
 import { useDesktopStore } from "../../store/desktopStore";
-import { useWallpaperPeriod } from "../../hooks/useWallpaperPeriod";
 import WelcomeScene from "./WelcomeScene";
 import styles from "./WelcomeApp.module.css";
 
@@ -23,7 +21,7 @@ const ICON_PROPS = {
   "aria-hidden": true,
 };
 
-function WebIcon() {
+function CodeIcon() {
   return (
     <svg {...ICON_PROPS}>
       <rect x="3" y="5" width="26" height="22" />
@@ -43,74 +41,41 @@ function LayersIcon() {
   );
 }
 
-function RocketLineIcon() {
+/** Rayo: de línea como los demás; al pasar el puntero se rellena de amarillo. */
+function BoltIcon() {
   return (
-    <svg {...ICON_PROPS} shapeRendering="geometricPrecision">
-      <path d="M12 20c1-8 7-15 17-17-2 10-9 16-17 17z" />
-      <circle cx="21" cy="11" r="2.5" />
-      <path d="M14 13H8l-4 7h8M19 18v6l-7 4v-8M8 24l-4 4" />
+    <svg {...ICON_PROPS}>
+      <path className={styles.bolt} d="M17 2L6 18h8l-3 12 15-18h-9l5-10z" />
     </svg>
   );
 }
 
-function ChartIcon() {
+function FolderLineIcon() {
   return (
-    <svg {...ICON_PROPS}>
-      <rect x="4" y="19" width="6" height="9" />
-      <rect x="13" y="12" width="6" height="16" />
-      <rect x="22" y="4" width="6" height="24" />
+    <svg {...ICON_PROPS} width={24} height={24} strokeWidth={2.6}>
+      <path d="M4 7h9l3 4h12v15H4z" />
     </svg>
   );
 }
 
 function ChatLineIcon() {
   return (
-    <svg {...ICON_PROPS} width={24} height={24}>
+    <svg {...ICON_PROPS} width={24} height={24} strokeWidth={2.6}>
       <path d="M4 6h24v17H14l-6 6v-6H4z" />
       <path d="M10 14h2M15 14h2M20 14h2" />
     </svg>
   );
 }
 
-/** Nube pixel del fondo. */
-function Cloud({ className }: { className: string }) {
-  return (
-    <svg className={className} viewBox="0 0 34 12" shapeRendering="crispEdges" aria-hidden>
-      <path className={styles.cloudShade} d="M0 10h3V8h3V6h4V3h3V1h7v2h3v2h5v2h4v3h2v2H0z" />
-      <path className={styles.cloudLight} d="M3 9h3V7h4V4h3V2h7v2h3v2h5v2h3v1z" />
-    </svg>
-  );
-}
-
-/** Montañas pixel de la esquina inferior derecha. */
-function Mountains() {
-  return (
-    <svg
-      className={styles.mountains}
-      viewBox="0 0 160 100"
-      preserveAspectRatio="xMaxYMax meet"
-      shapeRendering="crispEdges"
-      aria-hidden
-    >
-      <path className={styles.peak} d="M0 100v-4h10v-4h8v-4h8v-6h6v-6h6v-6h6v-6h4v6h6v6h6v4h6v-6h6v-8h6v-8h6v-8h6v-8h6v-6h4v-6h4v-6h4v-6h4v6h4v6h6v8h4v6h6v6h4v70z" />
-      <path className={styles.snow} d="M100 30h4v-6h4v-6h4v6h4v6h-4v-2h-4v6h-4v-4h-4v4h-4zM38 70h6v-6h4v6h6v2h-6v-2h-4v4h-6z" />
-      <path className={styles.ridge} d="M20 100v-4h10v-4h10v-6h8v-4h8v6h8v4h10v-6h8v-8h8v-8h6v-6h6v8h6v8h8v6h8v-6h8v-4h8v8h8v24z" />
-      <path className={styles.base} d="M0 100v-2h30v-4h14v-4h10v4h16v4h18v-6h12v-4h10v6h14v4h16v-6h12v-4h8v16z" />
-    </svg>
-  );
-}
-
 const SERVICES = [
-  { icon: WebIcon, lines: ["Páginas Web", "& Landing Pages"] },
-  { icon: LayersIcon, lines: ["Plataformas", "y Sistemas"] },
-  { icon: RocketLineIcon, lines: ["Automatizaciones", "y CRM"] },
-  { icon: ChartIcon, lines: ["Estrategia y", "Optimización"] },
+  { icon: CodeIcon, lines: ["Desarrollo Web", "y Landing Pages"] },
+  { icon: LayersIcon, lines: ["Sistemas y", "Plataformas"] },
+  { icon: BoltIcon, lines: ["Automatizaciones", "y CRM"] },
 ];
 
 export default function WelcomeApp() {
   const ref = useRef<HTMLDivElement>(null);
   const launch = useDesktopStore((s) => s.launch);
-  const period = useWallpaperPeriod();
 
   useLayoutEffect(() => {
     const el = ref.current;
@@ -132,15 +97,13 @@ export default function WelcomeApp() {
   }, []);
 
   return (
-    <div ref={ref} className={styles.app} data-period={period}>
+    <div ref={ref} className={styles.app}>
       <div className={styles.main}>
-        <Mountains />
-        <Cloud className={`${styles.cloud} ${styles.cloudTop}`} />
-        <Cloud className={`${styles.cloud} ${styles.cloudSide}`} />
-
         <section className={styles.copy}>
           <div className={styles.brand}>
-            <h1 className={`${styles.logo} ${styles.reveal}`}>NEAL.PE</h1>
+            <h1 className={`${styles.logo} ${styles.reveal}`}>
+              NEAL<span className={styles.dot}>.</span>PE
+            </h1>
             <p className={`${styles.tagline} ${styles.reveal}`}>
               Digital Experience Studio
             </p>
@@ -148,21 +111,21 @@ export default function WelcomeApp() {
 
           <span className={`${styles.rule} ${styles.reveal}`} aria-hidden />
 
-          <p className={`${styles.eyebrow} ${styles.reveal}`}>
-            Design · Development · Technology
-          </p>
-
           <h2 className={`${styles.headline} ${styles.reveal}`}>
-            <span>Diseñamos y desarrollamos </span>
+            <span>Transformamos ideas en </span>
             <span>experiencias digitales </span>
             <span>
-              para hacer <em>crecer tu negocio.</em>
+              que hacen <em>crecer </em>
+            </span>
+            <span>
+              <em>negocios.</em>
+              <i className={styles.caret} aria-hidden />
             </span>
           </h2>
 
           <p className={`${styles.description} ${styles.reveal}`}>
-            Creamos páginas web, plataformas y soluciones tecnológicas para
-            empresas y marcas que quieren destacar en el mundo digital.
+            Diseño, desarrollo y tecnología para empresas que quieren destacar
+            en el mundo digital.
           </p>
 
           <div className={`${styles.actions} ${styles.reveal}`}>
@@ -171,7 +134,7 @@ export default function WelcomeApp() {
               className={`${styles.cta} ${styles.primary}`}
               onClick={() => launch("projects")}
             >
-              <ComputerIcon size={26} />
+              <FolderLineIcon />
               Ver proyectos
               <ArrowIcon size={18} className={styles.arrow} />
             </button>
@@ -203,7 +166,7 @@ export default function WelcomeApp() {
           </div>
         </section>
 
-        <div className={`${styles.visual} ${styles.reveal}`}>
+        <div className={styles.visual}>
           <WelcomeScene />
         </div>
 

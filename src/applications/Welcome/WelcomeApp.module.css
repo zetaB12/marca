@@ -1,4 +1,4 @@
-/* Bienvenida: ventana oscura (azul noche), tipografía y jerarquía de la maqueta image/Bienvenida.exe.
+/* Bienvenida: ventana oscura (azul noche), tipografía y jerarquía de la referencia image/image.png.
    El diseño responde al ancho de la ventana (que se puede redimensionar), no al de la pantalla. */
 .app {
   container-type: inline-size;
@@ -14,10 +14,15 @@
   isolation: isolate;
   flex: 1;
   display: grid;
-  grid-template-columns: minmax(0, 49fr) minmax(0, 51fr);
+  grid-template-columns: minmax(0, 52fr) minmax(0, 48fr);
   grid-template-rows: 1fr auto;
   overflow: hidden;
-  background: radial-gradient(120% 100% at 85% 0%, #1b2b72 0%, #101c52 55%, #0c1540 100%);
+  background: radial-gradient(
+    120% 100% at 85% 0%,
+    #1b2b72 0%,
+    #101c52 55%,
+    #0c1540 100%
+  );
 }
 
 .copy {
@@ -32,34 +37,8 @@
 .visual {
   align-self: center;
   width: 100%;
-  max-width: 780px;
-  padding: 8px 12px 0 8px;
-}
-
-.cloud {
-  position: absolute;
-  z-index: -1;
-}
-
-.cloudTop {
-  top: 2.5%;
-  right: 5%;
-  width: 13cqi;
-}
-
-.cloudSide {
-  top: 17%;
-  right: -3%;
-  width: 10cqi;
-}
-
-.mountains {
-  position: absolute;
-  z-index: -1;
-  right: 0;
-  bottom: 0;
-  width: 34cqi;
-  height: auto;
+  max-width: 760px;
+  padding: 16px clamp(12px, 2cqi, 28px) 0 4px;
 }
 
 .brand {
@@ -70,14 +49,30 @@
 /* Marca pixel: Pixelify Sans en negrita. */
 .logo {
   margin: 0;
-  font: 700 clamp(calc(52px * var(--text-scale, 1)), 9.4cqi, calc(124px * var(--text-scale, 1))) / 0.95 var(--f-pixel);
+  font: 700
+    clamp(
+      calc(52px * var(--text-scale, 1)),
+      10cqi,
+      calc(124px * var(--text-scale, 1))
+    ) /
+    0.95 var(--f-pixel);
   color: var(--c-white);
-  text-shadow: 3px 3px 0 #1f3d73;
+  text-shadow: 3px 3px 0 #070b26;
+}
+
+.dot {
+  color: var(--c-accent);
 }
 
 .tagline {
   margin: 0;
-  font: 500 clamp(calc(13px * var(--text-scale, 1)), 1.65cqi, calc(21px * var(--text-scale, 1))) / 1.2 var(--f-display);
+  font: 500
+    clamp(
+      calc(13px * var(--text-scale, 1)),
+      1.65cqi,
+      calc(21px * var(--text-scale, 1))
+    ) /
+    1.2 var(--f-display);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #a9bce8;
@@ -91,21 +86,18 @@
   background: var(--c-accent);
 }
 
-.eyebrow {
-  margin: 0;
-  font: 500 clamp(calc(11px * var(--text-scale, 1)), 1.28cqi, calc(16px * var(--text-scale, 1))) / 1.3 var(--f-display);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #8ea3d4;
-}
-
-/* Titular con barra dorada a la izquierda; "tu negocio." en amarillo. */
+/* Titular pixel; "crecer negocios." en amarillo, con cursor de escritura. */
 .headline {
   margin: 4px 0 0;
-  padding-left: 14px;
-  border-left: 5px solid var(--c-accent);
-  font: 700 clamp(calc(20px * var(--text-scale, 1)), 2.7cqi, calc(36px * var(--text-scale, 1))) / 1.2 var(--f-display);
+  font: 700
+    clamp(
+      calc(23px * var(--text-scale, 1)),
+      3.25cqi,
+      calc(44px * var(--text-scale, 1))
+    ) /
+    1.1 var(--f-pixel);
   color: var(--c-white);
+  text-shadow: 2px 2px 0 #070b26;
 }
 
 .headline span {
@@ -117,11 +109,43 @@
   color: var(--c-accent);
 }
 
+.caret {
+  display: inline-block;
+  width: 0.12em;
+  height: 0.85em;
+  margin-left: 0.22em;
+  vertical-align: -0.08em;
+  background: var(--c-white);
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}
+
+:global(:root[data-motion="off"]) .caret {
+  animation: none;
+}
+
 .description {
   margin: 0;
   max-width: 32em;
-  font: 500 clamp(calc(13px * var(--text-scale, 1)), 1.55cqi, calc(19px * var(--text-scale, 1))) / 1.5 var(--f-display);
-  color: #a9b8e0;
+  font: 500
+    clamp(
+      calc(13px * var(--text-scale, 1)),
+      1.55cqi,
+      calc(19px * var(--text-scale, 1))
+    ) /
+    1.5 var(--f-display);
+  color: #c3cdf2;
 }
 
 .actions {
@@ -131,7 +155,7 @@
   margin-top: 4px;
 }
 
-/* Botones pixel: el principal amarillo; el secundario azul. Misma estructura (borde, bisel, sombra dura). */
+/* Botones pixel: el principal amarillo; el secundario lavanda claro. Misma estructura (borde, bisel, sombra dura). */
 .cta {
   display: inline-flex;
   align-items: center;
@@ -142,28 +166,33 @@
   margin: 0 3px 3px 0;
   border: 2px solid #04060f;
   border-radius: 0;
-  background: #3a52a8;
-  color: var(--c-white);
-  box-shadow: inset 2px 2px 0 #7f98e6, inset -2px -2px 0 #22337a, 3px 3px 0 #04060f;
+  background: #c8d3fb;
+  color: #0d1546;
+  box-shadow:
+    inset 2px 2px 0 #eef1ff,
+    inset -2px -2px 0 #8492d4,
+    3px 3px 0 #04060f;
   font: 700 calc(17px * var(--text-scale, 1)) / 1 var(--f-display);
   text-decoration: none;
   cursor: pointer;
   transition: var(--pixel-motion);
 }
 
-.arrow {
-  filter: invert(1);
-}
-
 .cta:hover {
-  background: #4660c0;
+  background: #dae1ff;
   transform: translate(-1px, -1px);
-  box-shadow: inset 2px 2px 0 #96abee, inset -2px -2px 0 #22337a, 4px 4px 0 #04060f;
+  box-shadow:
+    inset 2px 2px 0 #ffffff,
+    inset -2px -2px 0 #8492d4,
+    4px 4px 0 #04060f;
 }
 
 .cta:active {
   transform: translate(3px, 3px);
-  box-shadow: inset 2px 2px 0 #22337a, inset -2px -2px 0 #7f98e6, 0 0 0 #04060f;
+  box-shadow:
+    inset 2px 2px 0 #8492d4,
+    inset -2px -2px 0 #eef1ff,
+    0 0 0 #04060f;
 }
 
 .cta:focus-visible {
@@ -186,10 +215,6 @@
     transform 100ms ease,
     box-shadow 100ms ease,
     background 100ms ease;
-}
-
-.primary .arrow {
-  filter: none;
 }
 
 .primary:hover {
@@ -221,16 +246,15 @@
   }
 }
 
-/* Cuatro accesos a Servicios.exe bajo una línea divisoria, separados por rayas verticales. */
+/* Tres accesos a Servicios.exe bajo una línea divisoria, separados por rayas verticales. */
 .services {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  width: 70%;
-  margin: 0 0 12px clamp(24px, 4.4cqi, 56px);
-  padding: 10px 0 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 clamp(24px, 4.4cqi, 56px) 12px;
+  padding: 12px 0 0;
   list-style: none;
-  border-top: 2px solid #3a55b8;
+  border-top: 2px solid #5874d8;
 }
 
 .services li {
@@ -238,7 +262,7 @@
 }
 
 .services li + li {
-  border-left: 2px solid #2d3f94;
+  border-left: 2px solid #3d52ac;
 }
 
 .service {
@@ -251,14 +275,31 @@
   border: 0;
   background: transparent;
   color: var(--c-white);
-  font: 600 clamp(calc(11px * var(--text-scale, 1)), 1.42cqi, calc(17px * var(--text-scale, 1))) / 1.3 var(--f-display);
+  font: 600
+    clamp(
+      calc(11px * var(--text-scale, 1)),
+      1.42cqi,
+      calc(17px * var(--text-scale, 1))
+    ) /
+    1.3 var(--f-display);
   text-align: center;
   cursor: pointer;
 }
 
 .service:hover {
-  background: rgb(127 152 230 / 0.16);
   color: var(--c-accent);
+}
+
+.service svg {
+  transition: translate 120ms steps(2);
+}
+
+.service:hover svg {
+  translate: 0 -3px;
+}
+
+.service:hover .bolt {
+  fill: currentColor;
 }
 
 .service:focus-visible {
@@ -295,31 +336,36 @@
   will-change: transform, opacity;
 }
 
-/* Ventana estrecha: se oculta la escena y todo queda en una columna. */
+/* Ventana estrecha: una sola columna, con el proyecto destacado debajo del texto. */
 @container (max-width: 760px) {
+  .main {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+  }
   .copy {
-    grid-column: 1 / -1;
     gap: 12px;
-    padding: 24px 20px 20px;
+    padding: 24px 20px 8px;
   }
-  .visual,
-  .cloud {
-    display: none;
+  .logo {
+    font-size: clamp(
+      calc(48px * var(--text-scale, 1)),
+      14cqi,
+      calc(84px * var(--text-scale, 1))
+    );
   }
-  .mountains {
-    opacity: 0.35;
+  .visual {
+    justify-self: center;
+    max-width: 520px;
+    padding: 8px 16px 18px;
   }
   .headline span {
     display: inline;
   }
   .services {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: auto;
-    margin: 0 20px 16px;
-    row-gap: 8px;
+    margin: 0 12px 16px;
   }
-  .services li:nth-child(odd) {
-    border-left: 0;
+  .service {
+    font-size: calc(11px * var(--text-scale, 1));
   }
 }
 
@@ -340,70 +386,5 @@
   .service svg {
     width: 30px;
     height: 30px;
-  }
-}
-
-/* Nubes y montañas siguen el período del fondo de escritorio; el azul de la ventana no cambia.
-   Los valores por defecto son los de la noche. */
-.app {
-  --cloud-shade: #8d86d8;
-  --cloud-light: #c9bff0;
-  --peak: #4a3d9c;
-  --snow: #a77fe0;
-  --ridge: #2a2470;
-  --base: #151a52;
-}
-
-.app[data-period="morning"] {
-  --cloud-shade: #d896b8;
-  --cloud-light: #f8d3d6;
-  --peak: #66529f;
-  --snow: #e8a8c4;
-  --ridge: #3a3076;
-  --base: #1a1f58;
-}
-
-.app[data-period="afternoon"] {
-  --cloud-shade: #7fb2e8;
-  --cloud-light: #d9eeff;
-  --peak: #34599f;
-  --snow: #8fc9f5;
-  --ridge: #213d7c;
-  --base: #132458;
-}
-
-.app[data-period="sunset"] {
-  --cloud-shade: #d9688f;
-  --cloud-light: #ffb08a;
-  --peak: #7a3784;
-  --snow: #ff9a76;
-  --ridge: #472268;
-  --base: #20184f;
-}
-
-.cloudShade { fill: var(--cloud-shade); }
-.cloudLight { fill: var(--cloud-light); }
-.peak { fill: var(--peak); }
-.snow { fill: var(--snow); }
-.ridge { fill: var(--ridge); }
-.base { fill: var(--base); }
-
-.cloudShade,
-.cloudLight,
-.peak,
-.snow,
-.ridge,
-.base {
-  transition: fill 2.5s ease-in-out;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cloudShade,
-  .cloudLight,
-  .peak,
-  .snow,
-  .ridge,
-  .base {
-    transition: none;
   }
 }

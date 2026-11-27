@@ -1,4 +1,4 @@
-/* Escena de la derecha. Todo se mide en --u (1 píxel de la maqueta), así escala con la ventana sin descuadrarse.
+/* Escena de la derecha. Todo se mide en --u (1 píxel de la referencia), así escala con la ventana sin descuadrarse.
    El texto de las ventanitas es parte de la ilustración y no sigue --text-scale. */
 .scene {
   container-type: inline-size;
@@ -6,41 +6,87 @@
 }
 
 .canvas {
-  --u: calc(100cqi / 506);
+  --u: calc(100cqi / 404);
   position: relative;
-  height: calc(412 * var(--u));
+  height: calc(304 * var(--u));
+}
+
+/* Toda la cascada es un solo botón que abre Mis proyectos. */
+.stack {
+  position: absolute;
+  left: 0;
+  top: calc(30 * var(--u));
+  width: calc(352 * var(--u));
+  height: calc(250 * var(--u));
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-family: var(--f-display);
+  cursor: pointer;
+  transform: skewY(-2.2deg);
+}
+
+.stack:focus-visible {
+  outline: none;
+}
+
+.stack:focus-visible .front {
+  outline: 2px dashed var(--c-white);
+  outline-offset: 5px;
 }
 
 .window {
   position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  margin: 0;
-  padding: calc(4 * var(--u));
-  border: calc(1.5 * var(--u)) solid #0a0f2c;
-  border-radius: 0;
-  background: #d9d9e6;
+  padding: calc(5 * var(--u));
+  border: calc(1.5 * var(--u)) solid #070b26;
+  background: #dfe3fb;
   box-shadow:
-    inset calc(2 * var(--u)) calc(2 * var(--u)) 0 #ffffff,
-    inset calc(-2 * var(--u)) calc(-2 * var(--u)) 0 #8d8fb0,
-    calc(5 * var(--u)) calc(6 * var(--u)) 0 rgb(3 6 24 / 0.45);
-  text-align: left;
+    inset calc(1.5 * var(--u)) calc(1.5 * var(--u)) 0 #ffffff,
+    inset calc(-2 * var(--u)) calc(-2 * var(--u)) 0 #8a91c4,
+    calc(5 * var(--u)) calc(7 * var(--u)) calc(14 * var(--u)) rgb(3 6 24 / 0.5);
   color: #14183a;
-  font-family: var(--f-display);
-  transform-origin: 0 0;
 }
 
-button.window {
-  cursor: pointer;
+/* Las de atrás se abren un poco más al pasar el puntero. Se usa "translate" para no pisar
+   el "transform" que anima GSAP. */
+.ghost {
+  translate: 0 0;
+  transition: translate 280ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-button.window:hover {
-  filter: brightness(1.07);
+.ghostNear {
+  left: calc(26 * var(--u));
+  right: calc(-26 * var(--u));
+  top: calc(17 * var(--u));
+  bottom: calc(-17 * var(--u));
 }
 
-button.window:focus-visible {
-  outline: 2px dashed var(--c-white);
-  outline-offset: 4px;
+.ghostFar {
+  left: calc(46 * var(--u));
+  right: calc(-46 * var(--u));
+  top: calc(26 * var(--u));
+  bottom: calc(-26 * var(--u));
+}
+
+.ghostBody {
+  flex: 1;
+  margin-top: calc(3 * var(--u));
+  background: #8e99d8;
+}
+
+.stack:hover .ghostNear,
+.stack:focus-visible .ghostNear {
+  translate: calc(4 * var(--u)) calc(3 * var(--u));
+}
+
+.stack:hover .ghostFar,
+.stack:focus-visible .ghostFar {
+  translate: calc(6 * var(--u)) calc(5 * var(--u));
 }
 
 .titlebar {
@@ -49,8 +95,8 @@ button.window:focus-visible {
   gap: calc(7 * var(--u));
   flex: none;
   height: calc(28 * var(--u));
-  padding: 0 calc(4 * var(--u)) 0 calc(8 * var(--u));
-  background: linear-gradient(90deg, #14237a, #2f56d6);
+  padding: 0 calc(4 * var(--u)) 0 calc(7 * var(--u));
+  background: linear-gradient(90deg, #0a1670, #1237c4);
   color: #fff;
   font: 700 calc(12.5 * var(--u)) / 1 var(--f-display);
 }
@@ -116,15 +162,7 @@ button.window:focus-visible {
   transform: rotate(-45deg);
 }
 
-/* Proyecto_web.exe: sitio de ejemplo. */
-.project {
-  left: calc(25 * var(--u));
-  top: calc(5 * var(--u));
-  width: calc(383 * var(--u));
-  height: calc(276 * var(--u));
-  transform: skewY(3deg);
-}
-
+/* Proyecto destacado: sitio de ejemplo. */
 .site {
   display: flex;
   flex: 1;
@@ -136,13 +174,13 @@ button.window:focus-visible {
 .siteNav {
   display: flex;
   align-items: center;
-  gap: calc(17 * var(--u));
+  gap: calc(14 * var(--u));
   flex: none;
-  height: calc(55 * var(--u));
-  padding: 0 calc(16 * var(--u)) 0 calc(28 * var(--u));
-  background: #f4e6dc;
+  height: calc(54 * var(--u));
+  padding: 0 calc(14 * var(--u)) 0 calc(24 * var(--u));
+  background: #f6e9e1;
   color: #3b2a24;
-  font: 600 calc(9.5 * var(--u)) / 1 var(--f-display);
+  font: 600 calc(9 * var(--u)) / 1 var(--f-display);
 }
 
 .siteBrand {
@@ -157,140 +195,71 @@ button.window:focus-visible {
 }
 
 .siteHero {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex: 1;
   flex-direction: column;
+  justify-content: center;
   align-items: flex-start;
-  gap: calc(16 * var(--u));
-  padding: calc(32 * var(--u)) calc(30 * var(--u));
-  background: linear-gradient(100deg, #bf927c 0%, #cba593 45%, #dab8a7 100%);
-}
-
-.siteTitle {
-  color: #fff8f2;
-  font: 400 calc(22 * var(--u)) / 1.15 Georgia, "Times New Roman", serif;
-}
-
-.siteButton {
-  padding: calc(7 * var(--u)) calc(13 * var(--u));
-  border-radius: calc(20 * var(--u));
-  background: #f8e9df;
-  color: #3b2a24;
-  font: 600 calc(10 * var(--u)) / 1 var(--f-display);
+  gap: calc(15 * var(--u));
+  padding: 0 calc(22 * var(--u));
+  overflow: hidden;
+  background: linear-gradient(90deg, #bd9786, #cba797 55%, #d6b4a3);
 }
 
 .photo {
   position: absolute;
-  left: calc(216 * var(--u));
-  top: calc(96 * var(--u));
-  width: calc(188 * var(--u));
-  height: calc(158 * var(--u));
+  z-index: -1;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: 100%;
+  aspect-ratio: 160 / 133;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 24%);
+  mask-image: linear-gradient(90deg, transparent, #000 24%);
+}
+
+.siteTitle {
+  color: #fff8f2;
+  font: 400 calc(23 * var(--u)) / 1.15 Georgia, "Times New Roman", serif;
+  text-shadow: 0 1px calc(6 * var(--u)) rgb(74 40 26 / 0.45);
+}
+
+.siteButton {
+  padding: calc(8 * var(--u)) calc(14 * var(--u));
+  border-radius: calc(20 * var(--u));
+  background: #fbefe8;
+  color: #3b2a24;
+  font: 700 calc(10 * var(--u)) / 1 var(--f-display);
+}
+
+.pointer {
+  position: absolute;
+  left: 76%;
+  top: 87%;
+  width: calc(27 * var(--u));
+  filter: drop-shadow(calc(2 * var(--u)) calc(3 * var(--u)) 0 rgb(3 6 24 / 0.35));
+  transform-origin: 0 0;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%);
-  mask-image: linear-gradient(90deg, transparent, #000 18%);
 }
 
-/* Servicios.exe */
-.servicesWin {
-  left: calc(10 * var(--u));
-  top: calc(262 * var(--u));
-  width: calc(233 * var(--u));
-  height: calc(143 * var(--u));
-  transform: skewY(-2.6deg);
+/* Destello amarillo sobre la esquina de la ventana. */
+.spark {
+  position: absolute;
+  left: calc(358 * var(--u));
+  top: 0;
+  width: calc(32 * var(--u));
+  fill: var(--c-accent);
 }
 
-.panel {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  gap: calc(6 * var(--u));
-  margin-top: calc(3 * var(--u));
-  padding: 0 calc(18 * var(--u));
-  background: #ececf5;
+@media (prefers-reduced-motion: reduce) {
+  .ghost {
+    transition: none;
+  }
 }
 
-.row {
-  display: flex;
-  align-items: center;
-  gap: calc(10 * var(--u));
-  white-space: nowrap;
-  font: 600 calc(11.5 * var(--u)) / 1.2 var(--f-display);
-}
-
-.row .folder {
-  flex: none;
-  width: calc(21 * var(--u));
-}
-
-/* Sistema_gestion.exe */
-.system {
-  left: calc(268 * var(--u));
-  top: calc(195 * var(--u));
-  width: calc(232 * var(--u));
-  height: calc(180 * var(--u));
-  transform: skewY(-2.7deg);
-}
-
-.dashboard {
-  display: flex;
-  flex: 1;
-  gap: calc(8 * var(--u));
-  margin-top: calc(3 * var(--u));
-  padding-right: calc(7 * var(--u));
-  background: #d3d4e8;
-}
-
-.sidebar {
-  display: flex;
-  justify-content: center;
-  width: calc(50 * var(--u));
-  padding-top: calc(12 * var(--u));
-  background: #1b2a72;
-  color: #e2e6ff;
-}
-
-.sidebar svg {
-  width: calc(21 * var(--u));
-  height: calc(118 * var(--u));
-}
-
-.card {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: calc(4 * var(--u));
-  margin: calc(8 * var(--u)) 0;
-  padding: calc(10 * var(--u)) calc(11 * var(--u));
-  background: #f7f7fc;
-}
-
-.cardLabel {
-  font: 700 calc(10.5 * var(--u)) / 1.2 var(--f-display);
-}
-
-.metric {
-  display: flex;
-  align-items: center;
-  gap: calc(4 * var(--u));
-  color: #17855a;
-  font: 700 calc(25 * var(--u)) / 1 var(--f-display);
-}
-
-.metric svg {
-  width: calc(22 * var(--u));
-  margin-top: calc(-8 * var(--u));
-}
-
-.bars {
-  display: flex;
-  flex: 1;
-  align-items: flex-end;
-  gap: calc(5 * var(--u));
-  border-bottom: 1px solid #b6b8d4;
-}
-
-.bars i {
-  flex: 1;
-  background: linear-gradient(180deg, #4a46c8, #8f86e8);
+:global(:root[data-motion="off"]) .ghost {
+  transition: none;
 }
