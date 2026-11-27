@@ -342,3 +342,68 @@
     height: 30px;
   }
 }
+
+/* Nubes y montañas siguen el período del fondo de escritorio; el azul de la ventana no cambia.
+   Los valores por defecto son los de la noche. */
+.app {
+  --cloud-shade: #8d86d8;
+  --cloud-light: #c9bff0;
+  --peak: #4a3d9c;
+  --snow: #a77fe0;
+  --ridge: #2a2470;
+  --base: #151a52;
+}
+
+.app[data-period="morning"] {
+  --cloud-shade: #d896b8;
+  --cloud-light: #f8d3d6;
+  --peak: #66529f;
+  --snow: #e8a8c4;
+  --ridge: #3a3076;
+  --base: #1a1f58;
+}
+
+.app[data-period="afternoon"] {
+  --cloud-shade: #7fb2e8;
+  --cloud-light: #d9eeff;
+  --peak: #34599f;
+  --snow: #8fc9f5;
+  --ridge: #213d7c;
+  --base: #132458;
+}
+
+.app[data-period="sunset"] {
+  --cloud-shade: #d9688f;
+  --cloud-light: #ffb08a;
+  --peak: #7a3784;
+  --snow: #ff9a76;
+  --ridge: #472268;
+  --base: #20184f;
+}
+
+.cloudShade { fill: var(--cloud-shade); }
+.cloudLight { fill: var(--cloud-light); }
+.peak { fill: var(--peak); }
+.snow { fill: var(--snow); }
+.ridge { fill: var(--ridge); }
+.base { fill: var(--base); }
+
+.cloudShade,
+.cloudLight,
+.peak,
+.snow,
+.ridge,
+.base {
+  transition: fill 2.5s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cloudShade,
+  .cloudLight,
+  .peak,
+  .snow,
+  .ridge,
+  .base {
+    transition: none;
+  }
+}

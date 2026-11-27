@@ -7,6 +7,7 @@ import {
 } from "../../components/PixelIcon/pixelIcons";
 import { WHATSAPP_ENABLED, whatsappUrl } from "../../data/site";
 import { useDesktopStore } from "../../store/desktopStore";
+import { useWallpaperPeriod } from "../../hooks/useWallpaperPeriod";
 import WelcomeScene from "./WelcomeScene";
 import styles from "./WelcomeApp.module.css";
 
@@ -75,8 +76,8 @@ function ChatLineIcon() {
 function Cloud({ className }: { className: string }) {
   return (
     <svg className={className} viewBox="0 0 34 12" shapeRendering="crispEdges" aria-hidden>
-      <path fill="#8d86d8" d="M0 10h3V8h3V6h4V3h3V1h7v2h3v2h5v2h4v3h2v2H0z" />
-      <path fill="#c9bff0" d="M3 9h3V7h4V4h3V2h7v2h3v2h5v2h3v1z" />
+      <path className={styles.cloudShade} d="M0 10h3V8h3V6h4V3h3V1h7v2h3v2h5v2h4v3h2v2H0z" />
+      <path className={styles.cloudLight} d="M3 9h3V7h4V4h3V2h7v2h3v2h5v2h3v1z" />
     </svg>
   );
 }
@@ -91,10 +92,10 @@ function Mountains() {
       shapeRendering="crispEdges"
       aria-hidden
     >
-      <path fill="#4a3d9c" d="M0 100v-4h10v-4h8v-4h8v-6h6v-6h6v-6h6v-6h4v6h6v6h6v4h6v-6h6v-8h6v-8h6v-8h6v-8h6v-6h4v-6h4v-6h4v-6h4v6h4v6h6v8h4v6h6v6h4v70z" />
-      <path fill="#a77fe0" d="M100 30h4v-6h4v-6h4v6h4v6h-4v-2h-4v6h-4v-4h-4v4h-4zM38 70h6v-6h4v6h6v2h-6v-2h-4v4h-6z" />
-      <path fill="#2a2470" d="M20 100v-4h10v-4h10v-6h8v-4h8v6h8v4h10v-6h8v-8h8v-8h6v-6h6v8h6v8h8v6h8v-6h8v-4h8v8h8v24z" />
-      <path fill="#151a52" d="M0 100v-2h30v-4h14v-4h10v4h16v4h18v-6h12v-4h10v6h14v4h16v-6h12v-4h8v16z" />
+      <path className={styles.peak} d="M0 100v-4h10v-4h8v-4h8v-6h6v-6h6v-6h6v-6h4v6h6v6h6v4h6v-6h6v-8h6v-8h6v-8h6v-8h6v-6h4v-6h4v-6h4v-6h4v6h4v6h6v8h4v6h6v6h4v70z" />
+      <path className={styles.snow} d="M100 30h4v-6h4v-6h4v6h4v6h-4v-2h-4v6h-4v-4h-4v4h-4zM38 70h6v-6h4v6h6v2h-6v-2h-4v4h-6z" />
+      <path className={styles.ridge} d="M20 100v-4h10v-4h10v-6h8v-4h8v6h8v4h10v-6h8v-8h8v-8h6v-6h6v8h6v8h8v6h8v-6h8v-4h8v8h8v24z" />
+      <path className={styles.base} d="M0 100v-2h30v-4h14v-4h10v4h16v4h18v-6h12v-4h10v6h14v4h16v-6h12v-4h8v16z" />
     </svg>
   );
 }
@@ -109,6 +110,7 @@ const SERVICES = [
 export default function WelcomeApp() {
   const ref = useRef<HTMLDivElement>(null);
   const launch = useDesktopStore((s) => s.launch);
+  const period = useWallpaperPeriod();
 
   useLayoutEffect(() => {
     const el = ref.current;
@@ -130,7 +132,7 @@ export default function WelcomeApp() {
   }, []);
 
   return (
-    <div ref={ref} className={styles.app}>
+    <div ref={ref} className={styles.app} data-period={period}>
       <div className={styles.main}>
         <Mountains />
         <Cloud className={`${styles.cloud} ${styles.cloudTop}`} />
